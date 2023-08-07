@@ -1,0 +1,14 @@
+export const data = JSON.parse("{\"key\":\"v-21ce0d46\",\"path\":\"/guide/advanced/advanced%20-%20theme.html\",\"title\":\"进阶 - 主题\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"进阶 - 主题\",\"shortTitle\":\"主题\",\"date\":\"2023-07-21T00:41:54.000Z\",\"order\":4,\"category\":[\"进阶\"],\"tag\":[\"进阶\"],\"description\":\"[[TOC]] 介绍 Admin 内置了主题色、暗黑模式、灰色模式、色弱模式等主题配置。 主题色 Admin 点击右上角头像，然后点击我的设置，就可以看到全局主题颜色选择器，有如下预定义主题颜色： ```typescript // 预定义主题颜色 const colorList = [ \\\"#168BF7\\\", \\\"#DAA96E\\\", \\\"#0C819F\\\", ...\",\"head\":[[\"meta\",{\"property\":\"og:url\",\"content\":\"https://vue3-admin.youngkbt.cn/guide/advanced/advanced%20-%20theme.html\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"Kbt Admin Docs\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"进阶 - 主题\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"[[TOC]] 介绍 Admin 内置了主题色、暗黑模式、灰色模式、色弱模式等主题配置。 主题色 Admin 点击右上角头像，然后点击我的设置，就可以看到全局主题颜色选择器，有如下预定义主题颜色： ```typescript // 预定义主题颜色 const colorList = [ \\\"#168BF7\\\", \\\"#DAA96E\\\", \\\"#0C819F\\\", ...\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"zh-CN\"}],[\"meta\",{\"property\":\"article:author\",\"content\":\"Young Kbt\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"进阶\"}],[\"meta\",{\"property\":\"article:published_time\",\"content\":\"2023-07-21T00:41:54.000Z\"}],[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"进阶 - 主题\\\",\\\"image\\\":[\\\"\\\"],\\\"datePublished\\\":\\\"2023-07-21T00:41:54.000Z\\\",\\\"dateModified\\\":null,\\\"author\\\":[{\\\"@type\\\":\\\"Person\\\",\\\"name\\\":\\\"Young Kbt\\\",\\\"url\\\":\\\"https://youngkbt.cn\\\"}]}\"]]},\"headers\":[{\"level\":2,\"title\":\"介绍\",\"slug\":\"介绍\",\"link\":\"#介绍\",\"children\":[]},{\"level\":2,\"title\":\"主题色\",\"slug\":\"主题色\",\"link\":\"#主题色\",\"children\":[]},{\"level\":2,\"title\":\"暗黑模式\",\"slug\":\"暗黑模式\",\"link\":\"#暗黑模式\",\"children\":[{\"level\":3,\"title\":\"适配\",\"slug\":\"适配\",\"link\":\"#适配\",\"children\":[]},{\"level\":3,\"title\":\"组件切换\",\"slug\":\"组件切换\",\"link\":\"#组件切换\",\"children\":[]}]},{\"level\":2,\"title\":\"灰色模式、色弱模式\",\"slug\":\"灰色模式、色弱模式\",\"link\":\"#灰色模式、色弱模式\",\"children\":[]},{\"level\":2,\"title\":\"源码\",\"slug\":\"源码\",\"link\":\"#源码\",\"children\":[]}],\"readingTime\":{\"minutes\":1.69,\"words\":508},\"filePathRelative\":\"guide/advanced/advanced - theme.md\",\"localizedDate\":\"2023年7月21日\",\"autoDesc\":true}")
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
+}

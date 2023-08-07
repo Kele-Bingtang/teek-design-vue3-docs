@@ -1,0 +1,14 @@
+export const data = JSON.parse("{\"key\":\"v-f0f8ca0e\",\"path\":\"/sourceCode/sourceCode-router.html\",\"title\":\"源码 - 路由构建\",\"lang\":\"zh-CN\",\"frontmatter\":{\"title\":\"源码 - 路由构建\",\"shortTitle\":\"路由构建\",\"date\":\"2023-08-05T01:18:05.000Z\",\"order\":2,\"category\":[\"源码\"],\"tag\":[\"源码\"],\"description\":\"[[TOC]] 介绍 Admin 在完成页面渲染的期间，进行了很多的逻辑处理，那么如果要想二次开发 Admin，则必须了解 Admin 的构建流程，这样才能根据需求切入源码，进行二次开发。 入口文件 Admin 的入口和所有的 Vue 项目一样，都是 main.ts 文件，这个文件引用并注册了全局的依赖：\\rPinia; \\rElement Plus; \\r...\",\"head\":[[\"meta\",{\"property\":\"og:url\",\"content\":\"https://vue3-admin.youngkbt.cn/sourceCode/sourceCode-router.html\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"Kbt Admin Docs\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"源码 - 路由构建\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"[[TOC]] 介绍 Admin 在完成页面渲染的期间，进行了很多的逻辑处理，那么如果要想二次开发 Admin，则必须了解 Admin 的构建流程，这样才能根据需求切入源码，进行二次开发。 入口文件 Admin 的入口和所有的 Vue 项目一样，都是 main.ts 文件，这个文件引用并注册了全局的依赖：\\rPinia; \\rElement Plus; \\r...\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"zh-CN\"}],[\"meta\",{\"property\":\"article:author\",\"content\":\"Young Kbt\"}],[\"meta\",{\"property\":\"article:tag\",\"content\":\"源码\"}],[\"meta\",{\"property\":\"article:published_time\",\"content\":\"2023-08-05T01:18:05.000Z\"}],[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"源码 - 路由构建\\\",\\\"image\\\":[\\\"\\\"],\\\"datePublished\\\":\\\"2023-08-05T01:18:05.000Z\\\",\\\"dateModified\\\":null,\\\"author\\\":[{\\\"@type\\\":\\\"Person\\\",\\\"name\\\":\\\"Young Kbt\\\",\\\"url\\\":\\\"https://youngkbt.cn\\\"}]}\"]]},\"headers\":[{\"level\":2,\"title\":\"介绍\",\"slug\":\"介绍\",\"link\":\"#介绍\",\"children\":[]},{\"level\":2,\"title\":\"入口文件\",\"slug\":\"入口文件\",\"link\":\"#入口文件\",\"children\":[]},{\"level\":2,\"title\":\"路由\",\"slug\":\"路由\",\"link\":\"#路由\",\"children\":[]},{\"level\":2,\"title\":\"初始化路由流程\",\"slug\":\"初始化路由流程\",\"link\":\"#初始化路由流程\",\"children\":[{\"level\":3,\"title\":\"initDynamicRouters\",\"slug\":\"initdynamicrouters\",\"link\":\"#initdynamicrouters\",\"children\":[]},{\"level\":3,\"title\":\"loadDynamicRouters\",\"slug\":\"loaddynamicrouters\",\"link\":\"#loaddynamicrouters\",\"children\":[]}]},{\"level\":2,\"title\":\"总结\",\"slug\":\"总结\",\"link\":\"#总结\",\"children\":[]}],\"readingTime\":{\"minutes\":14.54,\"words\":4363},\"filePathRelative\":\"sourceCode/sourceCode-router.md\",\"localizedDate\":\"2023年8月5日\",\"autoDesc\":true}")
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
+}
