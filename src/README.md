@@ -104,6 +104,10 @@ highlights:
         details: 基于 Axios 封装常用请求模块，内置业务拦截器、异常拦截器。
         link: 
 
+      - title: 多种图标类型
+        icon: icons
+        details: 支持 IconFont、SVG、Iconify 等多种图标类型渲染。
+        link: 
 
   - header: 布局
     description: 多种布局、标签栏切换，布局组件显隐

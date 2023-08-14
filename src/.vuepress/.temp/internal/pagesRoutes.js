@@ -16,6 +16,7 @@ export const pagesRoutes = [
   ["v-15407a7e","/guide/basic/guide-configuration.html",{"y":"a","t":"指南 - 配置","O":8,"s":"配置"},[":md"]],
   ["v-3605d8f7","/guide/basic/guide-directives.html",{"y":"a","t":"指南 - 指令","O":20,"s":"指令"},[":md"]],
   ["v-6104aaaa","/guide/basic/guide-directory.html",{"y":"a","t":"指南 - 目录结构","O":6,"s":"目录结构"},[":md"]],
+  ["v-01387dbc","/guide/basic/guide-icon.html",{"y":"a","t":"指南 - 图标","O":22,"s":"图标"},[":md"]],
   ["v-74bc1f38","/guide/basic/guide-introduce.html",{"y":"a","t":"指南 - 介绍","O":2,"s":"介绍"},[":md"]],
   ["v-7a98c891","/guide/basic/guide-layout.html",{"y":"a","t":"指南 - 布局","O":10,"s":"布局"},[":md"]],
   ["v-5bdb2635","/guide/basic/guide-quick-start.html",{"y":"a","t":"指南 - 快速开始","O":4,"s":"快速开始"},[":md"]],

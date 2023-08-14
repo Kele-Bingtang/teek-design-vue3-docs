@@ -15,6 +15,7 @@
 <p><RouterLink to="/guide/advanced/advanced-typescript.html">指南 - TS 类型</RouterLink>：介绍 Admin 的 TS 类型文件，以及基于 TS API 封装的自定义 API。</p>
 <p><RouterLink to="/guide/advanced/advanced-pre-build.html">指南 - 预构建</RouterLink>：介绍 Admin 的预构建功能，在第一次构建的时候进行缓存，从而加快在下一次构建的时间。</p>
 <p><RouterLink to="/guide/advanced/advanced-vite-config.html">指南 - Vite 配置</RouterLink>：介绍 Admin 的 Vite.Config.ts 配置，以及一些常用的插件、代理、打包处理等功能。</p>
+<p><RouterLink to="/guide/basic/guide-icon.html">指南 - 图标</RouterLink>：介绍 Admin 的图标内置功能以及如何使用。</p>
 </div></template>
 
 

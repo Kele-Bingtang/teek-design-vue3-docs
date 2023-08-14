@@ -33,6 +33,8 @@ export const pagesData = {
   "v-3605d8f7": () => import(/* webpackChunkName: "v-3605d8f7" */"E:/展示区/文档/kbt-admin-docs/src/.vuepress/.temp/pages/guide/basic/guide-directives.html.js").then(({ data }) => data),
   // path: /guide/basic/guide-directory.html
   "v-6104aaaa": () => import(/* webpackChunkName: "v-6104aaaa" */"E:/展示区/文档/kbt-admin-docs/src/.vuepress/.temp/pages/guide/basic/guide-directory.html.js").then(({ data }) => data),
+  // path: /guide/basic/guide-icon.html
+  "v-01387dbc": () => import(/* webpackChunkName: "v-01387dbc" */"E:/展示区/文档/kbt-admin-docs/src/.vuepress/.temp/pages/guide/basic/guide-icon.html.js").then(({ data }) => data),
   // path: /guide/basic/guide-introduce.html
   "v-74bc1f38": () => import(/* webpackChunkName: "v-74bc1f38" */"E:/展示区/文档/kbt-admin-docs/src/.vuepress/.temp/pages/guide/basic/guide-introduce.html.js").then(({ data }) => data),
   // path: /guide/basic/guide-layout.html
