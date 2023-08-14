@@ -215,6 +215,51 @@ import Upload from "@iconify-icons/ant-design/upload";
 import XxYy from "@iconify-icons/ant-design/xx-yy";
 ```
 
+## 类型
+
+上面只是演示了简单的使用 Icon 组件和 useIcon 函数，那么如何控制图标的颜色、大小呢？
+
+如 Icon 组件组件，我们除了可以传入 `icon` 属性，也可以传入如下属性：
+
+```typescript
+import type { CSSProperties } from "vue";
+
+export interface IconType {
+  inline?: boolean;
+  width?: string | number;
+  height?: string | number;
+  horizontalFlip?: boolean;
+  verticalFlip?: boolean;
+  flip?: string;
+  rotate?: number | string;
+  color?: string;
+  horizontalAlign?: boolean;
+  verticalAlign?: boolean;
+  align?: string;
+  onLoad?: Function;
+  includes?: Function;
+  name?: string;
+  prefix?: string;
+
+  //  all icon
+  style?: CSSProperties;
+}
+```
+
+如：
+
+```vue
+<Icon icon="IF-icon-dagouyouquan" width="200px" height="200px"></Icon>
+<!-- 或者 -->
+<Icon icon="IF-icon-dagouyouquan" :attrs="{ width: '200px', height: '200px'}"></Icon>
+```
+
+而 useIcon 函数，可以在第二个参数传入 IconType 的属性：
+
+```vue
+<component :is="useIcon('IF-icon-dagouyouquan', { width: '200px', height: '200px'})"></component>
+```
+
 ## 原理
 
 Admin 封装了 Icon 组件和 useIcon 函数来满足不同的使用场景，那么这两种形式的原理是什么呢？
@@ -239,7 +284,9 @@ Icon 通过传入的 `icon` 属性来进行判断，通过前缀规则来判断�
 
 同理 useIcon 函数根据传入的参数来区分渲染哪一类图标。
 
-因此，如果我们不使用 Icon 组件或 useIcon 函数，我们也可以单独引入对应的组件：
+因此，如果我们不使用 Icon 组件或 useIcon 函数，我们也可以单独引入对应的组件。
+
+这些组件同样支持 IconType 的传参。
 
 ### IconFont
 
