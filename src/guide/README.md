@@ -24,6 +24,8 @@ index: false
 
 [指南 - 指令](/guide/basic/guide-directives.html)：介绍 Admin 的 Vue 自定义指令。
 
+[指南 - 图标](/guide/basic/guide-icon.html)：介绍 Admin 的图标内置功能以及如何使用。
+
 ## 进阶指南
 
 [指南 - 国际化](/guide/advanced/advanced-i18n.html)：介绍 Admin 的国际化规则和配置，开发国际化项目需要了解这项功能。
@@ -37,5 +39,3 @@ index: false
 [指南 - 预构建](/guide/advanced/advanced-pre-build.html)：介绍 Admin 的预构建功能，在第一次构建的时候进行缓存，从而加快在下一次构建的时间。
 
 [指南 - Vite 配置](/guide/advanced/advanced-vite-config.html)：介绍 Admin 的 Vite.Config.ts 配置，以及一些常用的插件、代理、打包处理等功能。
-
-[指南 - 图标](/guide/basic/guide-icon.html)：介绍 Admin 的图标内置功能以及如何使用。

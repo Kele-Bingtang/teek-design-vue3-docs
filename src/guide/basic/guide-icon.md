@@ -260,6 +260,69 @@ export interface IconType {
 <component :is="useIcon('IF-icon-dagouyouquan', { width: '200px', height: '200px'})"></component>
 ```
 
+## 内置图标
+
+如果 Admin 要使用高频的图标，我们需要经常 `import from` 会显得很麻烦，那么我们可以在 Admin 加载的时候，往 Admin 注入一些高频使用的图标，然后引用的时候，直接填写图标名，不需要引入。
+
+## Iconify
+
+如果是 Iconify 图标，可以使用 `addIcon` 函数来加载图标，该函数将将图标全局注册到 Admin 里。
+
+在 `src/layout/index.vue` 里添加如下：
+
+```typescript
+import { addIcon } from "@iconify/vue/dist/offline";
+import Edit from "@iconify-icons/ep/edit";
+
+addIcon("edit", Edit);
+```
+
+`addIcon` 的第一个参数就是该图标的名字，使用的时候引用该名字就可以了：
+
+```vue
+<Icon icon="edit"></Icon>
+<!-- 或者 -->
+<component :is="useIcon('edit')"></component>
+```
+
+如果 `addIcon` 比较多，可以单独放到一个文件里，如将代码放到 `src/layout/offlineIcon.ts` 下，然后在 `src/layout/index.vue` 引入：
+
+```typescript
+import "@/layout/offlineIcon";
+```
+
+### Element Plus
+
+如果是 Element Plus 图标，需要在 `src/main.ts` 里使用 app 来全局注册。
+
+全部引入：
+
+```typescript
+import * as ElementPlusIconsVue from "@element-plus/icons-vue";
+
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component);
+}
+```
+
+key 是图标的名字。
+
+按需引入：
+
+```typescript
+import { Edit } from "@element-plus/icons-vue";
+
+app.component("edit", Edit);
+```
+
+使用：
+
+```vue
+<Icon icon="edit"></Icon>
+<!-- 或者 -->
+<component :is="useIcon('edit')"></component>
+```
+
 ## 原理
 
 Admin 封装了 Icon 组件和 useIcon 函数来满足不同的使用场景，那么这两种形式的原理是什么呢？
@@ -433,3 +496,35 @@ import Upload from "@iconify-icons/ant-design/upload";
 ## VSCode 图标插件
 
 使用 Iconify 并且开发 IDE 是 VSCode，那么可以安装 `antfu.iconify` 插件，该插件可以在引用 Iconify 的图标时，直接在代码里显示该图标。
+
+## 布局 CommonIcon 组件
+
+CommonIcon 组件封装了 Element Plus 的 Icon 和 Icon 组件，在 `src/layout/components/CommonIcon` 下。
+
+因为布局大部分都是使用 Element Plus 的 Icon，少部分使用 Icon 组件，所以就封装了这个组件。
+
+::: tip
+
+布局大量的使用 CommonIcon 组件。
+
+:::
+
+该组件的使用方式非常简单：
+
+```vue
+<template>
+	Element Plus Icon
+	<CommonIcon :icon="Close" />
+	
+	Iconify Icon
+	<CommonIcon :icon="Upload" />
+</template>
+
+<script setup lang="ts" name="MenuItem">
+import CommonIcon from "@/layout/components/CommonIcon/index.vue";
+import { Close} from "@element-plus/icons-vue";
+import Upload from "@iconify-icons/ant-design/upload";
+</script>
+```
+
+CommonIcon 会根据传入的图标来自动识别属于哪类，然后渲染。

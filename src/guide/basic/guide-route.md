@@ -363,6 +363,45 @@ const routerSettings: Partial<Settings> = {
 
 下面演示一些基本的路由配置，实际还是建议去拉取项目并运行，然后尝试一些路由配置就明白了原理。
 
+### 标题 & 图标
+
+使用 `title` 来当菜单、面包屑、标签页渲染的标题，使用 `icon` 当渲染的图标。
+
+```typescript
+export const rolesRoutes: RouterConfigRaw[] = [
+  {
+    path: "/home",
+    name: "Home",
+    component: import("@/views/home/index.vue"),
+    meta: {
+      isAffix: true,
+      title: "首页",
+      icon: "HomeFilled",
+    },
+  },
+]
+```
+
+如果你给 Admin 内置了部分图标，则 `icon` 可以直接写名字，如果使用了不内置的图标，则需要手动引入图标：
+
+```typescript
+import { HomeFilled } from "@element-plus/icons-vue";
+
+export const rolesRoutes: RouterConfigRaw[] = [
+  {
+    path: "/home",
+    name: "Home",
+    component: import("@/views/home/index.vue"),
+    meta: {
+      title: "首页",
+      icon: HomeFilled,
+    },
+  },
+]
+```
+
+`icon` 支持 Element Plus 内置的图标，也支持 Iconify 的图标，具体请看 [指南 - 图标](/guide/basic/guide-icon.html)。
+
 ### 标签页固定
 
 标签页是记录打开过的历史路由，具有可删除功能，但是有时候我们需要将某个路由如首页直接固定到标签页的第一个位置，无法删除，则使用 `isAffix` 属性：
