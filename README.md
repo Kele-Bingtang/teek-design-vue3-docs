@@ -1,3 +1,3 @@
 ## 介绍
 
-[kbt-vue3-admin](https://github.com/Kele-Bingtang/kbt-vue3-admin) 使用文档。
+[Teek Design Vue3](https://github.com/Kele-Bingtang/teek-design-vue3) 使用文档。
