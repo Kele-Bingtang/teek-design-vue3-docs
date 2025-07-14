@@ -10,7 +10,7 @@ export default defineConfig({
   extends: teekConfig,
   title: "Teek Design Vue3",
   description: description,
-  cleanUrls: true,
+  cleanUrls: false,
   lastUpdated: true,
   lang: "zh-CN",
   head: [
