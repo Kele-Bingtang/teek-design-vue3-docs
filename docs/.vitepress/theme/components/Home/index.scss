@@ -1,0 +1,143 @@
+.header {
+  h2 {
+    margin-bottom: 2rem;
+    font-size: 3rem;
+    border-top: none;
+    padding-top: 12px;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+  p {
+    font-size: 1.125rem;
+    margin: 1.125rem 0;
+  }
+}
+
+.item {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    background-color: transparent;
+    box-shadow: var(--tk-hover-shadow);
+    transform: scale(1.05);
+  }
+}
+
+.feature-wrapper {
+  position: relative;
+  padding-top: 1.5rem;
+  text-align: center;
+
+  .feature {
+    &__image {
+      height: 10rem;
+      margin: 0 auto;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      align-content: stretch;
+      align-items: stretch;
+      justify-content: space-around;
+      text-align: start;
+      margin-top: 1rem;
+
+      &__item {
+        flex-basis: calc(33% - 3rem);
+        margin: 0.5rem;
+
+        @media (min-width: 1440px) {
+          flex-basis: calc(25% - 3rem);
+        }
+
+        @media (max-width: 719px) {
+          flex-basis: 100%;
+          font-size: 0.95rem;
+        }
+
+        h3 {
+          font-weight: 700;
+          font-size: 1.3rem;
+          margin: 0.25rem 0px 0.5rem;
+        }
+
+        p {
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+.highlight-wrapper {
+  position: relative;
+
+  .highlight {
+    flex-direction: row-reverse;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 1;
+    padding: 2.5rem;
+
+    @media (max-width: 719px) {
+      display: block;
+      padding-inline-start: 1.5rem;
+      padding-inline-end: 1.5rem;
+      text-align: center;
+    }
+
+    &__image {
+      width: 12rem;
+      margin: 2rem 4rem;
+
+      @media (max-width: 959px) {
+        width: 10rem;
+      }
+
+      @media (max-width: 719px) {
+        width: 8rem;
+        margin: 0 auto;
+      }
+    }
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 5px;
+      text-align: start;
+
+      .highlights {
+        margin-left: -1rem;
+
+        &__item {
+          h3 {
+            margin-top: 0;
+            font-weight: 600;
+            font-size: 1.125rem;
+          }
+
+          p {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+// 滚动动画效果
+.scroll__animate {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

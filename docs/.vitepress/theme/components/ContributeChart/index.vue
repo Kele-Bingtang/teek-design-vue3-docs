@@ -15,6 +15,8 @@ const contributeList = computed(() => {
   const contributeObject = ref({});
 
   posts.value.sortPostsByDate.forEach(item => {
+    if (!item.date) return;
+
     const date = item.date.substring(0, 10);
     if (contributeObject.value[date]) contributeObject.value[date]++;
     else contributeObject.value[date] = 1;

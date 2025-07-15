@@ -18,8 +18,8 @@ export default defineConfig({
     ["link", { rel: "icon", type: "image/png", href: "/favicon.ico" }],
     ["meta", { property: "og:type", content: "website" }],
     ["meta", { property: "og:locale", content: "zh-CN" }],
-    ["meta", { property: "og:title", content: "Teeker Blog | Teek Theme" }],
-    ["meta", { property: "og:site_name", content: "Teeker Blog" }],
+    ["meta", { property: "og:title", content: "Teek Design Vue3" }],
+    ["meta", { property: "og:site_name", content: "Teek Design Vue3" }],
     ["meta", { property: "og:image", content: "" }],
     ["meta", { property: "og:url", content: "" }],
     ["meta", { property: "og:description", description }],
@@ -76,10 +76,10 @@ export default defineConfig({
       next: "下一页",
     },
     nav: [
-      { text: "指南", link: "/guide/" },
-      { text: "构建", link: "/structure/" },
+      { text: "✨ 指南", link: "/guide/" },
+      { text: "🛠️ 构建", link: "/structure/" },
       {
-        text: "链接",
+        text: "🔗 链接",
         items: [
           {
             text: "预览地址",
