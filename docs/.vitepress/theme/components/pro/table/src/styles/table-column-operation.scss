@@ -1,0 +1,39 @@
+@use "@/styles/mixins/bem" as *;
+
+@include b(pro-table-operation) {
+  &.is-center {
+    .cell {
+      justify-content: center;
+    }
+  }
+
+  &.is-right {
+    .cell {
+      justify-content: flex-end;
+    }
+  }
+
+  .cell {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+
+    @include el-joins(button) {
+      margin-left: 0;
+    }
+
+    @include el-joins(icon) {
+      cursor: pointer;
+    }
+  }
+
+  @include e(more) {
+    display: inline-flex;
+    cursor: pointer;
+    user-select: none;
+
+    @include m(text) {
+      margin-right: 2px;
+    }
+  }
+}

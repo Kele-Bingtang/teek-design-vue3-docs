@@ -1,0 +1,32 @@
+@use "@/styles/mixins/bem" as *;
+@use "@/styles/mixins/function" as *;
+@use "@/styles/mixins/namespace" as *;
+
+tbody {
+  @include b(pro-table-column-data) {
+    @include is(cell-edit) {
+      .cell:not(:has(.el-form-item)) {
+        cursor: pointer;
+        transition: box-shadow cssVarEl(transition-duration-fast);
+
+        &:hover {
+          margin-right: 0.6px;
+          box-shadow: 0 0 0 1px cssVar(gray-300);
+        }
+      }
+    }
+
+    .el-form-item {
+      margin-bottom: 0;
+    }
+  }
+}
+
+thead {
+  @include b(pro-table-column-data) {
+    // 表头过滤图标激活时，表头文字颜色为 primary 色
+    .cell:has(.#{$admin-namespace}-pro-table-filter-icon.is-active) {
+      color: cssVar(color-primary);
+    }
+  }
+}

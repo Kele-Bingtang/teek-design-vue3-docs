@@ -1,5 +1,6 @@
 import { defineConfig } from "vitepress";
 import { teekConfig } from "./teekConfig";
+import { fileURLToPath } from "node:url";
 
 const description = [
   "Teek Design Vue3 后台管理系统",
@@ -48,6 +49,13 @@ export default defineConfig({
       detailsLabel: "详细信息",
     },
   },
+  vite: {
+    resolve: {
+      alias: {
+        "@": fileURLToPath(new URL("./theme", import.meta.url)),
+      },
+    },
+  },
   sitemap: {
     hostname: "https://vue3-design-docs.teek.top",
     transformItems: items => {
@@ -78,6 +86,7 @@ export default defineConfig({
     nav: [
       { text: "✨ 指南", link: "/guide/" },
       { text: "🛠️ 构建", link: "/structure/" },
+      { text: "🎉 生态", link: "/ecosystem/components/pro-table" },
       {
         text: "🔗 链接",
         items: [

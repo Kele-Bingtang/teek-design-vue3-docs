@@ -1,0 +1,49 @@
+@use "@/styles/mixins/bem" as *;
+@use "@/styles/mixins/namespace" as *;
+@use "@/styles/mixins/function" as *;
+
+@include b(tree-filter) {
+  width: 220px;
+  height: 100%;
+  padding: 18px;
+  margin-right: 10px;
+
+  @include e(title) {
+    margin: 0 0 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: cssVarEl(color-info-dark-2);
+    letter-spacing: 0.5px;
+  }
+
+  @include el-joins(input) {
+    margin: 0 0 15px;
+  }
+
+  @include el-joins(scrollbar) {
+    :deep(.el-tree) {
+      height: 80%;
+      overflow: auto;
+
+      @include el-joins(tree-node__content) {
+        height: 33px;
+      }
+    }
+
+    :deep(.el-tree--highlight-current) {
+      @include el-joins(tree-node) {
+        &.is-current > .el-tree-node__content {
+          background-color: cssVarEl(color-primary);
+
+          @include el-joins(tree-node__label, tree-node__expand-icon) {
+            color: #ffffff;
+          }
+
+          .is-leaf {
+            color: transparent;
+          }
+        }
+      }
+    }
+  }
+}

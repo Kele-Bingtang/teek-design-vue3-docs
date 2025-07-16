@@ -1,0 +1,10 @@
+@use "@/styles/mixins/bem" as *;
+@use "@/styles/mixins/namespace" as *;
+@use "@/styles/mixins/function" as *;
+
+@include b(pagination) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 2px 0;
+}

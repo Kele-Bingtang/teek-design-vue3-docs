@@ -1,0 +1,28 @@
+@use "@/styles/mixins/bem" as *;
+@use "@/styles/mixins/function" as *;
+
+@include b(pro-table-head) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 11px;
+
+  @include e(right) {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+
+    @include el-joins(button) {
+      width: 32px;
+      margin-left: 0;
+      color: cssVar(gray-700);
+      outline: none;
+      background-color: rgb(cssVar(gray-100-rgb));
+      border: none;
+
+      &:hover {
+        background-color: rgb(cssVar(gray-200-rgb));
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+@use "@/styles/mixins/bem" as *;
+@use "@/styles/mixins/namespace" as *;
+
+@include b(pro-dialog) {
+  &.el-dialog.is-fullscreen {
+    --el-dialog-width: 100% !important;
+    --el-dialog-margin-top: 0 !important;
+
+    height: 100%;
+    margin-bottom: 0;
+    overflow: auto;
+  }
+
+  @include e(footer) {
+    display: flex;
+    align-items: center;
+  }
+
+  .fullscreen-icon {
+    margin-top: -7px;
+  }
+}

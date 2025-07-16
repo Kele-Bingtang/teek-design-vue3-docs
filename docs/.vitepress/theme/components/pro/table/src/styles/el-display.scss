@@ -1,0 +1,12 @@
+.el-copy-icon {
+  margin-inline-start: 4px;
+  vertical-align: sub;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  transition: color cssVarEl(transition-duration-fast);
+
+  &:hover {
+    color: cssVarEl(color-primary);
+  }
+}

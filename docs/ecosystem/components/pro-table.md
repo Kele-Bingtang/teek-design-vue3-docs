@@ -1,0 +1,152 @@
+---
+title: 超级表格
+date: 2025-07-16 22:27:07
+permalink: /ecosystem/pro-table
+---
+
+## 基础用法
+
+传入 `columns` 和 `data` 即可快速构建一个表格。
+
+::: demo
+pro-table/basic
+:::
+
+## 多级显示
+
+`columns` 的 prop 支持 `x.y.z` 形式的 多（无限）级数据形式。
+
+::: warning
+数据级不宜过多，可能会影响性能。
+:::
+
+::: demo
+pro-table/multiple-prop
+:::
+
+## options 字典
+
+在 `columns` 中配置 `options` 时，Teek 会将当前 `data` 与 `options` 的 `value` 进行比对，如果相等则取出 `options` 的 `label` 作为单元格的显示内容。
+
+<mark>匹配失败逻辑</mark>：如果 `options` 的 `value` 都无法匹配到 `data`，则显示 `--`，如果您希望匹配不上时，显示 `data`，则使用 `ignoreOptionIfAbsent: true` 配置项。
+
+<mark>自定义匹配逻辑</mark>：可以通过 `transformOption` 配置项自定义 options 的遍历和匹配逻辑（返回一个 option），当 `transformOption` 返回 `undefined` 时，则走匹配失败逻辑。
+
+<mark>忽略 options 功能</mark>：当传入了 `options`，但是又希望单元格数据不走 `options` 匹配逻辑，而是直接渲染传入的 `data` 时，使用 `isFilterOptions: false` 配置项。
+
+<mark>使用已有 options</mark>：通过 `optionsProp` 配置项指定使用某个 `prop` 已有的 `options`。
+
+::: demo
+pro-table/options
+:::
+
+## options 字典配置
+
+如果 `options` 的 key 不是 `label` 和 `value`，则通过 `optionField` 指定 `label` 和 `value` 的字段。
+
+如果 `el` 为 `el-tag`，则可以通过 `optionField` 指定 `el-tag` 的 props 配置项，以 `tagXxx` 的形式传入。
+
+::: demo
+pro-table/options-config
+:::
+
+## 多选列
+
+在 `columns` 中配置 `type: 'selection'` 添加多选列，并且通过 `selection-change` 监听多选事件。
+
+::: demo
+pro-table/multiple-selection
+:::
+
+## 单选列
+
+在 `columns` 中配置 `type: 'radio'` 添加索引单选列，并且通过 `selection-change` 监听索引事件。
+
+通过使用 `selectedRadio` 配置项传入 `ProTable` 来指定默认单选行，值为 `rowKey` 对应的值
+
+::: demo
+pro-table/single-selection
+:::
+
+## 序号列
+
+在 `columns` 中配置 `type: 'index'` 添加序号列。
+
+::: demo
+pro-table/index-column
+:::
+
+## 拖拽列
+
+在 `columns` 中配置 `type: 'sort'` 添加拖拽列。
+
+::: demo
+pro-table/sort-column
+:::
+
+## 展开行
+
+在 `columns` 中配置 `type: 'expand'` 添加展开行，并搭配插槽 `expand` 使用。
+
+::: demo
+pro-table/expand-column
+:::
+
+## 树形结构
+
+配置 `tree-props` 树形为 `children: 'children'`，数据结构中有 children 即可。 树形懒加载表格还需设置 `lazy` 和 `load`。
+
+::: warning
+数据中 `children` 中的 id 和表格 id 不能重复。`row-key` 默认为 id。
+:::
+
+::: demo
+pro-table/tree-table
+:::
+
+## 多级表头
+
+通过在 `columns` 新增 `children` 配置，实现多级表头。
+
+::: demo
+pro-table/multiple-header
+:::
+
+## 分页栏
+
+通过 `pageScope` 开启分页栏，通过 `pageInfo` 配置分页信息，通过 `paginationProps` 配置 `ElPagination` 组件的 Props 属性。
+
+`pageScope` 默认为前端分页，可以将 `pageScope` 设置为 `server`，并搭配 `paginationChange` 事件开启后端分页。
+
+::: demo
+pro-table/pagination
+:::
+
+## 单元格组件
+
+通过在 `columns` 中配置 `el` 属性，可以使用内置的组件渲染单元格数据。
+
+通过 `elProps` 配置对应 `el` 属性对应的组件 Props 属性。
+
+通过 `elSlots` 配置对应 `el` 属性对应的组件 Slots 属性。
+
+::: demo
+pro-table/el-column
+:::
+
+## 单元格内容格式化
+
+单元格有 4 种方式进行格式化：
+
+- `render`：完全自定义单元格整体渲染
+- `renderHtml`：返回 HTML 字符串渲染单元格
+- `slots`：通过对应 `prop` 的插槽渲染单元格，和 `render` 函数功能一致
+- `formatValue`：通过 `formatter` 函数对单元格数据进行格式化
+
+如果同时存在多个，只生效一个，优先级从高到低。
+
+这里示例介绍 `renderHtml` 和 `formatValue` 配置项。
+
+::: demo
+pro-table/format-value
+:::
