@@ -3,36 +3,15 @@ import type { TableColumn } from "@/components/pro/table";
 import { ProTable } from "@/components/pro/table";
 
 const data = [
-  {
-    user: {
-      name: {
-        value: "张三",
-      },
-      gender: 1,
-    },
-  },
-  {
-    user: {
-      name: {
-        value: "李四",
-      },
-      gender: 2,
-    },
-  },
-  {
-    user: {
-      name: {
-        value: "王五",
-      },
-      gender: 1,
-    },
-  },
+  { username: "张三", gender: 1, progress: 20, birthday: "2023-01-01" },
+  { username: "李四", gender: 2, progress: 40, birthday: "2023-02-01" },
+  { username: "王五", gender: 1, progress: 60, birthday: "2023-03-01" },
 ];
 
 const columns: TableColumn[] = [
-  { prop: "user.name.value", label: "姓名" },
+  { prop: "username", label: "用户姓名", el: "copy" },
   {
-    prop: "user.gender",
+    prop: "gender",
     label: "性别",
     el: "el-tag",
     elProps: (value: number) => {
@@ -46,6 +25,15 @@ const columns: TableColumn[] = [
       ];
     },
   },
+  {
+    prop: "progress",
+    label: "进度",
+    el: "el-progress",
+    elSlots: {
+      default: ({ value }) => value + "%",
+    },
+  },
+  { prop: "birthday", label: "生日" },
 ];
 </script>
 

@@ -63,7 +63,7 @@ watch(
 const { optionsMap, initOptionsMap } = useOptions();
 const { availableColumns } = useTableInit();
 const { handleClickCell, handleDoubleClickCell, handleSelectionChange, handleRadioChange } = useTableEvent();
-const { getOperationProps, handleButtonClick, handleConfirm, handleCancel } = useTableOperation();
+const { getOperationProps, handleButtonClick, handleButtonConfirm, handleButtonCancel } = useTableOperation();
 const { filterTableData, handleFilter, handleFilterClear, handleFilterReset } = useTableFiler();
 
 // 表格选择
@@ -79,7 +79,7 @@ const { registerProFormInstance, getElFormInstance, getElFormItemInstance, getEl
 /**
  * 执行分页操作
  */
-const tryPagination = (data: Recordable[] = []) => {
+const tryPagination = (data: Record<string, any>[] = []) => {
   if (!data.length) return [];
 
   // 如果服务端（后端）分页，则不执行分页，需要后端返回已分页的 data
@@ -254,7 +254,7 @@ function useTableEvent() {
   /**
    * 多选触发事件
    */
-  const handleSelectionChange = (newSelection: Recordable[]) => {
+  const handleSelectionChange = (newSelection: Record<string, any>[]) => {
     selectionChange(newSelection);
     emits("selectionChange", {
       isSelected: isSelected.value,
@@ -266,7 +266,7 @@ function useTableEvent() {
   /**
    * 单选触发事件
    */
-  const handleRadioChange = (row: Recordable, index: number) => {
+  const handleRadioChange = (row: Record<string, any>, index: number) => {
     selectionChange([row]);
     emits(
       "selectionChange",
@@ -311,15 +311,15 @@ function useTableOperation() {
     emits("buttonClick", params);
   };
 
-  const handleConfirm = (params: OperationNamespace.ButtonsCallBackParams) => {
-    emits("confirm", params);
+  const handleButtonConfirm = (params: OperationNamespace.ButtonsCallBackParams) => {
+    emits("buttonConfirm", params);
   };
 
-  const handleCancel = (params: OperationNamespace.ButtonsCallBackParams) => {
-    emits("cancel", params);
+  const handleButtonCancel = (params: OperationNamespace.ButtonsCallBackParams) => {
+    emits("buttonCancel", params);
   };
 
-  return { getOperationProps, handleButtonClick, handleConfirm, handleCancel };
+  return { getOperationProps, handleButtonClick, handleButtonConfirm, handleButtonCancel };
 }
 
 /**
@@ -327,9 +327,9 @@ function useTableOperation() {
  */
 function useTableFiler() {
   // 过滤后的表格数据
-  const filterTableData = ref<Recordable[]>();
+  const filterTableData = ref<Record<string, any>[]>();
   // 过滤数据表单
-  const filterModel = ref<Recordable>({});
+  const filterModel = ref<Record<string, any>>({});
 
   /**
    * 执行过滤搜索
@@ -342,7 +342,7 @@ function useTableFiler() {
 
     const keys = getObjectKeys(filterModel.value);
 
-    const filterRule: Recordable = {};
+    const filterRule: Record<string, any> = {};
     keys.forEach(key => {
       const column = availableColumns.value.find(item => item.prop === key);
       // 可以返回新的过滤值，如去掉 %、转换为小写等
@@ -470,8 +470,8 @@ defineExpose(expose);
           :align="column.align || 'center'"
           :prop="operationProp"
           @button-click="handleButtonClick"
-          @confirm="handleConfirm"
-          @cancel="handleCancel"
+          @button-confirm="handleButtonConfirm"
+          @button-cancel="handleButtonCancel"
         >
           <template v-for="slot in Object.keys($slots)" #[slot]="scope">
             <slot :name="slot" v-bind="scope" />

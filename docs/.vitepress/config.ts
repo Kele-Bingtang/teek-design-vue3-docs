@@ -1,6 +1,7 @@
 import { defineConfig } from "vitepress";
-import { teekConfig } from "./teekConfig";
 import { fileURLToPath } from "node:url";
+import vueJsx from "@vitejs/plugin-vue-jsx";
+import { teekConfig } from "./teekConfig";
 
 const description = [
   "Teek Design Vue3 后台管理系统",
@@ -55,6 +56,7 @@ export default defineConfig({
         "@": fileURLToPath(new URL("./theme", import.meta.url)),
       },
     },
+    plugins: [vueJsx()],
   },
   sitemap: {
     hostname: "https://vue3-design-docs.teek.top",

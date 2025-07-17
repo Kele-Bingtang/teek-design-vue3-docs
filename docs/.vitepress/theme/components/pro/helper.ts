@@ -106,7 +106,7 @@ export const toCamelCase = (val?: string) => {
 
   return val
     .split(separator)
-    .map(word => (word ? word.charAt(0).toUpperCase() + word.slice(1).toLowerCase() : ""))
+    .map(word => (word ? word.charAt(0).toUpperCase() + word.slice(1) : ""))
     .join("");
 };
 
@@ -215,14 +215,16 @@ export const getObjectKeys = (model: Record<string, any>, prefix = ""): string[]
  *
  * @param obj 需要处理的对象
  */
-export const filterEmpty = <T extends Record<string, any>>(obj: T) => {
+export const filterEmpty = <T extends Recordable>(obj: T) => {
   return Object.entries(obj).reduce((acc, [key, value]) => {
-    if (!isEmpty(value)) {
-      if (isObject(value) && Object.keys(value).length) {
+    // 支持响应式变量
+    const valueConst = unref(value);
+    if (!isEmpty(valueConst)) {
+      if (isObject(valueConst) && Object.keys(valueConst).length) {
         // 如果是嵌套对象，递归处理
-        const nestedFiltered = filterEmpty(unref(value));
+        const nestedFiltered = filterEmpty(unref(valueConst));
         if (Object.keys(nestedFiltered).length) acc[key as keyof T] = nestedFiltered as T[keyof T];
-      } else acc[key as keyof T] = value;
+      } else acc[key as keyof T] = valueConst;
     }
     return acc;
   }, {} as T);

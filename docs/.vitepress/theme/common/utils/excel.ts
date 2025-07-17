@@ -1,6 +1,6 @@
 import type { WorkBook, WorkSheet } from "xlsx";
-import { write, utils, SSF } from "xlsx";
-import { saveAs } from "file-saver";
+import * as xlsx from "xlsx";
+import * as fileSaver from "file-saver";
 import { isObject } from "./is";
 
 /**
@@ -111,7 +111,7 @@ const sheetFromDataArray = (data: any) => {
         z: "",
       };
       if (cell.v == null) continue;
-      const cellRef = utils.encode_cell({
+      const cellRef = xlsx.utils.encode_cell({
         c: C,
         r: R,
       });
@@ -119,14 +119,14 @@ const sheetFromDataArray = (data: any) => {
       else if (typeof cell.v === "boolean") cell.t = "b";
       else if (cell.v instanceof Date) {
         cell.t = "n";
-        cell.z = SSF.get_table()[14];
+        cell.z = xlsx.SSF.get_table()[14];
         cell.v = datenum(cell.v);
       } else cell.t = "s";
       ws[cellRef] = cell;
     }
   }
   if (range.s.c < 10000000) {
-    ws["!ref"] = utils.encode_range(range);
+    ws["!ref"] = xlsx.utils.encode_range(range);
   }
   return ws;
 };
@@ -160,13 +160,13 @@ export const exportTableToExcel = (id: string) => {
     wb.SheetNames.push(wsName);
     wb.Sheets[wsName] = ws;
 
-    const wbout = write(wb, {
+    const wbout = xlsx.write(wb, {
       bookType: "xlsx",
       bookSST: false,
       type: "binary",
     });
 
-    saveAs(
+    fileSaver.saveAs(
       new Blob([s2ab(wbout)], {
         type: "application/octet-stream",
       }),
@@ -199,7 +199,7 @@ export const exportJsonToExcel = (
       ws["!merges"] = [];
     }
     merges.forEach(item => {
-      ws["!merges"].push(utils.decode_range(item));
+      ws["!merges"].push(xlsx.utils.decode_range(item));
     });
   }
 
@@ -240,13 +240,13 @@ export const exportJsonToExcel = (
   wb.SheetNames.push(wsName);
   wb.Sheets[wsName] = ws;
 
-  const wbout = write(wb, {
+  const wbout = xlsx.write(wb, {
     bookType: bookType as any,
     bookSST: false,
     type: "binary",
   });
 
-  saveAs(
+  fileSaver.saveAs(
     new Blob([s2ab(wbout)], {
       type: "application/octet-stream",
     }),

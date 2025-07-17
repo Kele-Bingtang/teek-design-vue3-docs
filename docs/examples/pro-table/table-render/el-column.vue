@@ -29,7 +29,7 @@ const columns: TableColumn[] = [
   { prop: "copy", label: "用户姓名", el: "copy" },
   {
     prop: "tag",
-    label: "性别",
+    label: "标签",
     el: "el-tag",
     elProps: value => ({
       type: value === 0 ? "success" : "info",

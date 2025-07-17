@@ -2,6 +2,7 @@
 import type { TableColumn } from "@/components/pro/table";
 import { ref } from "vue";
 import { ProTable } from "@/components/pro/table";
+import { dayjs } from "element-plus";
 
 const TestServe = {
   getList: async () => {
@@ -11,7 +12,7 @@ const TestServe = {
         name: index + "name",
         status: String(index % 3),
         tag: index === 1 ? "success" : index === 2 ? "warning" : index === 3 ? "info" : "danger",
-        time: new Date(),
+        time: dayjs().format("YYYY-MM-DD HH:mm:ss"),
         hasChildren: true,
         children: [],
       };
@@ -22,13 +23,13 @@ const TestServe = {
         name: index + "name",
         status: String(index % 3),
         tag: index === 1 ? "success" : index === 2 ? "warning" : index === 3 ? "info" : "danger",
-        time: new Date(),
+        time: dayjs().format("YYYY-MM-DD HH:mm:ss"),
         children: Array.from({ length: 10 }).map((item, i) => ({
           id: index + "" + i,
           name: "小明" + i + "-" + i,
           status: String(i % 3),
           tag: i === 1 ? "success" : i === 2 ? "warning" : i === 3 ? "info" : "danger",
-          time: new Date(),
+          time: dayjs().format("YYYY-MM-DD HH:mm:ss"),
         })),
       };
     });
@@ -47,7 +48,7 @@ const load = (row: Record<string, any>, treeNode: unknown, resolve: (date: Recor
         name: "小明" + i + "-" + i,
         status: String(i % 3),
         tag: i === 1 ? "success" : i === 2 ? "warning" : i === 3 ? "info" : "danger",
-        time: new Date(),
+        time: dayjs().format("YYYY-MM-DD HH:mm:ss"),
       }))
     );
   }, 1000);
