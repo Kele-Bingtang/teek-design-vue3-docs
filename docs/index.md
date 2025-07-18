@@ -3,7 +3,7 @@ layout: home
 
 hero:
   name: Teek Design Vue3
-  text: 使用文档
+  text: 企业级管理系统方案
   tagline: ✨基于 Vue3、TypeScript、Vite、Pinia、Element-Plus 搭建的现代管理系统模板
   actions:
     - theme: brand

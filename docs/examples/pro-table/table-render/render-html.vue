@@ -18,7 +18,6 @@ const columns: TableColumn[] = [
   {
     prop: "gender",
     label: "性别",
-    el: "el-tag",
     options: [
       { label: "男", value: 1, tagType: "primary" },
       { label: "女", value: 2, tagType: "warning" },

@@ -14,14 +14,14 @@ const data = [
 const columns: TableColumn[] = [
   { prop: "username", label: "用户姓名", el: "copy" },
   {
-    prop: "gender",
-    label: "status",
+    prop: "status",
+    label: "状态",
     el: "el-tag",
     options: [
       { label: "未解决", value: "0", tagType: "info" },
       { label: "已解决", value: "1", tagType: "primary" },
       { label: "解决中", value: "2", tagType: "warning" },
-      { label: "失败", value: "3", tagType: "error" },
+      { label: "失败", value: "3", tagType: "danger" },
     ],
   },
 ];

@@ -29,7 +29,6 @@ const handleButtonClick = (event: MouseEvent) => {
   emits("click", event);
 
   const { confirmProps } = props;
-  console.log(confirmElValue.value);
 
   if (confirmElValue.value === OperationConfirmEl.ElMessageBox) {
     const { title = defaultTitle, message = defaultMessage, options, appContext } = confirmProps as ElMessageBoxProps;
