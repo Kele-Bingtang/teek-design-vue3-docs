@@ -103,12 +103,14 @@ watch(checkedList, val => val?.length && setChecked(val), { immediate: true });
     <el-checkbox v-if="select" v-model="isSelectAll" :indeterminate="indeterminate" label="全选/全不选" />
     <el-checkbox v-if="select" v-model="checkStrictly" label="父子联动" />
   </div>
+
   <el-input
     v-if="search"
     v-model="filterText"
     :style="{ width: $attrs.searchWidth || '98.5%' }"
     :placeholder="($attrs.searchPlaceholder as string) || '请输入关键词进行筛选'"
   />
+
   <el-tree
     ref="treeInstance"
     :show-checkbox="select"

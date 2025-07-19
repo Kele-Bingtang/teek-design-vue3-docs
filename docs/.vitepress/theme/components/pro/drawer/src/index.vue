@@ -71,6 +71,7 @@ defineExpose({ elDrawerInstance, handleConfirm, handleCancel, open, close });
     :title="title"
     size="30%"
     :close-on-click-modal="false"
+    append-to-body
     v-bind="$attrs"
     :class="[ns.b(), ns.is('fullscreen', isFullscreen)]"
   >

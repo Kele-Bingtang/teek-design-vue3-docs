@@ -5,7 +5,6 @@ import { render, getCurrentInstance, nextTick, ref, computed, inject } from "vue
 import { ElDrawer, ElButton, ElConfigProvider } from "element-plus";
 import { useNamespace } from "@/composables";
 import { isArray } from "@/common/utils";
-import { GlobalConfigKey } from "@/common/config";
 import { Icon } from "@/components/core/icon";
 
 import "./index.scss";
@@ -150,8 +149,7 @@ export const initDrawer = (ctx?: ComponentInternalInstance) => {
   const { appContext = null } = ctx || getCurrentInstance() || {};
   appContextConst = appContext;
 
-  const globalConfig = inject(GlobalConfigKey);
-  layoutSize = computed(() => globalConfig?.size.value ?? "default");
+  layoutSize = computed(() => "default");
 
   return { showDrawer };
 };

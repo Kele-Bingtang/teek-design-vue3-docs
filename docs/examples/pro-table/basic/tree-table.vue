@@ -4,7 +4,7 @@ import { ref } from "vue";
 import { ProTable } from "@/components/pro/table";
 import { dayjs } from "element-plus";
 
-const TestServe = {
+const DataServe = {
   getList: async () => {
     const dataLazy = Array.from({ length: 3 }).map((item, index) => {
       return {
@@ -86,7 +86,7 @@ const tableData = ref<Record<string, any>[]>();
 const tableDataLazy = ref<Record<string, any>[]>();
 
 const getList = async () => {
-  const { data, dataLazy } = await TestServe.getList();
+  const { data, dataLazy } = await DataServe.getList();
   tableData.value = data;
   tableDataLazy.value = dataLazy;
 };

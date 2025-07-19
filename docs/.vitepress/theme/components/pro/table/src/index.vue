@@ -12,7 +12,7 @@ import type {
   TableRow,
 } from "./types";
 import type { UseSelectState } from "./composables";
-import { ref, computed, watchEffect, onMounted, useTemplateRef, isRef, isReactive, reactive, unref } from "vue";
+import { ref, computed, watchEffect, onMounted, useTemplateRef, isRef, isReactive, reactive, unref, watch } from "vue";
 import { ElTableColumn, ElButton } from "element-plus";
 import { Tools } from "@element-plus/icons-vue";
 import { defaultPageInfo } from "@/components/pro/pagination";
@@ -83,8 +83,7 @@ const emits = defineEmits<ProTableNamespace.Emits>();
 
 const ns = useNamespace("pro-table");
 
-const hideHead = ref(false);
-watchEffect(() => (hideHead.value = props.hideHead));
+const hideHead = ref(props.hideHead);
 
 // 最终的 props
 const finalProps = computed(() => {
@@ -171,6 +170,7 @@ const {
   handleLeaveCellEdit,
 } = useTableEmits();
 
+watchEffect(() => (hideHead.value = finalProps.value.hideHead));
 watchEffect(() => (searchParams.value = finalProps.value.requestParams));
 watchEffect(() => (searchInitParams.value = finalProps.value.initRequestParams));
 
@@ -179,7 +179,7 @@ watchEffect(() => (searchInitParams.value = finalProps.value.initRequestParams))
  */
 function useTableSize() {
   // 表格密度
-  const tableSize = ref<TableSizeEnum>((props.size as TableSizeEnum) || TableSizeEnum.Default);
+  const tableSize = ref(!props.size || props.size === TableSizeEnum.Mini ? TableSizeEnum.Default : props.size);
   // 表格密度样式
   const currentSizeStyle = ref<SizeStyle>();
 
@@ -197,6 +197,9 @@ function useTableSize() {
     };
   });
 
+  /**
+   * 表格密度选择事件
+   */
   const handleSizeChange = (size: TableSizeEnum, style: SizeStyle) => {
     tableSize.value = size === TableSizeEnum.Mini ? TableSizeEnum.Default : size;
     currentSizeStyle.value = style;

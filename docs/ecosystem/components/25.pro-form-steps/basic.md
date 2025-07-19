@@ -1,0 +1,63 @@
+---
+title: 步骤条表单基础
+date: 2025-07-20 04:09:18
+permalink: /ecosystem/pro-form-steps/basic
+---
+
+`ProFormSteps` 步骤条超级表单组件是在 [ProForm 超级表单](/ecosystem/pro-form/basic) 和 [ElSteps 步骤条](https://element-plus.org/zh-CN/component/steps.html)、[ElStep 步骤条项](https://element-plus.org/zh-CN/component/steps.html) 的基础上进行拓展，因此完全兼容这些组件的所有 `Props` 配置、`Emit` 事件、`Slots` 插槽。
+
+步骤条超级表单组件通过表单来引导用户按照流程完成任务，可根据实际应用场景设定步骤，步骤不得少于 2 步
+
+## 基础用法
+
+设置 `active` 属性，接受一个 Number，表明步骤的 `index`，从 0 开始。
+
+需要定宽的步骤条时，设置 `space` 属性即可，它接受 Number，单位为 `px`， 如果不设置，则为自适应。
+
+设置 `finish-status` 属性可以改变已经完成的步骤的状态。
+
+表单数据请传入 `columns` 属性。
+
+::: demo
+pro-form-steps/basic
+:::
+
+## 带图标的分步表单
+
+::: demo
+pro-form-steps/icon
+:::
+
+## 垂直的分步表单
+
+垂直方向的步骤条。
+
+只需要在设置 `direction` 属性为 `vertical` 即可。
+
+::: demo
+pro-form-steps/vertical
+:::
+
+## 简洁风格的分步表单
+
+设置 `simple` 可应用简洁风格，该条件下 `align-center` / `description` / `direction` / `space` 都将失效。
+
+::: demo
+pro-form-steps/simple
+:::
+
+## 插槽渲染分步表单头部
+
+通过 `el-steps` 自带的插槽可以自定义图标、标题、描述文案。
+
+::: demo
+pro-form-steps/steps-slot
+:::
+
+## 插槽渲染步骤条表单每一步内容
+
+每一步内容的插槽为 `step-${index}`，index 表示步骤数，从 1 开始。
+
+::: demo
+pro-form-steps/form-slot
+:::

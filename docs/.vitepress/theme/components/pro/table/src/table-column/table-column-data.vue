@@ -29,6 +29,8 @@ const emits = defineEmits<
 
 const ns = useNamespace("pro-table-column-data");
 
+const tooltipValue = computed(() => toValue(props.column.tooltip));
+
 const useEditable = computed(() => {
   const editableValue = toValue(props.editable);
 
@@ -83,7 +85,7 @@ const getCellValue = (scope: TableScope, column: TableColumn) => scope.row._getV
 /**
  * 获取 Render/插槽 的参数
  */
-const getRenderParams = <T = RenderParams>(scope: TableScope, column: TableColumn): T => {
+const getRenderParams = (scope: TableScope, column: TableColumn) => {
   return {
     ...scope,
     rowIndex: scope.$index,
@@ -91,7 +93,7 @@ const getRenderParams = <T = RenderParams>(scope: TableScope, column: TableColum
     value: getOriginValue(scope, column), // 如果是 headerRender 函数，则不存在 row，因此为 undefined
     renderValue: scope.row?._getValue?.(prop(column)) ?? getOriginValue(scope, column),
     options: scope.row?._options?.[prop(column)],
-  } as T;
+  } as RenderParams;
 };
 /**
  * 格式化单元格值
@@ -176,18 +178,23 @@ const handleFormChange = (model: unknown, props: TableColumn["prop"], scope: Tab
       <!-- 默认表头内容渲染 -->
       <template v-else>{{ toValue(column.label) }}</template>
 
-      <el-tooltip v-if="isString(column.tooltip)" placement="top" effect="dark" :content="column.tooltip">
+      <el-tooltip v-if="isString(tooltipValue)" placement="top" effect="dark" :content="tooltipValue">
         <slot name="tooltip-icon">
           <el-icon><QuestionFilled /></el-icon>
         </slot>
       </el-tooltip>
 
-      <el-tooltip v-else-if="column.tooltip" placement="top" effect="dark" v-bind="column.tooltip">
+      <el-tooltip
+        v-else-if="tooltipValue"
+        placement="top"
+        effect="dark"
+        v-bind="{ ...tooltipValue, render: undefined, contentRender: undefined }"
+      >
         <!-- ElToolTip 默认插槽 -->
-        <component v-if="column.tooltip.render" :is="column.tooltip.render()" />
+        <component v-if="tooltipValue.render" :is="tooltipValue.render()" />
         <!-- ElToolTip content 插槽 -->
-        <template v-if="column.tooltip.contentRender" #content>
-          <component v-if="column.tooltip.contentRender" :is="column.tooltip.contentRender()" />
+        <template v-if="tooltipValue.contentRender" #content>
+          <component v-if="tooltipValue.contentRender" :is="tooltipValue.contentRender()" />
         </template>
         <!-- ElToolTip icon -->
         <slot name="tooltip-icon">

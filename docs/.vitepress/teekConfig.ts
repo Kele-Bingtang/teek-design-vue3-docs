@@ -24,6 +24,7 @@ export const teekConfig = defineTeekConfig({
     copiedDone: TkMessage => TkMessage.success("复制成功！"),
   },
   articleShare: { enabled: true },
+  articleUpdate: { enabled: false },
   vitePlugins: {
     sidebarOption: {
       initItems: false,

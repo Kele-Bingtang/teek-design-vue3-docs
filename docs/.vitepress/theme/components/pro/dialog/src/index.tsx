@@ -5,7 +5,6 @@ import { render, getCurrentInstance, nextTick, ref, computed, watch, inject } fr
 import { ElDialog, ElButton, ElScrollbar, ElConfigProvider } from "element-plus";
 import { addUnit, isArray } from "@/common/utils";
 import { useNamespace } from "@/composables";
-import { GlobalConfigKey } from "@/common/config";
 import { Icon } from "@/components/core/icon";
 
 import "./index.scss";
@@ -83,7 +82,14 @@ export const showDialog = (
       if (val) {
         const windowHeight = document.documentElement.offsetHeight;
         // 弹框整体 padding 上下各 16，头部高度 47，内容区整体 padding 上下各 25，底部存在时高度 52
-        contentHeight.value = `${windowHeight - 32 - 47 - 50 - (dialogProps.showFooter !== false ? 52 : 0) - (dialogProps.heightOffsetInFullscreen ?? 0)}px`;
+        contentHeight.value = `${
+          windowHeight -
+          32 -
+          47 -
+          50 -
+          (dialogProps.showFooter !== false ? 52 : 0) -
+          (dialogProps.heightOffsetInFullscreen ?? 0)
+        }px`;
       } else contentHeight.value = addUnit(dialogProps.height ?? 400);
     },
     { immediate: true }
@@ -191,8 +197,7 @@ export const initDialog = (ctx?: ComponentInternalInstance) => {
   const { appContext = null } = ctx || getCurrentInstance() || {};
   appContextConst = appContext;
 
-  const globalConfig = inject(GlobalConfigKey);
-  layoutSize = computed(() => globalConfig?.size.value ?? "default");
+  layoutSize = computed(() => "default");
 
   return { showDialog };
 };

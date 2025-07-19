@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { setProp } from "@/components/pro/helper";
 import type { TableColumn, TableRow, TableScope } from "@/components/pro/table";
-import { ProTable } from "@/components/pro/table";
-import { ElMessage } from "element-plus";
 import { ref } from "vue";
+import { ElMessage } from "element-plus";
+import { setProp } from "@/components/pro/helper";
+import { ProTable } from "@/components/pro/table";
 
 const editable = ref<boolean | "click" | "dblclick">(false);
 

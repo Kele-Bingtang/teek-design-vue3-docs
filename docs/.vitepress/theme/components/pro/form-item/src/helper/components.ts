@@ -22,6 +22,10 @@ import {
   ElDivider,
   ElTreeSelect,
   ElUpload,
+  ElInputTag,
+  ElMention,
+  ElSegmented,
+  ElText,
 } from "element-plus";
 import Tree from "../components/tree.vue";
 import CheckBoxSelect from "../components/checkbox-select.vue";
@@ -54,6 +58,10 @@ export enum FormElComponentEnum {
   EL_TRANSFER = "ElTransfer",
   EL_DIVIDER = "ElDivider",
   EL_UPLOAD = "ElUpload",
+  EL_INPUT_TAG = "ElInputTag",
+  EL_MENTION = "ElMention",
+  EL_SEGMENTED = "ElSegmented",
+  EL_TEXT = "ElText",
   CHECK_BOX_SELECT = "CheckBoxSelect",
 }
 
@@ -85,6 +93,10 @@ const formELComponentsMap: Record<FormPascalCaseComponentName, Component> = {
   ElTransfer,
   ElDivider,
   ElUpload,
+  ElInputTag,
+  ElMention,
+  ElSegmented,
+  ElText,
   CheckBoxSelect,
 };
 

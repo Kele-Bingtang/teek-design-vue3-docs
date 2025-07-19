@@ -1,0 +1,33 @@
+---
+title: 分组表单基础
+date: 2025-07-20 01:40:15
+permalink: /ecosystem/pro-form-group/basic
+---
+
+超级表单分组组件是在 [超级表单](/ecosystem/pro-form/basic) 的基础上，添加了分组功能，因此完全兼容超级表单的所有配置项和插槽。
+
+## 基础用法
+
+::: demo
+pro-form-group/basic
+:::
+
+## 动态隐藏
+
+通过 `hidden` 配置项，可以动态隐藏表单。
+
+::: demo
+pro-form-group/hidden
+:::
+
+## 插槽
+
+- 通过 `header` 插槽，可以自定义表单头部内容
+- 通过设置每个分组卡片的 `prop` 来生成对应值的插槽，可以自定义每一步内容渲染。
+- 通过设置每一个表单项的 `prop` 来生成对应值的插槽，可以自定义表单组件渲染。
+
+如果想完全重新基于 `ProForm` 重新生成每一个分组卡片的内容，则使用 `form-main` 插槽（这里不演示）。
+
+::: demo
+pro-form-group/slot
+:::

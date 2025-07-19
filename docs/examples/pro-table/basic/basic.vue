@@ -29,6 +29,7 @@ const columns: TableColumn[] = [
     prop: "progress",
     label: "进度",
     el: "el-progress",
+    tooltip: "学习进度",
     elSlots: {
       default: ({ value }) => value + "%",
     },

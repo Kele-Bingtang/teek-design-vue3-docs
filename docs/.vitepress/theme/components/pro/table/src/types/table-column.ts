@@ -8,7 +8,7 @@ import type { TableEditProps } from "./table-edit";
 import type { ElDisplayProps } from "./el-display";
 import type { OperationNamespace } from "./table-column-operation";
 
-export interface RenderParams<T extends Record<string, any> = any> extends TableScope<T> {
+export interface RenderParams<T extends Record<string, any> = Record<string, any>> extends TableScope<T> {
   /**
    * 传入的原始值
    */
@@ -30,7 +30,7 @@ export interface RenderParams<T extends Record<string, any> = any> extends Table
 /**
  * 表格行 Scope
  */
-export type TableScope<T extends Record<string, any> = TableRow> = {
+export type TableScope<T extends Record<string, any> = Record<string, any>> = {
   /**
    * 表格行索引
    */
@@ -68,9 +68,7 @@ export type TableScope<T extends Record<string, any> = TableRow> = {
 /**
  * 表格行 row
  */
-export type TableRow<T extends string | number | symbol = any> = {
-  [key in T]: any;
-} & {
+export type TableRow<T = Record<string, any>> = T & {
   /**
    * options 字典枚举
    */

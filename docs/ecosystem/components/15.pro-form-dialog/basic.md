@@ -1,0 +1,39 @@
+---
+title: 弹框表单基础
+date: 2025-07-20 02:46:03
+permalink: /ecosystem/pro-form-dialog/basic
+---
+
+`ProFormDialog` 弹框超级表单组件是在 [ProForm 超级表单](/ecosystem/pro-form/basic) 和 超级弹框 的基础上进行拓展，因此完全兼容这些组件的所有 `Props` 配置、`Emit` 事件、`Slots` 插槽。
+
+## 基础用法
+
+::: demo
+pro-form-dialog/basic
+:::
+
+## 自定义表单组件
+
+使用 `ProForm` 的自定义表单组件插槽：`render`、`jsx/tsx`、`slot`。
+
+::: demo
+pro-form-dialog/render
+:::
+
+## 自定义表单 Label
+
+使用 `ProForm` 的自定义表单 Label 插槽：`render`、`jsx/tsx`、`slot`。
+
+::: demo
+pro-form-dialog/render-label
+:::
+
+## 自定义底部
+
+`ProFormDialog` 支持 `ProForm` 和 `ProDialog` 两个组件的底部插槽，默认情况下开启 `ProDialog` 的底部插槽，关闭 `ProDialog` 的底部插槽。
+
+通过 `dialog.showFooter` 配置 false 来关闭 `ProDialog` 的底部插槽，并通过 `form.showFooter` 配置 true 来打开 `ProForm` 的底部插槽。
+
+::: demo
+pro-form-dialog/footer
+:::

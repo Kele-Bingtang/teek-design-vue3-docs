@@ -92,6 +92,7 @@ defineExpose({ elDialogInstance, handleConfirm, handleCancel, open, close });
     width="50%"
     draggable
     :close-on-click-modal="false"
+    append-to-body
     v-bind="$attrs"
     :class="ns.b()"
   >
