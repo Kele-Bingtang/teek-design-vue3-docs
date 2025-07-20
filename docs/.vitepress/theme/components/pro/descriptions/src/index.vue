@@ -3,7 +3,7 @@ import type { ProFormInstance } from "@/components/pro/form";
 import type { FormItemColumnProps } from "@/components/pro/form-item";
 import type { DescriptionColumn, ProDescriptionsEmits, ProDescriptionsProp, RenderParams } from "./types";
 import { computed, reactive, ref, toValue, unref, watch, watchEffect } from "vue";
-import { ElDescriptions, ElDescriptionsItem, ElButton, formProps } from "element-plus";
+import { ElDescriptions, ElDescriptionsItem, ElButton } from "element-plus";
 import { isArray, isFunction } from "@/common/utils";
 import { filterOptions, filterOptionsValue, getProp, setProp } from "@/components/pro/helper";
 import { useOptions } from "@/components/pro/use-options";
