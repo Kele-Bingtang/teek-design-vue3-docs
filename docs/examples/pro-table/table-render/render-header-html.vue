@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import type { TableColumn } from "@/components/pro/table";
-import { h } from "vue";
-import { ElButton, ElMessage, ElProgress, ElTag } from "element-plus";
 import { ProTable } from "@/components/pro/table";
 
 const data = [
@@ -15,7 +13,7 @@ const columns: TableColumn[] = [
   {
     prop: "username",
     label: "用户姓名",
-    headerRenderHtml: ({ column }) => `<span style="color: red;">${column.label}</span>`,
+    renderHeaderHTML: ({ column }) => `<span style="color: red;">${column.label}</span>`,
   },
   {
     prop: "gender",
@@ -27,18 +25,18 @@ const columns: TableColumn[] = [
         { label: "女", value: 2 },
       ];
     },
-    headerRenderHtml: ({ column }) => `<span style="color: #395AE3;">${column.label}</span>`,
+    renderHeaderHTML: ({ column }) => `<span style="color: #395AE3;">${column.label}</span>`,
   },
   {
     prop: "progress",
     label: "进度",
     el: "el-progress",
-    headerRenderHtml: ({ column }) => `<span style="color: #dd5c27;">${column.label}</span>`,
+    renderHeaderHTML: ({ column }) => `<span style="color: #dd5c27;">${column.label}</span>`,
   },
   {
     prop: "birthday",
     label: "生日",
-    headerRenderHtml: ({ column }) => `<span style="color: #e68a00;">${column.label}</span>`,
+    renderHeaderHTML: ({ column }) => `<span style="color: #e68a00;">${column.label}</span>`,
   },
 ];
 </script>

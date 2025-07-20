@@ -212,8 +212,8 @@ defineExpose(expose);
     <template v-if="editableValue && showLabelValue" #label="{ label }">
       <!-- 自定义 label（h、JSX）渲染 -->
       <component v-if="renderLabel" :is="renderLabel(label, slotParams)" />
-      <!-- 自定义 headerRenderHtml 函数渲染，返回 HTML 格式 -->
-      <span v-else-if="renderLabelHtml" v-html="renderLabelHtml(label, slotParams)" />
+      <!-- 自定义 renderLabelHTML 函数渲染，返回 HTML 格式 -->
+      <span v-else-if="renderLabelHTML" v-html="renderLabelHTML(label, slotParams)" />
       <!-- 自定义 label 插槽 -->
       <slot v-else-if="$slots[`${prop}-label`]" :name="`${prop}-label`" v-bind="slotParams" />
       <!-- 默认 Label -->
@@ -252,7 +252,7 @@ defineExpose(expose);
         v-bind="elPropsValue"
       />
       <!-- 自定义表单组件插槽 -->
-      <slot v-else-if="$slots[prop]" :name="prop" v-bind="slotParams" />
+      <slot v-else-if="$slots[prop]" :name="prop" v-bind="{ update: updateElModel, ...slotParams }" />
 
       <template v-else>
         <Tree

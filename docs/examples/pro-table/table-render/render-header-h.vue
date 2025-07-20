@@ -15,7 +15,7 @@ const columns: TableColumn[] = [
   {
     prop: "username",
     label: "用户姓名",
-    headerRender: ({ column }) =>
+    renderHeader: ({ column }) =>
       h(
         ElButton,
         {
@@ -37,7 +37,7 @@ const columns: TableColumn[] = [
         { label: "女", value: 2 },
       ];
     },
-    headerRender: ({ column }) =>
+    renderHeader: ({ column }) =>
       h(
         ElTag,
         { type: "danger" },
@@ -54,9 +54,9 @@ const columns: TableColumn[] = [
     prop: "progress",
     label: "进度",
     el: "el-progress",
-    headerRender: () => h(ElProgress, { percentage: 90 }),
+    renderHeader: () => h(ElProgress, { percentage: 90 }),
   },
-  { prop: "birthday", label: "生日", headerRender: ({ column }) => h("span", {}, `h 渲染：${column.label}`) },
+  { prop: "birthday", label: "生日", renderHeader: ({ column }) => h("span", {}, `h 渲染：${column.label}`) },
 ];
 </script>
 

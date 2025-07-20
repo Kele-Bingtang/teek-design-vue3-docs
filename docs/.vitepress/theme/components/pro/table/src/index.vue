@@ -44,6 +44,7 @@ const props = withDefaults(defineProps<ProTableNamespace.Props>(), {
   card: false,
   rowStyle: () => ({}),
   cellStyle: () => ({}),
+  headerRowStyle: () => ({}),
   headerCellStyle: () => ({}),
   border: false,
   stripe: false,
@@ -61,9 +62,6 @@ const props = withDefaults(defineProps<ProTableNamespace.Props>(), {
   sizeStyle: () => ({}),
   columnSetting: () => ({}),
   baseSetting: () => ({}),
-  isSelected: undefined,
-  selectedList: undefined,
-  selectedListIds: undefined,
 
   // TableMain 组件的 props（透传下去）
   rowKey: "id",
@@ -185,10 +183,11 @@ function useTableSize() {
 
   // 最终的 sizeStyle，即将 ProTable 内置的 sizeStyle 和传入的 sizeStyle 合并
   const finalSizeStyle = computed(() => {
-    const { rowStyle, cellStyle, headerCellStyle } = finalProps.value;
+    const { rowStyle, cellStyle, headerRowStyle, headerCellStyle } = finalProps.value;
     return {
       rowStyle: { ...rowStyle, ...currentSizeStyle.value?.rowStyle },
       cellStyle: { ...cellStyle, ...currentSizeStyle.value?.cellStyle },
+      headerRowStyle: { ...headerRowStyle, ...currentSizeStyle.value?.headerRowStyle },
       headerCellStyle: {
         ...headerCellStyle,
         ...currentSizeStyle.value?.headerCellStyle,

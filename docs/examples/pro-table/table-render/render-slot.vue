@@ -46,8 +46,8 @@ const handleClick = () => {
       <el-button @click="handleClick">{{ row.username }}</el-button>
     </template>
 
-    <template #gender="{ row, renderValue }">
-      <el-tag :type="row.gender === 1 ? 'success' : 'danger'">{{ renderValue }}</el-tag>
+    <template #gender="{ row, displayValue }">
+      <el-tag :type="row.gender === 1 ? 'success' : 'danger'">{{ displayValue }}</el-tag>
     </template>
 
     <template #progress="{ value }">

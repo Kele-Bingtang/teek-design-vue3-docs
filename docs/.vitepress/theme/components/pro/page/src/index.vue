@@ -14,14 +14,14 @@ import type {
 } from "@/components/pro/table";
 import type { PageInfo } from "@/components/pro/pagination";
 import type { ProPageEmits, ProPageProps } from "./types";
-import { ref, computed, watchEffect, useTemplateRef, provide, toValue, unref, watch } from "vue";
+import { ref, computed, watchEffect, useTemplateRef, provide, toValue, unref, watch, useSlots } from "vue";
 import { ElTooltip, ElButton } from "element-plus";
 import { Search } from "@element-plus/icons-vue";
 import { isEmpty, isFunction } from "@/common/utils";
 import { useOptions, optionsMapKey } from "@/components/pro/use-options";
 import { ProSearch } from "@/components/pro/search";
 import { ProTable, lastProp } from "@/components/pro/table";
-import { filterEmpty, flatColumnsFn, setProp } from "@/components/pro/helper";
+import { filterEmpty, flatColumnsFn, getProp, setProp } from "@/components/pro/helper";
 import { useNamespace } from "@/composables";
 
 defineOptions({ name: "ProPage" });
@@ -30,13 +30,16 @@ const props = withDefaults(defineProps<ProPageProps>(), {
   columns: () => [],
   searchProps: () => ({}),
   initShowSearch: true,
+  defaultValues: () => ({}),
+
+  // ProTable 组件的 Props
   card: true,
   requestImmediate: true,
   toolButton: true,
-  tooltipProps: () => ({ placement: "top", effect: "light" }),
   headerBackground: true,
   highlightCurrentRow: true,
   showHeader: true,
+  tooltipProps: () => ({ placement: "top", effect: "light" }),
 });
 
 const emits = defineEmits<ProPageEmits>();
@@ -44,6 +47,14 @@ const emits = defineEmits<ProPageEmits>();
 const ns = useNamespace("pro-page");
 const proSearchInstance = useTemplateRef<ProSearchInstance>("proSearchInstance");
 const proTableInstance = useTemplateRef<ProTableInstance>("proTableInstance");
+
+const slots = useSlots();
+
+const searchSlots = computed(() =>
+  Object.keys(slots)
+    .filter(key => key.endsWith("-search"))
+    .map(key => key.replace("-search", ""))
+);
 
 // 获取 ProTable 配置项
 const proTableProps = computed(() => {
@@ -78,22 +89,23 @@ function usePageSearchInit() {
 
   // 组装 ProSearch 配置项
   const searchColumns = computed(() => {
-    const filterColumns = flatColumns.value.filter(item => item.search?.el || item.search?.render);
+    const filterColumns = flatColumns.value.filter(item => item.search);
     const searchColumns: ProSearchColumnProps[] = [];
 
     filterColumns.forEach(async column => {
       // Table 默认查询参数初始化
       const prop = lastProp(column.search?.prop ?? column.prop ?? "");
-      const defaultValue = unref(column.search?.defaultValue);
+      const defaultValue = unref(column.search?.defaultValue) ?? props.defaultValues[prop];
 
-      if (!isEmpty(defaultValue)) {
+      if (!isEmpty(defaultValue) && !getProp(searchDefaultParams.value, prop)) {
         if (!isFunction(defaultValue)) setSearchParams(prop, defaultValue);
         else setSearchParams(prop, await defaultValue(searchParams.value, optionsMap.value));
       }
 
       // 组装搜索表单配置项
-      const searchColumn = {
+      const searchColumn: ProSearchColumnProps = {
         ...column.search,
+        el: column.search?.el || (column.search?.options ?? column.options ? "ElSelect" : "ElInput"),
         grid: {
           offset: column.search?.offset,
           span: column.search?.span,
@@ -135,7 +147,7 @@ function usePageSearchInit() {
 
       // 防抖：防止初始化时连续执行
       timer = setTimeout(() => {
-        for (const column of newValue) initOptionsMap(column.options, column.prop || "");
+        for (const column of newValue) initOptionsMap(column.search?.options ?? column.options, column.prop || "");
       }, 10);
     },
     { deep: true, immediate: true }
@@ -241,6 +253,19 @@ const expose = {
   searchDefaultParams,
   proSearchInstance,
   proTableInstance,
+
+  // 在这里添加暴露常用方法，也可以直接通过 proSearchInstance、proTableInstance 获取实例对象调用方法
+  search: () => proSearchInstance.value?.search(),
+  reset: () => proSearchInstance.value?.reset(),
+  toggleCollapse: () => proSearchInstance.value?.toggleCollapse(),
+  getTableData: () => proTableInstance.value?.tableData,
+  getPageInfo: () => proTableInstance.value?.pageInfo,
+  setSearchParams: (params: Record<string, any>) => {
+    Object.entries(params).forEach(([key, value]) => {
+      setProp(searchParams.value, key, value);
+    });
+  },
+  clearSearchParams: () => (searchParams.value = {}),
 };
 
 defineExpose(expose);
@@ -258,15 +283,11 @@ defineExpose(expose);
       @reset="handleReset"
       @register="handleSearchRegister"
     >
-      <template
-        v-for="slot in Object.keys($slots)
-          .filter(key => key.endsWith('search'))
-          .map(key => {
-            key = key.replace('-search', '');
-            return key;
-          })"
-        #[slot]="scope"
-      >
+      <template v-if="$slots['action']" #action="scope">
+        <slot name="action" v-bind="scope" />
+      </template>
+
+      <template v-for="slot in searchSlots" #[slot]="scope">
         <slot :name="`${slot}-search`" v-bind="scope" />
       </template>
     </ProSearch>

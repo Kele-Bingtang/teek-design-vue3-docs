@@ -13,9 +13,6 @@ defineOptions({ name: "ProFormGroup" });
 
 const props = withDefaults(defineProps<ProFormGroupProps>(), {
   columns: () => [],
-  cardProps: () => ({}),
-
-  // ProForm 组件的 props（透传下去）
   elFormProps: () => ({}),
   showErrorTip: true,
   showFooter: true,

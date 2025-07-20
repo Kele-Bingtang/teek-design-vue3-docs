@@ -36,6 +36,7 @@ const useEditable = computed(() => {
 
   return !isBoolean(editableValue) && ["click", "dblclick"].includes(editableValue);
 });
+
 /**
  * 获取 ProFormItem 的实例
  */
@@ -81,7 +82,7 @@ const getOriginValue = (scope: TableScope, column: TableColumn) => getProp(scope
 /**
  * 获取单元格值（如果存在 options，则返回根据 label 找对应的 value，如果不存在 options，则返回原始值）
  */
-const getCellValue = (scope: TableScope, column: TableColumn) => scope.row._getValue?.(prop(column));
+const getDisplayValue = (scope: TableScope, column: TableColumn) => scope.row?._getValue?.(prop(column));
 /**
  * 获取 Render/插槽 的参数
  */
@@ -90,8 +91,9 @@ const getRenderParams = (scope: TableScope, column: TableColumn) => {
     ...scope,
     rowIndex: scope.$index,
     column: { ...scope.column, ...column },
-    value: getOriginValue(scope, column), // 如果是 headerRender 函数，则不存在 row，因此为 undefined
-    renderValue: scope.row?._getValue?.(prop(column)) ?? getOriginValue(scope, column),
+    label: column.label,
+    value: getOriginValue(scope, column), // 如果是 renderHeader 函数，则不存在 row，因此为 undefined
+    displayValue: getDisplayValue(scope, column) ?? getOriginValue(scope, column),
     options: scope.row?._options?.[prop(column)],
   } as RenderParams;
 };
@@ -161,9 +163,9 @@ const handleFormChange = (model: unknown, props: TableColumn["prop"], scope: Tab
       <slot name="header-before" />
 
       <!-- 自定义表头的 Render 函数 -->
-      <component v-if="column.headerRender" :is="column.headerRender(getRenderParams(scope, column))" />
-      <!-- 自定义 headerRenderHtml 函数渲染，返回 HTML 格式 -->
-      <span v-else-if="column.headerRenderHtml" v-html="column.headerRenderHtml(getRenderParams(scope, column))" />
+      <component v-if="column.renderHeader" :is="column.renderHeader(getRenderParams(scope, column))" />
+      <!-- 自定义 renderHeaderHTML 函数渲染，返回 HTML 格式 -->
+      <span v-else-if="column.renderHeaderHTML" v-html="column.renderHeaderHTML(getRenderParams(scope, column))" />
       <!-- 自定义表头插槽 -->
       <slot
         v-else-if="$slots[`${lastProp(prop(column))}-header`]"
@@ -265,6 +267,7 @@ const handleFormChange = (model: unknown, props: TableColumn["prop"], scope: Tab
         :is="column.render(getRenderParams(scope, column))"
         v-bind="{ ...column.elProps }"
       />
+
       <!-- 自定义 RenderHtml 函数渲染，返回 HTML 格式 -->
       <span v-else-if="column.renderHTML" v-html="column.renderHTML(getRenderParams(scope, column))" />
       <!-- 自定义插槽，插槽名为 column.prop -->
@@ -277,7 +280,7 @@ const handleFormChange = (model: unknown, props: TableColumn["prop"], scope: Tab
       <ElDisplay
         v-else-if="column.el"
         :origin-value="getProp(scope.row, column.prop || '')"
-        :display-value="getCellValue(scope, column)"
+        :display-value="getDisplayValue(scope, column)"
         :el="column.el"
         :el-props="column.elProps"
         :options="scope.row._options?.[prop(column)]"
@@ -292,7 +295,7 @@ const handleFormChange = (model: unknown, props: TableColumn["prop"], scope: Tab
       </ElDisplay>
 
       <!-- 默认 -->
-      <template v-else>{{ formatValue(getCellValue(scope, column), scope, column) }}</template>
+      <template v-else>{{ formatValue(getDisplayValue(scope, column), scope, column) }}</template>
     </template>
   </el-table-column>
 </template>

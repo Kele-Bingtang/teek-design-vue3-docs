@@ -38,12 +38,12 @@ const columns: TableColumn[] = [
         { label: "女", value: 2 },
       ];
     },
-    render: ({ value, renderValue }) =>
+    render: ({ value, displayValue }) =>
       h(
         ElTag,
         { type: value === 1 ? "success" : "danger" },
         {
-          default: () => renderValue,
+          default: () => displayValue,
         }
       ),
     // 通过 elProps 传递属性

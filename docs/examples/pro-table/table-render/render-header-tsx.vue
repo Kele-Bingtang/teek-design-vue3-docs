@@ -15,7 +15,7 @@ const columns: TableColumn[] = [
   {
     prop: "username",
     label: "用户姓名",
-    headerRender: ({ column }) => {
+    renderHeader: ({ column }) => {
       return (
         <ElButton
           type="primary"
@@ -37,7 +37,7 @@ const columns: TableColumn[] = [
         { label: "女", value: 2 },
       ];
     },
-    headerRender: ({ column }) => {
+    renderHeader: ({ column }) => {
       return <ElTag type="info">{column.label}</ElTag>;
     },
     // 通过 elProps 传递属性
@@ -49,9 +49,9 @@ const columns: TableColumn[] = [
     prop: "progress",
     label: "进度",
     el: "el-progress",
-    headerRender: () => <ElProgress percentage={90} />,
+    renderHeader: () => <ElProgress percentage={90} />,
   },
-  { prop: "birthday", label: "生日", headerRender: ({ column }) => <span>tsx 渲染：${column.label}</span> },
+  { prop: "birthday", label: "生日", renderHeader: ({ column }) => <span>tsx 渲染：${column.label}</span> },
 ];
 </script>
 
