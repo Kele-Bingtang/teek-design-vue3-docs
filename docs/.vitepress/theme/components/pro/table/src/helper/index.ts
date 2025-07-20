@@ -126,6 +126,7 @@ export const filterData = (
           // 单个日期查询，仅支持 lt、le、gt、ge 规则
           const date = strToDate(value);
           if (date) {
+            if (rule === "eq") return value === rowValue;
             if (rule === "lt") return date < strToDate(rowValue)!;
             if (rule === "le") return date <= strToDate(rowValue)!;
             if (rule === "gt") return date > strToDate(rowValue)!;

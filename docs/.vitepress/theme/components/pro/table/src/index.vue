@@ -70,7 +70,7 @@ const props = withDefaults(defineProps<ProTableNamespace.Props>(), {
   pageInfo: () => defaultPageInfo,
   pageScope: false,
   paginationProps: () => ({}),
-  filterScope: false,
+  filterScope: "client",
   editable: false,
   emptyText: "暂无数据",
   radioProps: () => ({}),
@@ -265,13 +265,14 @@ function useTableEmits() {
   /**
    * 执行列过滤搜索事件
    */
-  const handleFilter = (filterModel: Record<string, any>, filterValue: unknown, prop: string | undefined) => {
+  const handleFilter = (filterModel: Record<string, any>, filterValue: unknown, prop: string) => {
+    if (finalProps.value.pageScope === "server") search(filterModel);
     emits("filter", filterModel, filterValue, prop);
   };
   /**
    * 执行列过滤清除事件
    */
-  const handleFilterClear = (prop: string | undefined) => {
+  const handleFilterClear = (prop: string) => {
     emits("filterClear", prop);
   };
   /**

@@ -52,7 +52,7 @@ export interface ElDisplayProps {
   /**
    * 指定 el 组件的 options
    */
-  options?: ElOption[];
+  options?: MaybeRef<ElOption[]>;
   /**
    * 没有经过格式化的原始数据
    */

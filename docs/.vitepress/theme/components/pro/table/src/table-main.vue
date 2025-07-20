@@ -30,7 +30,7 @@ const props = withDefaults(defineProps<ProTableMainNamespace.Props>(), {
   operationProp: "operation",
   operationProps: () => ({}),
   pageInfo: () => defaultPageInfo,
-  pageScope: false,
+  pageScope: "client",
   paginationProps: () => ({}),
   filterScope: false,
   headerCellStyle: () => ({}),
@@ -390,7 +390,7 @@ function useTableFiler() {
   /**
    * 执行过滤搜索
    */
-  const handleFilter = (filterValue: unknown, prop: string | undefined) => {
+  const handleFilter = (filterValue: unknown, prop: string) => {
     if (prop) setProp(filterModel.value, prop, filterValue);
 
     // 后端过滤
@@ -417,7 +417,7 @@ function useTableFiler() {
   /**
    * 执行过滤清除
    */
-  const handleFilterClear = (prop: string | undefined) => {
+  const handleFilterClear = (prop: string) => {
     emits("filterClear", prop);
   };
   /**
@@ -508,6 +508,7 @@ defineExpose(expose);
           :label="toValue(column.label)"
           :align="column.align || 'center'"
           :editable
+          :options-map
           @register-pro-form-instance="registerProFormInstance"
           @form-change="handleFormChange"
           @filter="handleFilter"
