@@ -55,6 +55,7 @@ const load = (row: Record<string, any>, treeNode: unknown, resolve: (date: Recor
 };
 
 const columns: TableColumn[] = [
+  { label: "ID", prop: "id", width: 80 },
   { label: "名称", prop: "name" },
   {
     label: "状态",
@@ -96,7 +97,13 @@ getList();
 
 <template>
   <div>
-    <ProTable :columns="columns" :data="tableData" title="树形表格" :tree-props="{ children: 'children' }" />
+    <ProTable
+      :columns="columns"
+      :data="tableData"
+      title="树形表格"
+      row-key="name"
+      :tree-props="{ children: 'children' }"
+    />
     <ProTable
       :columns="columns"
       :data="tableDataLazy"
