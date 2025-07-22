@@ -2,9 +2,6 @@
   .el-pager li {
     margin: 0;
   }
-  .el-sub-menu .el-menu {
-    margin-left: 0;
-  }
   .el-descriptions__table {
     margin: 0;
   }
@@ -26,9 +23,6 @@
     border-top: 0;
   }
 
-  .el-menu-item {
-    margin-top: 0;
-  }
   th,
   td {
     border: 0;
@@ -45,10 +39,6 @@
   table {
     display: table;
     width: 100%;
-    .el-tag {
-      display: unset;
-      margin-left: 4px;
-    }
   }
 
   .el-table {
