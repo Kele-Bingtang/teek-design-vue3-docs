@@ -88,7 +88,7 @@ export default defineConfig({
     nav: [
       { text: "✨ 指南", link: "/guide/" },
       { text: "🛠️ 构建", link: "/structure/" },
-      { text: "🎉 生态", link: "/ecosystem/components/01.pro-table" },
+      { text: "🎉 生态", link: "/ecosystem/components/01.pro-table/00.config/" },
       {
         text: "🔗 链接",
         items: [

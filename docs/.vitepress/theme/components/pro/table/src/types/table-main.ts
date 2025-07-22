@@ -17,7 +17,7 @@ export namespace ProTableMainNamespace {
   /**
    * TableMain 组件 Props
    */
-  export interface Props extends Omit<TableColumnDataNamespace.Props, "column" | "proFormItemInstances"> {
+  export interface Props extends Omit<TableColumnDataNamespace.Props, "column"> {
     /**
      * 表格数据
      *
@@ -61,7 +61,7 @@ export namespace ProTableMainNamespace {
      */
     paginationProps?: MaybeRef<Partial<PaginationProps>>;
     /**
-     * 过滤规则，可以指定客户端（前端）过滤还是服务端（后端）过滤
+     * 过滤规则，可以指定客户端（前端）过滤还是服务端（后端）过滤，当为 true 时，默认为客户端（前端）过滤
      *
      * @default 'client'
      */
@@ -69,7 +69,7 @@ export namespace ProTableMainNamespace {
     /**
      * ElTable 的 headerCellStyle 配置项
      */
-    headerCellStyle?: TableColumn["headerCellStyle"];
+    headerCellStyle?: TableProps<Record<string, any>>["headerCellStyle"];
     /**
      * 表格无数据时显示的文字
      *
@@ -81,7 +81,7 @@ export namespace ProTableMainNamespace {
      */
     selectedRadio?: TableColumnTypeNamespace.Props["selectedRadio"];
     /**
-     * 单选框 props
+     * ElRadio 单选框 props
      */
     radioProps?: TableColumnTypeNamespace.Props["radioProps"];
     /**

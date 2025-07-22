@@ -1,6 +1,6 @@
 <script lang="tsx" setup>
 import type { ElFormProps, FormColumn } from "@/components/pro/form";
-import { ref, h } from "vue";
+import { ref } from "vue";
 import { ElButton } from "element-plus";
 import { ProForm } from "@/components/pro/form";
 

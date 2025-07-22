@@ -1,5 +1,9 @@
 @use "../mixins/namespace" as *;
 
+:root {
+  --#{$admin-namespace}-radius: 0.75rem;
+}
+
 // 浅色主题变量
 :root {
   // 主要色

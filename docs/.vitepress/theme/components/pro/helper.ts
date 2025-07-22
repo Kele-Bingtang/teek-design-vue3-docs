@@ -12,7 +12,7 @@ import { isArray, isEmpty, isFunction, isObject, isPromise } from "@/common/util
 export const getProp = (
   model: Record<string, any>,
   prop: NonNullable<FormItemColumnProps["prop"]>,
-  valueFormat?: FormItemColumnProps["getFormat"]
+  valueFormat?: FormItemColumnProps["valueFormat"]
 ) => {
   if (!isObject(model)) return model;
 
@@ -215,7 +215,7 @@ export const getObjectKeys = (model: Record<string, any>, prefix = ""): string[]
  *
  * @param obj 需要处理的对象
  */
-export const filterEmpty = <T extends Recordable>(obj: T) => {
+export const filterEmpty = <T extends Record<string, any>>(obj: T) => {
   return Object.entries(obj).reduce((acc, [key, value]) => {
     // 支持响应式变量
     const valueConst = unref(value);

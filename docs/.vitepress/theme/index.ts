@@ -1,5 +1,8 @@
 import Teek from "vitepress-theme-teek";
-import TeekLayoutProvider from "./components/TeekLayoutProvider.vue";
+import TeekLayoutProvider from "./components/teek-layout-provider.vue";
+import ElementPlus from "element-plus";
+import zhCn from "element-plus/es/locale/lang/zh-cn";
+import Tip from "./components/tip.vue";
 
 import "vitepress-theme-teek/index.css";
 import "vitepress-theme-teek/theme-chalk/tk-code-block-mobile.css";
@@ -17,10 +20,9 @@ import "vitepress-theme-teek/theme-chalk/tk-banner-desc-gradient.css";
 import "./styles/code-bg.css";
 import "./styles/pro-reset.scss";
 import "./styles/var/index.scss";
-
-import ElementPlus from "element-plus";
-import zhCn from "element-plus/es/locale/lang/zh-cn";
-import "element-plus/dist/index.css";
+import "./styles/element-plus/el-ui.scss"; // 重写部分 Element Plus 样式
+import "./styles/element-plus/el-light.scss";
+import "./styles/element-plus/el-dark.scss";
 
 export default {
   extends: Teek,
@@ -29,5 +31,7 @@ export default {
     app.use(ElementPlus, {
       locale: zhCn,
     });
+
+    app.component("Tip", Tip);
   },
 };

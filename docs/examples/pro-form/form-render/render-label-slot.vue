@@ -1,7 +1,6 @@
 <script lang="tsx" setup>
 import type { ElFormProps, FormColumn } from "@/components/pro/form";
-import { ref, h } from "vue";
-import { ElButton } from "element-plus";
+import { ref } from "vue";
 import { ProForm } from "@/components/pro/form";
 
 const state = ref({
@@ -37,7 +36,7 @@ const columns: FormColumn[] = [
 </script>
 
 <template>
-  <ProForm v-model="state" :el-form-props :columns="columns">
+  <ProForm v-model="state" :el-form-props :columns>
     <template #name-label="{ label }">
       <span style="color: red">{{ label }}</span>
     </template>

@@ -118,8 +118,6 @@ const defaultExpose = {
   submitForm,
   resetForm,
 
-  proFormInstance,
-  proFormMainInstance,
   getOptionsMap,
   getProFormInstance,
   getProFormMainInstance,
@@ -186,7 +184,7 @@ defineExpose(defaultExpose);
 
               <!-- 其他通用插槽 -->
               <template v-for="slot in Object.keys($slots).filter(key => !['form-main'].includes(key))" #[slot]="scope">
-                <slot :name="slot" v-bind="scope as Record<string, any>" />
+                <slot :name="slot" v-bind="scope" />
               </template>
             </ProFormMain>
           </template>

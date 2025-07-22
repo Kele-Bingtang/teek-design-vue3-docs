@@ -39,7 +39,7 @@ const columns: FormColumn[] = [
 </script>
 
 <template>
-  <ProForm v-model="state" :el-form-props :columns" ="columns">
+  <ProForm v-model="state" :el-form-props :columns>
     <template #name>
       <el-input v-model="state.name" placeholder="自定义输入框插槽" />
     </template>

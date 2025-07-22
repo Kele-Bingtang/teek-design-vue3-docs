@@ -33,11 +33,11 @@ const columns: FormColumn[] = [
 
 <template>
   <ProForm v-model="state" :columns="columns" :el-form-props>
-    <template #footer="{ submitForm, resetForm }">
+    <template #footer="{ handleSubmit, handleReset }">
       <div style="margin: 0 auto">
         <el-button type="info">返回</el-button>
-        <el-button type="primary" :loading="submitLoading" @click="submitForm">通过</el-button>
-        <el-button v-if="hasReset" type="warning" @click="resetForm">重置</el-button>
+        <el-button type="primary" :loading="submitLoading" @click="handleSubmit">通过</el-button>
+        <el-button v-if="hasReset" type="warning" @click="handleReset">重置</el-button>
         <el-button type="danger">驳回</el-button>
       </div>
     </template>

@@ -371,10 +371,10 @@ const expose = {
 
   tableHeadInstance,
   tableMainInstance,
-  getElTableInstance,
-  getElFormInstance,
-  getElFormItemInstance,
-  getElInstance,
+  getElTableInstance: () => tableMainInstance.value?.elTableInstance,
+  getElFormInstance: () => tableMainInstance.value?.getElFormInstance,
+  getElFormItemInstance: () => tableMainInstance.value?.getElFormItemInstance,
+  getElInstance: () => tableMainInstance.value?.getElInstance,
 };
 
 defineExpose(expose);

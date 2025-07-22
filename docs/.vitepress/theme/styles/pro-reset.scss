@@ -1,7 +1,4 @@
 .vp-doc {
-  .plus-steps-form .el-steps {
-    line-height: initial;
-  }
   .el-pager li {
     margin: 0;
   }
@@ -27,11 +24,6 @@
   }
   .el-table tr {
     border-top: 0;
-  }
-  .plus-sidebar {
-    padding-left: 0;
-    margin-top: 0;
-    margin-bottom: 0;
   }
 
   .el-menu-item {
@@ -65,22 +57,11 @@
     }
   }
 
-  .plus-header .set-language-dropdown {
-    background-color: #fff;
-    padding: 0;
-    margin: 0;
-    border-radius: 0;
-  }
-
   .tip a {
     text-decoration: underline;
   }
 
   .el-text a {
     text-decoration: none;
-  }
-
-  .custom-block.warning a {
-    color: var(--vp-c-brand-1);
   }
 }

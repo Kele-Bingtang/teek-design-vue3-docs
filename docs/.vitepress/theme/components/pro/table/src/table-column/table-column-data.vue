@@ -271,7 +271,6 @@ const handleFormChange = (model: unknown, props: TableColumn["prop"], scope: Tab
         :is="column.render(getRenderParams(scope, column))"
         v-bind="{ ...column.elProps }"
       />
-
       <!-- 自定义 RenderHtml 函数渲染，返回 HTML 格式 -->
       <span v-else-if="column.renderHTML" v-html="column.renderHTML(getRenderParams(scope, column))" />
       <!-- 自定义插槽，插槽名为 column.prop -->

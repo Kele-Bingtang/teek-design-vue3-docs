@@ -236,9 +236,9 @@ export interface FormItemColumnProps {
         contentRender?: () => RenderTypes; // 自定义 ElTooTip 的内容，传入 ElTooTip 的 content 插槽里
       } & Partial<ElTooltipProps>);
   /**
-   * 表单绑定的值格式，场景：select 下拉 value 为 "1"，而 value 值是 1 导致无法匹配，可以设置为 getFormat: "string" 解决
+   * 表单绑定的值格式，场景：select 下拉 value 为 "1"，而 value 值是 1 导致无法匹配，可以设置为 valueFormat: "string" 解决
    */
-  getFormat?: unknown | ((value: unknown) => unknown);
+  valueFormat?: unknown | ((value: unknown) => unknown);
   /**
    * 自定义 label 标题
    */

@@ -1,0 +1,29 @@
+@use "../mixins/namespace" as *;
+
+// 自定义 ElementPlus 暗黑主题
+@forward "element-plus/theme-chalk/src/dark/var.scss" with (
+  $colors: (
+    //
+    "white": #ffffff,
+    "black": #000000,
+    "primary": ("base": #5f81ff),
+    "success": ("base": #32c060),
+    "warning": ("base": #ffb332),
+    "danger": ("base": #ff6a6a),
+    "error": ("base": #ff7a38),
+    "info": ("base": #909399),
+  )
+);
+
+@use "element-plus/theme-chalk/src/dark/css-vars.scss" as *;
+
+:root.dark {
+  --#{$el-namespace}-text-color-primary: var(--#{$admin-namespace}-text-gray-900);
+  --#{$el-namespace}-text-color-regular: var(--#{$admin-namespace}-text-gray-800);
+  --#{$el-namespace}-text-color-secondary: var(--#{$admin-namespace}-text-gray-700);
+  --#{$el-namespace}-text-color-placeholder: var(--#{$admin-namespace}-text-gray-600);
+  --#{$el-namespace}-text-color-disabled: var(--#{$admin-namespace}-text-gray-500);
+  --#{$el-namespace}-bg-color: var(--vp-c-bg);
+  --#{$el-namespace}-bg-color-overlay: var(--vp-c-bg);
+  --#{$el-namespace}-bg-color-page: var(--vp-c-bg);
+}

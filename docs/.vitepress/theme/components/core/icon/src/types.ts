@@ -55,5 +55,5 @@ export interface IconProps {
   /**
    * 自定义图标样式
    */
-  style?: Recordable;
+  style?: Record<string, any>;
 }

@@ -31,7 +31,7 @@ const handleChange = (value: unknown, model: Record<string, any>, column: FormIt
  * 确认按钮点击事件
  */
 const handleConfirm = async () => {
-  const isValid = await proFormInstance.value?.submitForm();
+  const isValid = await proFormInstance.value?.handleSubmit();
   if (isValid) emits("confirm", model.value);
 };
 

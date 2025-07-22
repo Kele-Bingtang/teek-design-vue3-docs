@@ -121,8 +121,8 @@ const columns: FormColumn[] = [
   },
 ];
 
-const handleAllConfirm = async (submitForm: () => Promise<boolean>) => {
-  const isPass = await submitForm();
+const handleAllConfirm = async (handleSubmit: () => Promise<boolean>) => {
+  const isPass = await handleSubmit();
   isPass && (dialogVisible2.value = false);
 };
 </script>
@@ -154,10 +154,10 @@ const handleAllConfirm = async (submitForm: () => Promise<boolean>) => {
       :dialog="{ title: '表单标题', showFooter: false, height: 500 }"
       :form="{ elFormProps, columns, showFooter: true }"
     >
-      <template #form-footer="{ submitForm, resetForm }">
-        <el-button type="primary" @click="handleAllConfirm(submitForm)">提交</el-button>
-        <el-button type="warning" @click="resetForm">重置</el-button>
-        <el-button type="danger" @click="resetForm">返回</el-button>
+      <template #form-footer="{ handleSubmit, handleReset }">
+        <el-button type="primary" @click="handleAllConfirm(handleSubmit)">提交</el-button>
+        <el-button type="warning" @click="handleReset">重置</el-button>
+        <el-button type="danger" @click="handleReset">返回</el-button>
       </template>
     </ProFormDialog>
   </div>
