@@ -1,5 +1,5 @@
 <script setup lang="ts" name="SimpleProSearch">
-import type { ProSearchColumnProps } from "@/components/pro/search";
+import type { ProSearchColumn } from "@/components/pro/search";
 import { ref } from "vue";
 import { ProSearch } from "@/components/pro/search";
 
@@ -10,7 +10,7 @@ const state = ref({
   time: new Date().toString(),
 });
 
-const columns: ProSearchColumnProps[] = [
+const columns: ProSearchColumn[] = [
   {
     label: "函数状态",
     prop: "status",

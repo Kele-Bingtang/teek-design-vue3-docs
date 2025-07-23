@@ -192,6 +192,10 @@ defineExpose({ treeData, treeAllData, initTreeData });
             </slot>
           </span>
         </template>
+
+        <template v-for="slot in Object.keys($slots).filter(key => !key.includes('default'))" #[slot]="scope">
+          <slot :name="slot" v-bind="scope" />
+        </template>
       </el-tree>
     </el-scrollbar>
   </div>

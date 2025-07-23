@@ -8,7 +8,7 @@ import type { TableEditProps } from "./table-edit";
 import type { ElDisplayProps } from "./el-display";
 import type { OperationNamespace } from "./table-column-operation";
 
-export interface RenderParams<T extends Record<string, any> = Record<string, any>> extends TableScope<T> {
+export interface TableRenderParams<T extends Record<string, any> = Record<string, any>> extends TableScope<T> {
   /**
    * 传入的原始值
    */
@@ -194,27 +194,27 @@ export interface TableColumn<T extends Record<string, any> = any>
   /**
    * 自定义表头内容渲染（tsx 语法）
    */
-  renderHeader?: (scope: RenderParams<T>) => RenderTypes;
+  renderHeader?: (scope: TableRenderParams<T>) => RenderTypes;
   /**
    * 自定义表头内容渲染（返回 HTML），优先级低于 render，高于插槽
    */
-  renderHeaderHTML?: (scope: RenderParams<T>) => string;
+  renderHeaderHTML?: (scope: TableRenderParams<T>) => string;
   /**
    * 自定义表头内容
    */
-  formatLabel?: (label: unknown, scope: RenderParams<T>) => string | number;
+  formatLabel?: (label: unknown, scope: TableRenderParams<T>) => string | number;
   /**
    * 自定义单元格内容渲染（tsx 语法）
    */
-  render?: (scope: RenderParams<T>) => RenderTypes;
+  render?: (scope: TableRenderParams<T>) => RenderTypes;
   /**
    * 自定义单元格内容渲染（返回 HTML），优先级低于 render，高于插槽
    */
-  renderHTML?: (scope: RenderParams<T>) => string;
+  renderHTML?: (scope: TableRenderParams<T>) => string;
   /**
    * 自定义单元格内容
    */
-  formatValue?: (value: unknown, scope: RenderParams<T>) => string | number;
+  formatValue?: (value: unknown, scope: TableRenderParams<T>) => string | number;
   /**
    * 多级表头
    */
@@ -271,7 +271,7 @@ export interface TableColumn<T extends Record<string, any> = any>
    * el 组件的插槽
    */
   elSlots?: {
-    [slotName: string]: (data: RenderParams) => RenderTypes;
+    [slotName: string]: (data: TableRenderParams) => RenderTypes;
   };
   /**
    * 其他扩展
