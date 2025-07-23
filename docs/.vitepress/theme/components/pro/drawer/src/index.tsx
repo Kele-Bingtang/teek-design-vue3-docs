@@ -1,11 +1,13 @@
 import type { Component, ComponentInternalInstance, AppContext, ComputedRef } from "vue";
 import type { ProDrawerProps } from "./types";
 import type { DrawerProps } from "element-plus";
-import { render, getCurrentInstance, nextTick, ref, computed, inject } from "vue";
+import { render, getCurrentInstance, nextTick, ref, computed } from "vue";
 import { ElDrawer, ElButton, ElConfigProvider } from "element-plus";
 import { useNamespace } from "@/composables";
 import { isArray } from "@/common/utils";
 import { Icon } from "@/components/core/icon";
+import Fullscreen from "@/components/pro/fullscreen.svg";
+import FullscreenExit from "@/components/pro/fullscreen-exit.svg";
 
 import "./index.scss";
 
@@ -59,11 +61,11 @@ export const closeDrawer = () => {
   removeWithTransition(overlayEl, () => {
     const vm = document.querySelector(`#${blockClass}-${id--}`);
     vm && getFatherDom().removeChild(vm);
-  });
 
-  if (!document.querySelector(`.${blockClass}-overlay`)) {
-    document.body.classList.remove(`${ns.elNamespace}-popup-parent--hidden`);
-  }
+    if (!document.querySelector(`.${blockClass}-overlay`)) {
+      document.body.classList.remove(`${ns.elNamespace}-popup-parent--hidden`);
+    }
+  });
 };
 
 /**
@@ -139,12 +141,14 @@ export const showDrawer = (
                 <span class={`${ns.elNamespace}-drawer__title`}>{drawerProps.title}</span>
                 {drawerProps.fullscreenIcon !== false && (
                   <Icon
-                    icon={isFullscreen.value ? "core-fullscreen-exit" : "core-fullscreen"}
+                    icon={isFullscreen.value ? FullscreenExit : Fullscreen}
+                    icon-type="img"
                     size="15px"
                     color={ns.cssVarEl("color-info")}
                     hover
                     hover-color={ns.cssVarEl("color-primary")}
                     style={{ cursor: "pointer", userSelect: "none", marginRight: "5px" }}
+                    class="no-preview"
                     {...{ onClick: () => toggleFullscreen() }}
                   />
                 )}

@@ -28,7 +28,7 @@ const columns: TableColumn[] = [
 <template>
   <ProTable :columns="columns" :data="data" row-key="username">
     <template #expand="scope">
-      {{ scope.row._getData() }}
+      {{ scope.row }}
     </template>
   </ProTable>
 </template>

@@ -6,6 +6,8 @@ import { ElDialog, ElScrollbar, ElButton } from "element-plus";
 import { addUnit } from "@/common/utils";
 import { useNamespace } from "@/composables";
 import { Icon } from "@/components/core/icon";
+import Fullscreen from "@/components/pro/fullscreen.svg";
+import FullscreenExit from "@/components/pro/fullscreen-exit.svg";
 
 defineOptions({ name: "ProDialog" });
 
@@ -51,7 +53,9 @@ watch(
     if (val) {
       const windowHeight = document.documentElement.offsetHeight;
       // 弹框整体 padding 上下各 16，头部高度 47，内容区整体 padding 上下各 25，底部存在时高度 52
-      dialogHeight.value = `${windowHeight - 32 - 47 - 50 - (props.showFooter ? 52 : 0) - props.heightOffsetInFullscreen}px`;
+      dialogHeight.value = `${
+        windowHeight - 32 - 47 - 50 - (props.showFooter ? 52 : 0) - props.heightOffsetInFullscreen
+      }px`;
     } else dialogHeight.value = addUnit(props.height);
   },
   { immediate: true }
@@ -107,14 +111,15 @@ defineExpose({ elDialogInstance, handleConfirm, handleCancel, open, close });
             <!-- 全屏图标 -->
             <Icon
               v-if="fullscreenIcon"
-              :icon="isFullscreen ? 'core-fullscreen-exit' : 'core-fullscreen'"
+              :icon="isFullscreen ? FullscreenExit : Fullscreen"
+              icon-type="img"
               @click="toggleFullscreen"
               :size="15"
               :color="ns.cssVarEl('color-info')"
               hover
               :hover-color="ns.cssVarEl('color-primary')"
               :style="{ cursor: 'pointer', userSelect: 'none' }"
-              class="fullscreen-icon"
+              class="fullscreen-icon no-preview"
             />
           </slot>
         </div>

@@ -5,6 +5,8 @@ import { ref, computed, useTemplateRef } from "vue";
 import { ElDrawer, ElButton } from "element-plus";
 import { useNamespace } from "@/composables";
 import { Icon } from "@/components/core/icon";
+import Fullscreen from "@/components/pro/fullscreen.svg";
+import FullscreenExit from "@/components/pro/fullscreen-exit.svg";
 
 defineOptions({ name: "ProDrawer" });
 
@@ -85,7 +87,8 @@ defineExpose({ elDrawerInstance, handleConfirm, handleCancel, open, close });
           <slot name="fullscreen-icon" v-bind="{ isFullscreen, toggleFullscreen }">
             <Icon
               v-if="fullscreenIcon"
-              :icon="isFullscreen ? 'core-fullscreen-exit' : 'core-fullscreen'"
+              :icon="isFullscreen ? FullscreenExit : Fullscreen"
+              icon-type="img"
               @click="toggleFullscreen"
               width="18px"
               height="18px"
@@ -93,6 +96,7 @@ defineExpose({ elDrawerInstance, handleConfirm, handleCancel, open, close });
               hover
               :hover-color="ns.cssVarEl('color-primary')"
               :style="{ cursor: 'pointer', userSelect: 'none', marginRight: '5px' }"
+              class="no-preview"
             />
           </slot>
         </div>

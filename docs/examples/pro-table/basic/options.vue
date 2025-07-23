@@ -60,7 +60,7 @@ const columns: TableColumn[] = [
     label: "使用已有 options",
     prop: "status6",
     el: "el-tag",
-    optionsProp: "status",
+    optionsProp: "status1",
   },
 ];
 </script>
