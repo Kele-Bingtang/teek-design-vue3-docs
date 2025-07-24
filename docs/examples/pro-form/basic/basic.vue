@@ -107,18 +107,9 @@ const columns: FormColumn[] = [
     prop: "gift",
     el: "el-radio",
     options: [
-      {
-        label: "诗",
-        value: "0",
-      },
-      {
-        label: "远方",
-        value: "1",
-      },
-      {
-        label: "美食",
-        value: "2",
-      },
+      { label: "诗", value: "0" },
+      { label: "远方", value: "1" },
+      { label: "美食", value: "2" },
     ],
   },
   {

@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<OperationNamespace.Props>(), {
   width: 200,
   prop: "operation",
   showNumber: 3,
-  confirm: false,
+  confirm: () => ({}),
 });
 
 const ns = useNamespace("pro-table-operation");

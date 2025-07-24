@@ -9,7 +9,7 @@ const data = [
 ];
 
 const columns: TableColumn[] = [
-  { type: "sort", label: "#", width: 60 },
+  { type: "sort", label: "拖拽", width: 60 },
   { prop: "username", label: "用户姓名", el: "copy" },
   {
     prop: "gender",

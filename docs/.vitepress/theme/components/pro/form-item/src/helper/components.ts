@@ -18,6 +18,7 @@ import {
   ElTimePicker,
   ElTimeSelect,
   ElTransfer,
+  ElTree,
   ElAutocomplete,
   ElDivider,
   ElTreeSelect,
@@ -63,6 +64,7 @@ export enum FormElComponentEnum {
   EL_SEGMENTED = "ElSegmented",
   EL_TEXT = "ElText",
   CHECK_BOX_SELECT = "CheckBoxSelect",
+  Tree = "Tree",
 }
 
 /**
@@ -73,7 +75,7 @@ const formELComponentsMap: Record<FormPascalCaseComponentName, Component> = {
   ElInputNumber,
   ElSelect,
   ElSelectV2,
-  ElTree: Tree,
+  ElTree,
   ElTreeSelect,
   ElCascader,
   ElDatePicker,
@@ -97,6 +99,7 @@ const formELComponentsMap: Record<FormPascalCaseComponentName, Component> = {
   ElMention,
   ElSegmented,
   ElText,
+  Tree,
   CheckBoxSelect,
 };
 

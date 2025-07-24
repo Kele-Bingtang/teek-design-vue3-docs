@@ -8,13 +8,6 @@
 
 ## TODO
 
-- 表格操作示例控制台警告
-- ElTree 为自定义 Tree 说明文档
-- 表单 width 属性示例说明
-- 表单操作 confirm 包类型不匹配
-- 超级表单和超级表格新增 icon 插槽示例
-- ProForm 的 width 属性示例
-- ProTable 表头 render label 直接取而不是从 column 取
 - 超级表单、超级搜索新增 `useProForm` 函数使用示例 和 `create` 函数创建表单示例
 
 - 新增规范专题文档
