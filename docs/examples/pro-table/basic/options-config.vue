@@ -23,13 +23,14 @@ const columns: TableColumn[] = [
   {
     label: "options 配置",
     prop: "status1",
+    el: "el-tag",
     options: options,
     optionField: { label: "optionLabel", value: "optionValue" },
   },
   {
     label: "options 配置",
     prop: "status2",
-    el: "el-tag",
+    el: "point-tag",
     options: options,
     optionField: { label: "optionLabel", value: "optionValue" },
   },

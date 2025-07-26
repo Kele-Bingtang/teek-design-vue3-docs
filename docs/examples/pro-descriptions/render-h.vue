@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { DescriptionColumn } from "@/components/pro/descriptions";
-import { h, ref } from "vue";
+import { h } from "vue";
 import { ElProgress, ElRate, ElTag } from "element-plus";
 import { ProDescriptions } from "@/components/pro/descriptions";
 
@@ -17,10 +17,10 @@ const columns: DescriptionColumn[] = [
     label: "状态",
     prop: "status",
     options: [
-      { label: "未解决", value: "0" },
-      { label: "已解决", value: "1" },
-      { label: "解决中", value: "2" },
-      { label: "失败", value: "3" },
+      { label: "未解决", value: 0 },
+      { label: "已解决", value: 1 },
+      { label: "解决中", value: 2 },
+      { label: "失败", value: 3 },
     ],
     render: ({ value }) => h(ElTag, null, () => value),
   },

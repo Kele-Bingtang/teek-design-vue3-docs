@@ -100,7 +100,7 @@ export interface FormItemRenderParams {
   /**
    * 当前表单数据
    */
-  model: Record<string, any>;
+  model: ModelBaseValueType;
   /**
    * 当前描述列表标签
    */
@@ -277,15 +277,15 @@ export interface FormItemColumnProps {
   /**
    * 自定义 label 标题
    */
-  renderLabel?: (scope: FormItemRenderParams) => RenderTypes;
+  renderLabel?: (scope: FormItemRenderParams | Record<string, any>) => RenderTypes;
   /**
    * 自定义 Label 内容渲染（返回 HTML），优先级低于 render，高于插槽
    */
-  renderLabelHTML?: (scope: FormItemRenderParams) => string;
+  renderLabelHTML?: (scope: FormItemRenderParams | Record<string, any>) => string;
   /**
    * 自定义渲染 el-form-item 下的表单组件
    */
-  render?: (scope: FormItemRenderParams) => RenderTypes;
+  render?: (scope: FormItemRenderParams | Record<string, any>) => RenderTypes;
   /**
    * 是否为编辑态
    *

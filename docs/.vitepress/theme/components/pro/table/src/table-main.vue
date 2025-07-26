@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { TableInstance } from "element-plus";
 import type { OperationNamespace, ProTableMainNamespace, TableScope, TableColumn, TableRow } from "./types";
-import { toValue, ref, computed, watch, watchEffect, useTemplateRef, nextTick, unref, onMounted } from "vue";
+import { toValue, ref, computed, watch, watchEffect, useTemplateRef } from "vue";
 import { ElTable } from "element-plus";
 import { isEmpty } from "@/common/utils";
 import Pagination, { defaultPageInfo } from "@/components/pro/pagination";
