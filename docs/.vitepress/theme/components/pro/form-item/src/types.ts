@@ -90,6 +90,44 @@ export type FormElType = FormPascalCaseComponentName | FormHyphenCaseComponentNa
 export type RenderTypes = string | VNode | JSX.Element | Component;
 
 /**
+ * render、插槽参数类型
+ */
+export interface FormItemRenderParams {
+  /**
+   * 当前值
+   */
+  value: unknown;
+  /**
+   * 当前表单数据
+   */
+  model: Record<string, any>;
+  /**
+   * 当前描述列表标签
+   */
+  label: string;
+  /**
+   * 字典枚举
+   */
+  options: ElOption[];
+  /**
+   * el 组件的 props
+   */
+  elProps: Record<string, any>;
+  /**
+   * el-form-item 的 props
+   */
+  formItemProps: Partial<FormItemProps>;
+  /**
+   * 更新当前 prop 的表单值函数
+   */
+  update: (value: unknown) => void;
+  /**
+   * 当前列配置
+   */
+  column: FormItemColumnProps;
+}
+
+/**
  * 字典数据类型
  */
 export interface ElOption {
@@ -205,10 +243,7 @@ export interface FormItemColumnProps {
     | string[]
     | MaybeRef<ElOption[]>
     | Promise<ElOption[]>
-    | ((
-        model: Record<string, any>,
-        optionsMap?: Map<string, Record<string, any>>
-      ) => ElOption[] | Promise<ElOption[]> | Promise<unknown>);
+    | ((model: Record<string, any>, optionsMap?: Map<string, Record<string, any>>) => ElOption[] | Promise<ElOption[]>);
   /**
    * 字典指定 label && value && children 的 key 值
    *
@@ -238,19 +273,19 @@ export interface FormItemColumnProps {
   /**
    * 表单绑定的值格式，场景：select 下拉 value 为 "1"，而 value 值是 1 导致无法匹配，可以设置为 valueFormat: "string" 解决
    */
-  valueFormat?: unknown | ((value: unknown) => unknown);
+  valueFormat?: "string" | "number" | "boolean" | ((value: unknown) => unknown);
   /**
    * 自定义 label 标题
    */
-  renderLabel?: (label: string, scope: FormItemColumnProps) => RenderTypes;
+  renderLabel?: (scope: FormItemRenderParams) => RenderTypes;
   /**
    * 自定义 Label 内容渲染（返回 HTML），优先级低于 render，高于插槽
    */
-  renderLabelHTML?: (label: string, scope: FormItemColumnProps) => string;
+  renderLabelHTML?: (scope: FormItemRenderParams) => string;
   /**
    * 自定义渲染 el-form-item 下的表单组件
    */
-  render?: (value: unknown, update: (value: unknown) => void, scope: FormItemColumnProps) => RenderTypes;
+  render?: (scope: FormItemRenderParams) => RenderTypes;
   /**
    * 是否为编辑态
    *

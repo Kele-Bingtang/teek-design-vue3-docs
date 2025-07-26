@@ -27,7 +27,7 @@ const columns: FormColumn[] = [
   {
     label: "自定义 el-transfer",
     prop: "transfer",
-    render: (value, update) => {
+    render: ({ value, update }) => {
       interface Option {
         key: number;
         label: string;
@@ -50,7 +50,7 @@ const columns: FormColumn[] = [
     label: "上传",
     prop: "img",
     width: 100,
-    render(value, update) {
+    render({ value, update }) {
       // 自定义上传
       const handleHttpRequest = async ({ file, onError, onSuccess }: any) => {
         try {
@@ -89,7 +89,7 @@ const columns: FormColumn[] = [
     elProps: {
       placeholder: "请输入原生表单值",
     },
-    render: (value, update) => {
+    render: ({ value, update }) => {
       return h("input", {
         // 原生表单需要手动添加 value 值
         value: value,
@@ -117,7 +117,7 @@ const columns: FormColumn[] = [
       },
     },
 
-    render: value => {
+    render: ({ value }) => {
       return h("div", null, value as string);
     },
   },

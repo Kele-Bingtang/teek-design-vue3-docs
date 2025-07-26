@@ -135,20 +135,10 @@ function usePageSearchInit() {
     searchDefaultParams.value[prop] = value;
   };
 
-  let timer: ReturnType<typeof setTimeout> | null = null;
-
   watch(
     flatColumns,
     newValue => {
-      if (timer) {
-        clearTimeout(timer);
-        timer = null;
-      }
-
-      // 防抖：防止初始化时连续执行
-      timer = setTimeout(() => {
-        for (const column of newValue) initOptionsMap(column.search?.options ?? column.options, column.prop || "");
-      }, 10);
+      for (const column of newValue) initOptionsMap(column.search?.options ?? column.options, column.prop || "");
     },
     { deep: true, immediate: true }
   );

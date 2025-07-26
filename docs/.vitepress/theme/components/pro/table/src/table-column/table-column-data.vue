@@ -64,9 +64,9 @@ const initTableColumn = (column: TableColumn) => {
   column.width = toValue(column.width);
   column.label = toValue(column.label);
 
-  // 使用解构并排除 children 属性
+  // 使用解构并排除 children, renderHeader 属性
   // eslint-disable-next-line no-unused-vars
-  const { children, ...rest } = toRaw(column);
+  const { children, renderHeader, ...rest } = toRaw(column);
 
   return rest as unknown as TableColumnCtx<any>;
 };

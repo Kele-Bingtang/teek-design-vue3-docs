@@ -10,7 +10,7 @@ const model = ref({});
 
 const position = ref<"center" | "left" | "right">("right");
 const border = ref(true);
-const editable = ref(true);
+const editable = ref(false);
 const direction = ref("horizontal");
 
 const DataServe = {

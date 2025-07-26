@@ -21,7 +21,7 @@ const columns: FormColumn[] = [
     prop: "name",
     valueType: "copy",
     tooltip: "名称最多显示6个字符",
-    renderLabel: value => {
+    renderLabel: ({ value }) => {
       return h("div", {}, value as string);
     },
   },
@@ -42,7 +42,7 @@ const columns: FormColumn[] = [
       { label: "解决中", value: "2", color: "yellow" },
       { label: "失败", value: "3", color: "red" },
     ],
-    renderLabel: value => h(ElButton, null, () => value as string),
+    renderLabel: ({ value }) => h(ElButton, null, () => value as string),
   },
 ];
 </script>

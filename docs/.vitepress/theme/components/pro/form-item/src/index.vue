@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Component } from "vue";
 import type { FormItemInstance } from "element-plus";
-import type { FormItemColumnProps, ModelBaseValueType, ProFormItemEmits } from "./types";
+import type { FormItemColumnProps, FormItemRenderParams, ModelBaseValueType, ProFormItemEmits } from "./types";
 import { computed, watch, useTemplateRef, toValue, ref } from "vue";
 import { ElFormItem, ElTooltip, ElDivider, ElUpload, ElIcon } from "element-plus";
 import { QuestionFilled } from "@element-plus/icons-vue";
@@ -63,16 +63,19 @@ const elModel = computed({
 });
 
 // 插槽参数
-const slotParams = computed<Record<string, any>>(() => ({
-  ...props,
-  value: elModel.value,
-  model: model.value,
-  label: labelValue.value,
-  options: enums.value,
-  elProps: elPropsValue.value,
-  formItemProps: formItemPropsValue.value,
-  update: updateElModel,
-}));
+const slotParams = computed<Record<string, any>>(
+  () =>
+    ({
+      value: elModel.value,
+      model: model.value,
+      label: labelValue.value,
+      options: enums.value,
+      elProps: elPropsValue.value,
+      formItemProps: formItemPropsValue.value,
+      update: updateElModel,
+      column: { ...props },
+    } as FormItemRenderParams)
+);
 
 watch(elModel, () => emits("change", elModel.value, model.value, slotParams.value));
 
@@ -211,9 +214,9 @@ defineExpose(expose);
   >
     <template v-if="editableValue && showLabelValue" #label="{ label }">
       <!-- 自定义 label（h、JSX）渲染 -->
-      <component v-if="renderLabel" :is="renderLabel(label, slotParams)" />
+      <component v-if="renderLabel" :is="renderLabel(slotParams)" />
       <!-- 自定义 renderLabelHTML 函数渲染，返回 HTML 格式 -->
-      <span v-else-if="renderLabelHTML" v-html="renderLabelHTML(label, slotParams)" />
+      <span v-else-if="renderLabelHTML" v-html="renderLabelHTML(slotParams)" />
       <!-- 自定义 label 插槽 -->
       <slot v-else-if="$slots[`${prop}-label`]" :name="`${prop}-label`" v-bind="slotParams" />
       <!-- 默认 Label -->
@@ -245,12 +248,7 @@ defineExpose(expose);
 
     <template v-if="editableValue">
       <!-- 自定义表单组件（h、JSX）渲染-->
-      <component
-        v-if="render"
-        :is="render(elModel, updateElModel, slotParams)"
-        v-model="elModel"
-        v-bind="elPropsValue"
-      />
+      <component v-if="render" :is="render(slotParams)" v-model="elModel" v-bind="elPropsValue" />
       <!-- 自定义表单组件插槽 -->
       <slot v-else-if="$slots[prop]" :name="prop" v-bind="slotParams" />
 
@@ -268,7 +266,11 @@ defineExpose(expose);
           :clearable
           v-bind="{ ...elPropsValue, ...placeholder }"
           :style="{ width: withValue }"
-        />
+        >
+          <template v-for="(slot, key) in elSlots" :key="key" #[key]="data">
+            <component :is="slot" v-bind="{ ...slotParams, ...data }" />
+          </template>
+        </el-upload>
 
         <component
           v-else-if="childComponentMap[formEl]"

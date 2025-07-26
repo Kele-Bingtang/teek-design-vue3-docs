@@ -1,10 +1,13 @@
-import type { CSSProperties, MaybeRefOrGetter, MaybeRef } from "vue";
+import type { CSSProperties, MaybeRefOrGetter, MaybeRef, ComponentInternalInstance } from "vue";
 import type { DescriptionItemProps } from "element-plus";
 import type { ProFormNamespace } from "@/components/pro/form";
 import type { ElOption, FormItemColumnProps, RenderTypes } from "@/components/pro/form-item";
 import type ProDescriptions from "./index.vue";
 import type { ElDisplayProps } from "../../table";
 
+/**
+ * render、插槽参数类型
+ */
 export interface DescriptionsRenderParams {
   /**
    * 当前值
@@ -234,12 +237,20 @@ export interface ProDescriptionsProp {
    * @default true
    */
   validate?: boolean;
+  /**
+   * 支持拓展
+   */
+  [key: string]: any;
 }
 
 /**
  * ProDescriptions 事件
  */
 export interface ProDescriptionsEmits {
+  /**
+   * 注册事件
+   */
+  register: [proDescriptionsInstance: any];
   /**
    * 表单值改变事件
    */

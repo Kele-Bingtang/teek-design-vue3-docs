@@ -20,7 +20,7 @@ const columns: FormColumn[] = [
     prop: "name",
     valueType: "copy",
     tooltip: "名称最多显示6个字符",
-    renderLabelHTML: label => `<span style="color: red">${label}</span>`,
+    renderLabelHTML: ({ label }) => `<span style="color: red">${label}</span>`,
   },
   {
     label: "状态",
@@ -32,7 +32,7 @@ const columns: FormColumn[] = [
       { label: "解决中", value: "2", color: "yellow" },
       { label: "失败", value: "3", color: "red" },
     ],
-    renderLabelHTML: label => `<span style="color: blue">${label}</span>`,
+    renderLabelHTML: ({ label }) => `<span style="color: blue">${label}</span>`,
   },
 ];
 </script>
