@@ -1,6 +1,6 @@
 import type { Ref } from "vue";
 import type { ProTableNamespace, TableColumn } from "../types";
-import { ref, unref } from "vue";
+import { readonly, ref, unref } from "vue";
 import { isString } from "@/common/utils";
 import { setProp } from "@/components/pro/helper";
 
@@ -73,5 +73,5 @@ export const useTableApi = (columnsProps: Ref<{ columns: TableColumn[] }>) => {
     if (index > -1) columns.splice(index, 1);
   };
 
-  return { mergeProps, setProps, setColumn, addColumn, delColumn };
+  return { mergeProps: readonly(mergeProps), setProps, setColumn, addColumn, delColumn };
 };

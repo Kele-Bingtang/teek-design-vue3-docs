@@ -1,6 +1,6 @@
 import type { Ref } from "vue";
 import type { DescriptionColumn, ProDescriptionsProp } from "../types";
-import { ref, unref } from "vue";
+import { readonly, ref, unref } from "vue";
 import { isString } from "@/common/utils";
 import { setProp } from "@/components/pro/helper";
 
@@ -84,7 +84,7 @@ export const useDescriptionsApi = (model: Ref<Record<string, any>>, columnsProps
   };
 
   return {
-    mergeProps,
+    mergeProps: readonly(mergeProps),
     setValues,
     setProps,
     setColumn,

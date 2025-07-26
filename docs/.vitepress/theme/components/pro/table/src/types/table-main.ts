@@ -120,6 +120,6 @@ export namespace ProTableMainNamespace {
     /**
      * 过滤事件，返回输入的值以及 prop
      */
-    filter: [filterModel: Record<string, any>, filterValue: unknown, prop: string];
+    filter: [filterModel: Record<string, any>, filterValue: any, prop: string];
   }
 }

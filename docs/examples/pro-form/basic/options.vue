@@ -22,8 +22,8 @@ const getOptions = async () => {
   return await new Promise(resolve => {
     setTimeout(() => {
       options.value = [
-        { label: "未解决", value: "0", color: "red" },
-        { label: "已解决", value: "1", color: "blue" },
+        { label: "未解决", value: "0" },
+        { label: "已解决", value: "1" },
       ];
       resolve("");
     }, 2000);

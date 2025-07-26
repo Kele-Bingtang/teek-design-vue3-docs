@@ -13,8 +13,8 @@ const columns: FormColumn[] = [
     prop: "status",
     el: "el-select",
     options: [
-      { label: "未解决", value: "0", color: "red" },
-      { label: "已解决", value: "1", color: "blue" },
+      { label: "未解决", value: "0" },
+      { label: "已解决", value: "1" },
     ],
   },
   {

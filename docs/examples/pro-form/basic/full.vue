@@ -252,10 +252,10 @@ const columns: FormColumn[] = [
     prop: "select",
     el: "el-select",
     options: [
-      { label: "未解决", value: "0", color: "red" },
-      { label: "已解决", value: "1", color: "blue" },
-      { label: "解决中", value: "2", color: "yellow" },
-      { label: "失败", value: "3", color: "red" },
+      { label: "未解决", value: "0" },
+      { label: "已解决", value: "1" },
+      { label: "解决中", value: "2" },
+      { label: "失败", value: "3" },
     ],
   },
   {
@@ -263,10 +263,10 @@ const columns: FormColumn[] = [
     prop: "selectMultiple",
     el: "el-select",
     options: [
-      { label: "未解决", value: "0", color: "red" },
-      { label: "已解决", value: "1", color: "blue" },
-      { label: "解决中", value: "2", color: "yellow" },
-      { label: "失败", value: "3", color: "red" },
+      { label: "未解决", value: "0" },
+      { label: "已解决", value: "1" },
+      { label: "解决中", value: "2" },
+      { label: "失败", value: "3" },
     ],
     elProps: {
       multiple: true,

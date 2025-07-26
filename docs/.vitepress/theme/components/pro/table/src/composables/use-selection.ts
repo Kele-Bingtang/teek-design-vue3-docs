@@ -1,5 +1,5 @@
 import type { ProTableMainNamespace } from "../types";
-import { ref } from "vue";
+import { readonly, ref } from "vue";
 import { isFunction } from "@/common/utils";
 
 /**
@@ -42,9 +42,9 @@ export const useSelection = (rowKey: ProTableMainNamespace.Props["rowKey"] = "id
   };
 
   return {
-    isSelected,
-    selectedList,
-    selectedListIds,
+    isSelected: readonly(isSelected),
+    selectedList: readonly(selectedList),
+    selectedListIds: readonly(selectedListIds),
     selectionChange,
   };
 };

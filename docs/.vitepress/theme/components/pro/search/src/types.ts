@@ -155,7 +155,7 @@ export type ProSearchEmits = {
   /**
    * 表单值改变事件
    */
-  change: [value: unknown, model: Record<string, any>, column: FormItemColumnProps];
+  change: [value: any, model: Record<string, any>, column: FormItemColumnProps];
 };
 
 /**

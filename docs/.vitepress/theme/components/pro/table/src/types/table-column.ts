@@ -15,11 +15,11 @@ export interface TableRenderParams<T extends Record<string, any> = Record<string
   /**
    * 传入的原始值
    */
-  value: unknown;
+  value: any;
   /**
    * 渲染在单元格的值（大部分等于 value，少部分如使用 options 配置项时，则为 options 配置项的 label 值）
    */
-  displayValue: unknown;
+  displayValue: any;
   /**
    * 字典枚举数据
    */
@@ -90,7 +90,7 @@ export type TableRow<T = Record<string, any>> = T & {
   /**
    * 获取单元格值
    */
-  _getValue: (prop: string) => unknown;
+  _getValue: (prop: string) => any;
   /**
    * 获取当前行的数据
    */
@@ -193,7 +193,7 @@ export interface TableColumn<T extends Record<string, any> = any>
   /**
    * 自定义当前 option 选项
    */
-  transformOption?: (value: unknown, options: ElOption[], row: Record<string, any>) => ElOption | undefined;
+  transformOption?: (value: any, options: ElOption[], row: Record<string, any>) => ElOption | undefined;
   /**
    * 自定义表头内容渲染（tsx 语法）
    */
@@ -205,7 +205,7 @@ export interface TableColumn<T extends Record<string, any> = any>
   /**
    * 自定义表头内容
    */
-  formatLabel?: (label: unknown, scope: TableRenderParams<T>) => string | number;
+  formatLabel?: (label: any, scope: TableRenderParams<T>) => string | number;
   /**
    * 自定义单元格内容渲染（tsx 语法）
    */
@@ -217,7 +217,7 @@ export interface TableColumn<T extends Record<string, any> = any>
   /**
    * 自定义单元格内容
    */
-  formatValue?: (value: unknown, scope: TableRenderParams<T>) => string | number;
+  formatValue?: (value: any, scope: TableRenderParams<T>) => string | number;
   /**
    * 多级表头
    */
@@ -246,7 +246,7 @@ export interface TableColumn<T extends Record<string, any> = any>
    * 过滤前置处理，可以返回新的过滤值或者 false 来阻止过滤
    */
   beforeFilter?: (
-    filterValue: unknown,
+    filterValue: any,
     filterModel: Record<string, any>,
     prop: string | undefined
   ) => unknown | false | undefined;

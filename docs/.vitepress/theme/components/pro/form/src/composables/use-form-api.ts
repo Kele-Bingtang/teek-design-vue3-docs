@@ -1,6 +1,6 @@
 import type { Ref } from "vue";
 import type { FormColumn, ProFormNamespace } from "../types";
-import { ref, unref } from "vue";
+import { readonly, ref, unref } from "vue";
 import { isString } from "@/common/utils";
 import { setProp } from "@/components/pro/helper";
 
@@ -84,7 +84,7 @@ export const useFormApi = (model: Ref<Record<string, any>>, columnsProps: Ref<{ 
   };
 
   return {
-    mergeProps,
+    mergeProps: readonly(mergeProps),
     setValues,
     setProps,
     setColumn,
