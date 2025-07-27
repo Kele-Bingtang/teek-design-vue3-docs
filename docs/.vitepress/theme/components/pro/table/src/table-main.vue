@@ -4,14 +4,14 @@ import type { OperationNamespace, ProTableMainNamespace, TableScope, TableColumn
 import { toValue, ref, computed, watch, watchEffect, useTemplateRef } from "vue";
 import { ElTable } from "element-plus";
 import { isEmpty } from "@/common/utils";
-import Pagination, { defaultPageInfo } from "@/components/pro/pagination";
+import Pagination from "@/components/pro/pagination";
 import { setProp, getObjectKeys, flatColumnsFn } from "@/components/pro/helper";
 import { useOptions } from "@/components/pro/use-options";
 import { useNamespace } from "@/composables";
 import TableColumnData from "./table-column/table-column-data.vue";
 import TableColumnOperation from "./table-column/table-column-operation.vue";
 import TableColumnType from "./table-column/table-column-type.vue";
-import { useSelection, useTableCellEdit, useTableFormInstance } from "./composables";
+import { defaultTablePageInfo, useSelection, useTableCellEdit, useTableFormInstance } from "./composables";
 import { filterData, initModel, isServer, initDataRowField } from "./helper";
 
 defineOptions({ name: "TableMain" });
@@ -22,7 +22,7 @@ const props = withDefaults(defineProps<ProTableMainNamespace.Props>(), {
   rowKey: "id",
   operationProp: "operation",
   operationProps: () => ({}),
-  pageInfo: () => defaultPageInfo,
+  pageInfo: () => defaultTablePageInfo,
   pageScope: "client",
   paginationProps: () => ({}),
   filterScope: "client",
@@ -40,9 +40,9 @@ const ns = useNamespace("table-main");
 
 const elTableInstance = useTemplateRef<TableInstance>("elTableInstance");
 
-const pageInfo = ref({ ...defaultPageInfo, ...props.pageInfo });
+const pageInfo = ref({ ...defaultTablePageInfo, ...props.pageInfo });
 
-watchEffect(() => (pageInfo.value = { ...defaultPageInfo, ...props.pageInfo }));
+watchEffect(() => (pageInfo.value = { ...defaultTablePageInfo, ...props.pageInfo }));
 
 // 表格实际渲染的数据
 const tableData = computed(() => tryPagination(filterTableData.value ?? props.data));

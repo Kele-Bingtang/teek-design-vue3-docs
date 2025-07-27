@@ -42,9 +42,9 @@ export const useSelection = (rowKey: ProTableMainNamespace.Props["rowKey"] = "id
   };
 
   return {
-    isSelected: readonly(isSelected),
-    selectedList: readonly(selectedList),
-    selectedListIds: readonly(selectedListIds),
+    isSelected,
+    selectedList,
+    selectedListIds,
     selectionChange,
   };
 };

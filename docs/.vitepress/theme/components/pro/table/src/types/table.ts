@@ -65,7 +65,7 @@ export namespace ProTableNamespace {
     /**
      * 查询数据前的回调函数，可以对查询参数进行处理或禁止查询
      */
-    beforeSearch?: (searchParams: Record<string, any>) => boolean | Record<string, any>;
+    beforeSearch?: (searchParams: Record<string, any>) => false | Record<string, any>;
     /**
      * 请求失败回调
      */

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { UnwrapRef } from "vue";
-import type { PageInfo } from "@/components/pro/pagination";
 import type {
   OperationNamespace,
   ProTableHeadInstance,
@@ -10,15 +9,15 @@ import type {
   SizeStyle,
   TableScope,
   TableRow,
+  PageInfo,
 } from "./types";
 import type { UseSelectState } from "./composables";
 import { ref, computed, watchEffect, onMounted, useTemplateRef, isRef, isReactive, reactive, unref, watch } from "vue";
 import { ElTableColumn, ElButton } from "element-plus";
 import { Tools } from "@element-plus/icons-vue";
-import { defaultPageInfo } from "@/components/pro/pagination";
 import { filterEmpty, setProp } from "@/components/pro/helper";
 import { useNamespace } from "@/composables";
-import { useTableApi, useTableState } from "./composables";
+import { defaultTablePageInfo, useTableApi, useTableState } from "./composables";
 import { Environment, TableSizeEnum } from "./helper";
 import TableMain from "./table-main.vue";
 import TableHead from "./table-head.vue";
@@ -68,7 +67,7 @@ const props = withDefaults(defineProps<ProTableNamespace.Props>(), {
   rowKey: "id",
   operationProp: "operation",
   operationProps: () => ({}),
-  pageInfo: () => defaultPageInfo,
+  pageInfo: () => defaultTablePageInfo,
   pageScope: false,
   paginationProps: () => ({}),
   filterScope: "client",
@@ -134,17 +133,16 @@ const isServerPage = computed(() => {
   return pageScope === Environment.Server;
 });
 
-const { tableData, pageInfo, searchParams, searchInitParams, getTableList, search, reset, handlePagination } =
-  useTableState({
-    api: finalProps.value.requestApi,
-    apiParams: computed(() => unref(finalProps.value.defaultRequestParams)),
-    pageInfo: computed(() => finalProps.value.pageInfo),
-    isServerPage: isServerPage,
-    beforeSearch: finalProps.value.beforeSearch,
-    transformData: finalProps.value.transformData,
-    requestError: finalProps.value.requestError,
-    pageField: finalProps.value.pageField,
-  });
+const { tableData, pageInfo, searchParams, searchInitParams, fetch, search, reset, handlePagination } = useTableState({
+  api: finalProps.value.requestApi,
+  apiParams: computed(() => unref(finalProps.value.defaultRequestParams)),
+  pageInfo: computed(() => finalProps.value.pageInfo),
+  isServerPage: isServerPage,
+  beforeSearch: finalProps.value.beforeSearch,
+  transformData: finalProps.value.transformData,
+  requestError: finalProps.value.requestError,
+  pageField: finalProps.value.pageField,
+});
 
 // 表格数据，传来的 data 大于 api 获取的数据
 const finalTableData = computed(() => {
@@ -246,7 +244,7 @@ function useTableEmits() {
    * 点击刷新按钮事件
    */
   const handleRefresh = () => {
-    getTableList();
+    fetch();
     emits("refresh");
   };
 
@@ -345,22 +343,17 @@ const tableMainInstance = useTemplateRef<ProTableMainInstance>("tableMainInstanc
 
 onMounted(() => {
   // 初始化请求
-  finalProps.value.requestImmediate && getTableList();
+  finalProps.value.requestImmediate && fetch();
   // 注册实例
   emits("register", tableMainInstance.value?.$parent || null, tableMainInstance.value?.elTableInstance || null);
 });
-
-const getElTableInstance = () => tableMainInstance.value?.elTableInstance;
-const getElFormInstance = () => tableMainInstance.value?.getElFormInstance;
-const getElFormItemInstance = () => tableMainInstance.value?.getElFormItemInstance;
-const getElInstance = () => tableMainInstance.value?.getElInstance;
 
 const expose = {
   tableData: finalTableData,
   pageInfo,
   searchParams,
   searchInitParams,
-  getTableList,
+  fetch,
   search,
   reset,
   handlePagination,
