@@ -74,7 +74,7 @@ const columns: TableColumn[] = [
       {
         text: "取消编辑",
         code: "cancel",
-        show: row => !!row._isCellEdit(["username", "status"]),
+        show: row => !!row._isCellEdit?.(["username", "status"]),
         elProps: {
           type: "warning",
         },
@@ -92,7 +92,7 @@ const columns: TableColumn[] = [
         elProps: {
           type: "primary",
         },
-        show: row => !!row._isCellEdit(["username", "status"]),
+        show: row => !!row._isCellEdit?.(["username", "status"]),
         onClick: async ({ row }) => {
           // 校验成功再关闭编辑
           const isValid = await row._validateCellEdit();
@@ -109,7 +109,7 @@ const columns: TableColumn[] = [
         elProps: {
           type: "primary",
         },
-        show: row => !row._isCellEdit(["username", "status"]),
+        show: row => !row._isCellEdit?.(["username", "status"]),
         onClick: ({ row }) => {
           // 指定当前行单元格可编辑
           row._openCellEdit(["username", "status"]);
@@ -122,7 +122,7 @@ const columns: TableColumn[] = [
           type: "danger",
         },
         confirm: true,
-        show: row => !row._isCellEdit(["username", "status"]),
+        show: row => !row._isCellEdit?.(["username", "status"]),
         onConfirm: ({ row }) => {
           data.value = data.value.filter(item => !row.username.includes(item.username));
         },

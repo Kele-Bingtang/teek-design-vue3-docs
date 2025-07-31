@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { PageInfo } from "@/components/pro/pagination";
-import type { TableColumn, ProTableMainNamespace } from "@/components/pro/table";
+import type { PageInfo } from "@/components/pro/table";
+import type { TableColumn } from "@/components/pro/table";
 import { ref, onMounted } from "vue";
 import { ProTable } from "@/components/pro/table";
 

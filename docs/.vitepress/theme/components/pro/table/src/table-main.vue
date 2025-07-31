@@ -83,7 +83,7 @@ const tryPagination = (data: Record<string, any>[] = []) => {
   if (!data.length) return [];
 
   // 如果服务端（后端）分页，则不执行分页，需要后端返回已分页的 data
-  if (isServer(toValue(props.pageScope))) return data;
+  if (props.pageScope === false || isServer(toValue(props.pageScope))) return data;
 
   // 客户端（前端）分页
   const { pageNum, pageSize } = pageInfo.value;
@@ -319,6 +319,7 @@ defineExpose(expose);
     @selection-change="handleSelectionChange"
     @cell-click="handleClickCell"
     @cell-dblclick="handleDoubleClickCell"
+    v-loading="$attrs.loading ?? false"
   >
     <!-- 默认插槽 -->
     <slot name="default">

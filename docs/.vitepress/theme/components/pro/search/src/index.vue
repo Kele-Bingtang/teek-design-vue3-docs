@@ -36,6 +36,8 @@ const props = withDefaults(defineProps<ProSearchProps>(), {
   removeNoValue: true,
   validate: true,
   showLabel: true,
+  collapseTransition: true,
+  collapseDuration: 300,
   form: () => ({}),
 });
 
@@ -231,6 +233,8 @@ defineExpose(defaultExpose);
             v-for="column in searchColumns"
             :key="column.prop"
             v-bind="getResponsive(column)"
+            :collapse-transition="finalProps.collapseTransition"
+            :collapse-duration="finalProps.collapseDuration"
             :index="column._index"
           >
             <ProFormItem

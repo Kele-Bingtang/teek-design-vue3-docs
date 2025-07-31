@@ -11,8 +11,8 @@ import type {
   TableScope,
   TableSizeEnum,
   UseSelectState,
+  PageInfo,
 } from "@/components/pro/table";
-import type { PageInfo } from "@/components/pro/pagination";
 import type { ProPageEmits, ProPageProps } from "./types";
 import { ref, computed, watchEffect, useTemplateRef, provide, toValue, unref, watch, useSlots } from "vue";
 import { ElTooltip, ElButton } from "element-plus";
@@ -20,7 +20,7 @@ import { Search } from "@element-plus/icons-vue";
 import { isEmpty, isFunction } from "@/common/utils";
 import { useOptions, optionsMapKey } from "@/components/pro/use-options";
 import { ProSearch } from "@/components/pro/search";
-import { ProTable, lastProp } from "@/components/pro/table";
+import { ProTable, defaultTooltipProps, lastProp } from "@/components/pro/table";
 import { filterEmpty, flatColumnsFn, getProp, setProp } from "@/components/pro/helper";
 import { useNamespace } from "@/composables";
 
@@ -39,7 +39,7 @@ const props = withDefaults(defineProps<ProPageProps>(), {
   headerBackground: true,
   highlightCurrentRow: true,
   showHeader: true,
-  tooltipProps: () => ({ placement: "top", effect: "light" }),
+  tooltipProps: () => defaultTooltipProps,
 });
 
 const emits = defineEmits<ProPageEmits>();
