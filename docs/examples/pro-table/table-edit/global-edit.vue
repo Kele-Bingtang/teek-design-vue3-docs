@@ -67,7 +67,7 @@ const handleFormChange = async (fromValue: unknown, prop: string, scope: TableSc
 </script>
 
 <template>
-  <ProTable :columns="columns" :data="data" :editable @form-change="handleFormChange">
+  <ProTable :columns="columns" :data="data" init-native-row-field :editable @form-change="handleFormChange">
     <template #head-left>
       <el-button type="primary" @click="editable = !editable">{{ editable ? "取消编辑" : "开启编辑" }}</el-button>
       <el-button type="primary" @click="syncDataWhenEdit = !syncDataWhenEdit">

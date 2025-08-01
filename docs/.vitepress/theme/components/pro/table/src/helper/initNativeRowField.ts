@@ -1,16 +1,12 @@
 import type { Ref, MaybeRef } from "vue";
-import type { ElOption } from "@/components/pro/form-item";
+import type { OptionsMapType } from "@/components/pro/use-options";
 import type { TableRow, TableColumn } from "../types/table-column";
 import { unref, toValue, nextTick } from "vue";
 import { ElMessage } from "element-plus";
 import { isArray } from "@/common/utils";
 import { getProp, setProp, filterOptions, filterOptionsValue } from "@/components/pro/helper";
 
-export const initDataRowField = (
-  data: TableRow[],
-  column: TableColumn,
-  optionsMap: Ref<Map<string, MaybeRef<ElOption[]>>>
-) => {
+export const initNativeRowField = (data: TableRow[], column: TableColumn, optionsMap: Ref<OptionsMapType>) => {
   // 获取当前列的配置项，！获取的配置无法直接作用在 row._xx 里
   const {
     prop = "",
@@ -32,7 +28,7 @@ export const initDataRowField = (
     if (row.children && isArray(row.children)) row.children.forEach(initEnhanceField);
 
     row._options ??= {};
-    if (options && toValue(isFilterOptions)) row._options[prop] = options;
+    if (toValue(isFilterOptions) && options && row._options[prop] !== options) row._options[prop] = options;
 
     row._optionProps ??= {};
     row._optionProps[prop] ??= { optionField, transformOption, ignoreOptionIfAbsent };
@@ -64,7 +60,7 @@ export const initDataRowField = (
 
     // 初始化 _editableCol
     row._editableCol ??= {};
-    if (editable) setProp(row._editableCol, prop, true);
+    if (toValue(editable)) setProp(row._editableCol, prop, true);
 
     // 开启多个单元格编辑状态
     row._openCellEdit ??= props => {

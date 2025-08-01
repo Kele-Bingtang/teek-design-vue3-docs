@@ -84,6 +84,7 @@ const handleLeaveCellEdit = (row: TableRow, column: TableColumn) => {
     :columns="columns"
     :data="data"
     :editable
+    init-native-row-field
     @form-change="handleFormChange"
     @leave-cell-edit="handleLeaveCellEdit"
   />

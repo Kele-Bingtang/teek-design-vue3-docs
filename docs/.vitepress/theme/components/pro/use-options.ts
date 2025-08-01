@@ -4,10 +4,12 @@ import { inject, ref } from "vue";
 import { isArray, isFunction } from "@/common/utils";
 import { formatValue } from "./helper";
 
+export type OptionsMapType = Map<string, MaybeRef<ElOption[]>>;
+
 /**
  * 提供 optionsMap key
  */
-export const optionsMapKey: InjectionKey<Ref<Map<string, MaybeRef<ElOption[]>>>> = Symbol("optionsMap");
+export const optionsMapKey: InjectionKey<Ref<OptionsMapType>> = Symbol("optionsMap");
 
 /**
  * 超级组件字典枚举初始化和缓存
@@ -32,6 +34,7 @@ export const useOptions = () => {
 
     // 处理 options 并存储到 optionsMap
     const value = await initOptions(options, [optionsMapConst, prop], false);
+
     optionsMapConst.set(prop, value);
   };
 

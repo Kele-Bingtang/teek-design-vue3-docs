@@ -97,19 +97,27 @@ watchEffect(() => (editable.value = finalProps.value.editable));
 function useDescriptionsInit() {
   // 过滤掉需要隐藏的配置项
   const availableColumns = computed(() => finalProps.value.columns.filter(item => !item.hidden) || []);
+  // 定时器
+  let timer: ReturnType<typeof setTimeout> | null = null;
 
   watch(
     availableColumns,
     columns => {
-      columns.forEach((column, index) => {
-        // 初始化枚举数据
-        initOptionsMap(column.options, column.prop || "");
-        // 设置配置项排序默认值
-        column && (column.order = column.order ?? index + 5);
-      });
+      // 防抖：防止初始化时连续执行
+      if (timer) {
+        clearTimeout(timer);
+        timer = null;
+      }
 
-      // 排序配置项
-      columns.sort((a, b) => a.order! - b.order!);
+      timer = setTimeout(() => {
+        columns.forEach(column => {
+          // 初始化枚举数据
+          initOptionsMap(column.options, column.prop || "");
+        });
+
+        // 排序配置项
+        columns.sort((a, b) => a.order! - b.order!);
+      }, 1);
     },
     { deep: true, immediate: true }
   );

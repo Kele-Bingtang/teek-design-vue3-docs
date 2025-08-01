@@ -198,10 +198,12 @@ const tableElComponentsMap: Record<
   },
 };
 
+// 通过 value 对应的 option
 const findOption = (value: unknown, options: ElDisplayProps["options"], optionField: ElDisplayProps["optionField"]) => {
   return options?.find(item => item[optionField?.value ?? "value"] === value);
 };
 
+// 复制图标点击事件
 const copy = async (str: string) => {
   if (navigator.clipboard) {
     await navigator.clipboard.writeText(str);

@@ -36,7 +36,7 @@ const columns: TableColumn[] = [
     label: "匹配失败取默认数据",
     prop: "status3",
     el: "el-tag",
-    options: () => options.slice(3),
+    options: async () => options.slice(3),
     ignoreOptionIfAbsent: true,
   },
   {

@@ -138,5 +138,5 @@ const handleFormChange = async (fromValue: unknown, prop: string, scope: TableSc
 </script>
 
 <template>
-  <ProTable :columns="columns" :data="data" @form-change="handleFormChange" />
+  <ProTable :columns="columns" :data="data" init-native-row-field @form-change="handleFormChange" />
 </template>
