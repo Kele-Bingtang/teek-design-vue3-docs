@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Feature from "./Feature.vue";
+import Feature from "./features.vue";
 import { features, highlights, components } from "./data";
 </script>
 

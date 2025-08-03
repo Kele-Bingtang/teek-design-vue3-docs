@@ -20,7 +20,7 @@ hero:
     alt: Teek Design Vue3
 ---
 
-<Home />
+<Featrue />
 
 <style>
 /* :root {
@@ -52,7 +52,7 @@ hero:
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { useData } from "vitepress";
-import Home from "./.vitepress/theme/components/Home/index.vue";
+import Featrue from "./.vitepress/theme/components/feature/index.vue";
 
 const { frontmatter } = useData();
 onMounted(() => {
