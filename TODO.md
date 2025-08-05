@@ -1,4 +1,4 @@
-## 依赖
+## 超级组件 Props 变动说明
 
 `ProFormItem` 添加一个 Props 属性，其上有组件 `ProSearch`、`ProForm`、`ProFormDialog`、`ProFormDrawer`、`ProFormSteps` 也要支持该 Props。
 
@@ -8,4 +8,4 @@
 
 ## TODO
 
-- 权限新增前端、后端、`mixed` 控制模式说明
+- 权限管控文档新增前端、后端、`mixed` 控制模式使用说明

@@ -14,13 +14,13 @@
     <div v-if="shades" class="shades-container">
       <div
         v-for="shade in shades"
-        :key="shade.level"
+        :key="shade.label"
         class="shade-block"
         :style="{ backgroundColor: shade.value }"
         @click="copyToClipboard(shade.value)"
       >
         <div class="shade-info" :style="{ color: getTextColor(shade.value) }">
-          <span class="shade-level">{{ shade.level }}</span>
+          <span class="shade-label">{{ shade.label }}</span>
           <span class="shade-value">{{ shade.value }}</span>
         </div>
       </div>
@@ -32,7 +32,7 @@
 import { ElMessage } from "element-plus";
 
 export interface Shade {
-  level: number;
+  label: string;
   value: string;
 }
 
@@ -124,8 +124,8 @@ const copyToClipboard = (text: string) => {
     .base-value {
       font-family: "SFMono-Regular", Consolas, monospace;
       font-size: 0.875rem;
-      background: rgba(74, 108, 247, 0.1);
-      color: #4a6cf7;
+      background: var(--vp-code-bg);
+      color: var(--vp-c-brand-1);
       padding: 0.25rem 0.5rem;
       border-radius: 0.375rem;
     }
@@ -155,7 +155,7 @@ const copyToClipboard = (text: string) => {
         width: 100%;
         font-size: 0.875rem;
 
-        .shade-level {
+        .shade-label {
           font-weight: 600;
         }
 

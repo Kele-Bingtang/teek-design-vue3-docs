@@ -115,6 +115,13 @@ export default defineConfig({
           },
         ],
       },
+      {
+        text: "2.0.0",
+        items: [
+          { text: "历史版本", link: "https://github.com/Kele-Bingtang/teek-design-vue3/releases" },
+          { text: "更新日志", link: "https://github.com/Kele-Bingtang/teek-design-vue3/blob/main/CHANGELOG.md" },
+        ],
+      },
     ],
     socialLinks: [
       {
