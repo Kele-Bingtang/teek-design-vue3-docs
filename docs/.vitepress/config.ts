@@ -86,10 +86,11 @@ export default defineConfig({
       next: "下一页",
     },
     nav: [
-      { text: "✨ 指南", link: "/guide/" },
+      { text: "💡 指南", link: "/guide/" },
       { text: "🛠️ 构建", link: "/structure/" },
       { text: "🎉 生态", link: "/ecosystem/components/01.pro-table/10.basic/" },
       { text: "🎨 设计", link: "/design/design-values/" },
+      { text: "✨ 赞赏", link: "/personal/" },
       {
         text: "🔗 链接",
         items: [
