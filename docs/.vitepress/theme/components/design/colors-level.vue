@@ -107,8 +107,8 @@ const changeTheme = () => {
 
   if (selectedTheme.value.startsWith("dark")) {
     isDark.value = true;
-    document.documentElement.classList.add(selectedTheme.value);
     document.documentElement.classList.add("dark");
+    document.documentElement.classList.add(selectedTheme.value);
   } else isDark.value = false;
 
   // 更新颜色显示

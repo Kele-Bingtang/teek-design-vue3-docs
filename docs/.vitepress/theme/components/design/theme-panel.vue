@@ -252,8 +252,8 @@ const changeTheme = () => {
   document.documentElement.classList.remove("dark", "dark-blue", "dark-deep", "dark-midnight", "dark-neutral");
 
   if (selectedTheme.value.startsWith("dark")) {
-    document.documentElement.classList.add(selectedTheme.value);
     document.documentElement.classList.add("dark");
+    document.documentElement.classList.add(selectedTheme.value);
   }
 };
 

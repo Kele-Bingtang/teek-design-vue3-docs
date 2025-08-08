@@ -9,3 +9,4 @@
 ## TODO
 
 - 权限管控文档新增前端、后端、`mixed` 控制模式使用说明
+- 路由构建更新 `permissionStore` 代码

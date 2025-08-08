@@ -6,9 +6,9 @@ permalink: /guide/version
 
 Teek 于 2022 年 8 月 28 日开始推到 `GitHub`，因此可以算是 Teek 的诞生时间。
 
-当时 Teek 以 `Vue2`、`ElementUI` 搭配装饰器模式开发，那一年秋 Teek 是一个初入社会的后端开发毕业生，当时并没有使用过 `Vue` 开发项目，在实习过程慢慢熟悉了 `Vue` 的使用。当时公司并没有一套统一的开发模板，于是 Teek 将开发的项目进行整合，自行搭建了一套简易的开发模板，后接触中后台系统开源社区，逐步完善 `Teek Vue2`。
+当时 Teek 以 `Vue2`、`ElementUI` 搭配装饰器模式开发，那一年秋 Teek 是一个初入社会的后端开发毕业生，当时并没有使用过 `Vue` 开发项目，在实习过程慢慢熟悉了 `Vue` 的使用。当时团队并没有一套统一的开发模板，于是 Teek 将开发的项目进行整合，自行搭建了一套简易的开发模板，后接触中后台系统开源社区，逐步完善 `Teek Vue2`。
 
-`Teek Vue3` 于 2023 年 2 月 20 日开始推到 `GitHub`，其实在推之前，`Teek Vue3` 已经开发了部分功能（当时因为 `Vue2` 的停止维护，于是公司全面转 `Vue3`），并逐步迭代至今，随着 `Vue3` 和 `ElementPlus` 等核心环境的版本，经历了大大小小的语法、特性等升级。
+`Teek Vue3` 于 2023 年 2 月 20 日开始推到 `GitHub`，其实在推之前，`Teek Vue3` 已经开发了部分功能（当时因为 `Vue2` 的停止维护，于是 `Teek Vue2` 全面升级 `Vue3`），并逐步迭代至今，随着 `Vue3` 和 `ElementPlus` 等核心环境的版本迭代升级，经历了大大小小的语法、特性等升级。
 
 ## 2.x
 
@@ -20,7 +20,7 @@ Teek 于 2022 年 8 月 28 日开始推到 `GitHub`，因此可以算是 Teek �
 
 ### 前期
 
-在 `2.x` 开始之前，Teek 去开发了一款 `VitePress` 主题：[VitePress Theme Teek](https://vp.teek.top/)，在开发过程后，Teek 产生了新的思路和用法，于是在开发 `VitePress Theme Teek` 结束后，就打算对 `Teek Design` 进行重构，最开始只是对依赖的全面升级和对样式的命名重构，采用 `BEM` 思想来让样式更加清晰，并计划重构后只发布一个 `1.x` 的版本。
+在 `2.x` 开始之前，Teek 去开发了一款 `VitePress` 主题：[VitePress Theme Teek](https://vp.teek.top/)，在开发过程后，Teek 产生了新的思路和用法，于是在开发 `VitePress Theme Teek` 结束后，就打算对 `Teek Design` 进行重构，最开始只是对依赖的全面升级和对样式的命名重构，精简根目录（将日常开发不常用的目录放到 `common` 下），并采用 `BEM` 思想来让样式更加清晰，并计划重构后只发布一个 `1.x` 的版本。
 
 正常的规划应该到此结束，然而 Teek 在刷掘金文章的时候，偶然刷到一款后台管理系统 [Art Design Pro](https://github.com/Daymychen/art-design-pro) 的推广，于是点了进去看了下，发现界面颜值很高（推荐 👍），随后就下载源码进行阅读，并由此对 Teek `2.x` 开发有了新的方向。
 
