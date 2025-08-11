@@ -2,6 +2,7 @@
 title: 设计观
 date: 2025-08-03 23:43:56
 permalink: /design/design-values
+sidebarSort: 1
 ---
 
 Teek 作为企业级管理系统解决方案，秉承着独特的设计价值观，致力于为开发者提供高效、易用、可扩展的前端开发体验。
