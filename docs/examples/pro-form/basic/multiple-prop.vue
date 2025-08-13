@@ -25,7 +25,7 @@ const columns: FormColumn[] = [
   {
     label: "文本",
     prop: "a.b.c",
-    render: value => h("span", {}, { default: () => value + " - 自定义" }),
+    render: scope => h("span", {}, { default: () => scope.value + " - 自定义" }),
   },
   { label: "name", prop: "a.b.d" },
   {
