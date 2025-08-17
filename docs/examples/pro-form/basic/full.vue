@@ -52,8 +52,8 @@ const state = ref({
   selectV2Multiple: ["Option 1", "Option 2"],
   mention: "Fuphoenixes",
   segmented: "Mon",
-  checkBoxSelect: "option1",
-  checkBoxSelectMultiple: ["option1", "option2"],
+  checkboxSelect: "option1",
+  checkboxSelectMultiple: ["option1", "option2"],
   text: "我是一段文本",
 });
 
@@ -372,9 +372,9 @@ const columns: FormColumn[] = [
     options: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
   },
   {
-    label: "check-box-select",
-    prop: "checkBoxSelect",
-    el: "check-box-select",
+    label: "checkbox-select",
+    prop: "checkboxSelect",
+    el: "checkbox-select",
     options: [
       { label: "选择 1", value: "option1" },
       { label: "选择 2", value: "option2" },
@@ -382,9 +382,9 @@ const columns: FormColumn[] = [
     ],
   },
   {
-    label: "check-box-select-multiple",
-    prop: "checkBoxSelectMultiple",
-    el: "check-box-select",
+    label: "checkbox-select-multiple",
+    prop: "checkboxSelectMultiple",
+    el: "checkbox-select",
     elProps: {
       multiple: true,
     },

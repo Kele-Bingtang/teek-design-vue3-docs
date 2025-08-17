@@ -1,5 +1,6 @@
-import type { Component } from "vue";
+import { type Component } from "vue";
 import type { FormPascalCaseComponentName } from "../types";
+import { defineComponent } from "vue";
 import {
   ElCascader,
   ElCheckbox,
@@ -29,7 +30,7 @@ import {
   ElText,
 } from "element-plus";
 import Tree from "../components/tree.vue";
-import CheckBoxSelect from "../components/checkbox-select.vue";
+import CheckboxSelect from "../components/checkbox-select.vue";
 
 /**
  * 组件名枚举，key 要求是大写和 PascalCase 格式（自动与 componentMap 映射），value 则是 el 的字面量（使用配置项的 el 时用到）
@@ -63,8 +64,9 @@ export enum FormElComponentEnum {
   EL_MENTION = "ElMention",
   EL_SEGMENTED = "ElSegmented",
   EL_TEXT = "ElText",
-  CHECK_BOX_SELECT = "CheckBoxSelect",
+  CHECKBOX_SELECT = "CheckboxSelect",
   Tree = "Tree",
+  EMPTY = "Empty",
 }
 
 /**
@@ -100,7 +102,10 @@ const formELComponentsMap: Record<FormPascalCaseComponentName, Component> = {
   ElSegmented,
   ElText,
   Tree,
-  CheckBoxSelect,
+  CheckboxSelect,
+  Empty: defineComponent({
+    render: () => null,
+  }),
 };
 
 export { formELComponentsMap };

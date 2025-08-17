@@ -182,11 +182,12 @@ export const filterOptionsValue = (
   keyName = "label",
   defaultValue = "--"
 ) => {
-  if (!isArray(options)) return options ? options[keyName] : defaultValue;
+  if (!isArray(options)) return options ? options[keyName] ?? defaultValue : defaultValue;
 
   const filterDataArray: string[] = [];
   options.forEach(item => filterDataArray.push(item[keyName]));
-  return filterDataArray;
+
+  return filterDataArray.filter(item => item).length ? filterDataArray : defaultValue;
 };
 
 /**

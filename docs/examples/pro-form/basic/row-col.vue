@@ -41,6 +41,7 @@ const columns: FormColumn[] = [
     ],
   },
   { label: "标签", prop: "tag" },
+  { prop: "empty", el: "empty" },
   { label: "执行进度", prop: "progress" },
   { label: "评分", prop: "rate", el: "el-rate" },
   { label: "是否显示", prop: "switch", el: "el-switch" },
@@ -50,6 +51,7 @@ const columns: FormColumn[] = [
     colProps: { span: 24 },
   },
   { label: "时间", prop: "time", el: "el-date-picker" },
+  { prop: "empty", el: "empty" },
   {
     label: "数量",
     prop: "number",
