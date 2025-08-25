@@ -10,9 +10,6 @@ export const teekConfig = defineTeekConfig({
   author: { name: "Teeker", link: "https://github.com/Kele-Bingtang/teek-design-vue3-docs" },
   docAnalysis: {
     createTime: "2021-10-19",
-    statistics: {
-      provider: "busuanzi",
-    },
   },
   footerInfo: {
     copyright: {
