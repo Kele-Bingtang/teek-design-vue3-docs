@@ -199,22 +199,21 @@ function useOperationButtonEvent() {
 
 <template>
   <el-table-column
-    v-bind="{ ...$attrs, ...props, buttons: undefined }"
-    :fixed
-    :label="toValue(label)"
-    :width="toValue(width)"
-    :class-name="className ? className : '' + ns.b()"
+    v-bind="{ ...$attrs, ...props, buttons: undefined, el: undefined, showNumber: undefined, confirm: undefined }"
+    :label="toValue(props.label)"
+    :width="toValue(props.width)"
+    :class-name="props.className ? props.className : '' + ns.b()"
   >
     <!-- 表头插槽 - 表头内容 -->
     <template #header="scope">
-      <component v-if="renderHeader" :is="renderHeader(scope)" />
-      <slot v-else :name="`${lastProp(prop)}-header`" v-bind="scope">{{ scope.column.label }}</slot>
+      <component v-if="props.renderHeader" :is="props.renderHeader(scope)" />
+      <slot v-else :name="`${lastProp(props.prop)}-header`" v-bind="scope">{{ scope.column.label }}</slot>
     </template>
 
     <!-- 默认插槽 - 单元格内容 -->
     <template #default="scope">
-      <component v-if="render" :is="render(scope)" />
-      <slot v-else-if="$slots[lastProp(prop)]" :name="lastProp(prop)" v-bind="scope" />
+      <component v-if="props.render" :is="props.render(scope)" />
+      <slot v-else-if="$slots[lastProp(props.prop)]" :name="lastProp(props.prop)" v-bind="scope" />
 
       <template v-else>
         <!-- 显示出来的按钮 -->
