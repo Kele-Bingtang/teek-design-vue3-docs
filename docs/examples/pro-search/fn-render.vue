@@ -1,5 +1,5 @@
 <script setup lang="ts" name="CreateProSearch">
-import type { ProSearchColumn } from "@/components/pro/search";
+import type { SearchColumn } from "@/components/pro/search";
 import { ref, reactive } from "vue";
 import { useProSearch } from "@/components/pro/search";
 
@@ -29,7 +29,7 @@ const handleSearch = async (data: Record<string, any>) => {
   console.log(data);
 };
 
-const columns: ProSearchColumn[] = reactive([
+const columns: SearchColumn[] = reactive([
   {
     label: "姓名",
     prop: "name",

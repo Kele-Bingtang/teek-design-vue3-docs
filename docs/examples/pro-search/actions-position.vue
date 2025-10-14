@@ -1,5 +1,5 @@
 <script setup lang="ts" name="SimpleProSearch">
-import type { ActionPosition, ProSearchColumn } from "@/components/pro/search";
+import type { ActionPosition, SearchColumn } from "@/components/pro/search";
 import { ref } from "vue";
 import { ProSearch } from "@/components/pro/search";
 
@@ -7,7 +7,7 @@ const state = ref({});
 
 const actionsPosition = ref<ActionPosition>("right");
 
-const columns: ProSearchColumn[] = [
+const columns: SearchColumn[] = [
   {
     label: "姓名",
     prop: "name",
