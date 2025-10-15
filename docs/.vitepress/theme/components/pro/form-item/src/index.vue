@@ -66,19 +66,18 @@ const elModel = computed({
 });
 
 // 插槽参数
-const renderParams = computed<Record<string, any>>(
-  () =>
-    ({
-      value: elModel.value,
-      model: model.value,
-      label: labelValue.value,
-      options: enums.value,
-      elProps: elPropsValue.value,
-      formItemProps: formItemPropsValue.value,
-      update: updateElModel,
-      column: { ...props },
-    } as FormItemRenderParams)
-);
+const renderParams = computed<FormItemRenderParams>(() => {
+  return {
+    value: elModel.value,
+    model: model.value,
+    label: labelValue.value,
+    options: enums.value,
+    elProps: elPropsValue.value,
+    formItemProps: formItemPropsValue.value,
+    update: updateElModel,
+    column: { ...props },
+  } as FormItemRenderParams;
+});
 
 watch(elModel, () => emits("change", elModel.value, model.value, renderParams.value));
 
