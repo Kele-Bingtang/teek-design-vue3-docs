@@ -79,6 +79,9 @@ const renderParams = computed<FormItemRenderParams>(() => {
   } as FormItemRenderParams;
 });
 
+// 解决外部使用插槽时全是 FormItemRenderParams 问题
+const renderParamsSlot = computed<Record<string, any>>(() => renderParams.value);
+
 watch(elModel, () => emits("change", elModel.value, model.value, renderParams.value));
 
 // 有子组件的表单组件映射
@@ -252,7 +255,7 @@ defineExpose(expose);
       <!-- 自定义表单组件（h、JSX）渲染-->
       <component v-if="render" :is="render(renderParams)" v-model="elModel" v-bind="elPropsValue" />
       <!-- 自定义表单组件插槽 -->
-      <slot v-else-if="$slots[prop]" :name="prop" v-bind="renderParams" />
+      <slot v-else-if="$slots[prop]" :name="prop" v-bind="renderParamsSlot" />
 
       <template v-else>
         <el-divider v-if="formEl === FormElComponentEnum.EL_DIVIDER" v-bind="elPropsValue">

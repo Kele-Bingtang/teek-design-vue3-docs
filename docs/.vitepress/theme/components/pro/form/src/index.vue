@@ -185,12 +185,14 @@ defineExpose(expose);
 
     <div v-if="showFooter" :style="footerStyle">
       <slot name="footer" v-bind="{ handleSubmit, handleReset }">
+        <slot name="footer-before" v-bind="{ handleSubmit, handleReset, model }" />
         <el-button v-if="showReset" @click="handleReset">
           {{ resetText }}
         </el-button>
         <el-button type="primary" :loading="submitLoading" @click="handleSubmit">
           {{ submitText }}
         </el-button>
+        <slot name="footer-after" v-bind="{ handleSubmit, handleReset, model }" />
       </slot>
     </div>
   </el-form>
