@@ -21,7 +21,11 @@ export const useOptions = () => {
   /**
    * 初始化枚举字典数据
    */
-  const initOptionsMap = async (options: FormItemColumnProps["options"], prop: string) => {
+  const initOptionsMap = async (
+    options: FormItemColumnProps["options"],
+    prop: string,
+    extra: Record<string, any> = {}
+  ) => {
     if (!options || (isArray(options) && !options.length)) return;
 
     const optionsMapConst = optionsMap.value;
@@ -33,12 +37,16 @@ export const useOptions = () => {
     optionsMapConst.set(prop, []);
 
     // 处理 options 并存储到 optionsMap
-    const value = await initOptions(options, [optionsMapConst, prop], false);
+    const value = await initOptions(options, { optionsMap: optionsMapConst, prop, ...extra }, false);
 
     optionsMapConst.set(prop, value);
   };
 
-  const initOptions = async (options: FormItemColumnProps["options"], params: unknown[] = [], processRef = true) => {
+  const initOptions = async (
+    options: FormItemColumnProps["options"],
+    params: Record<string, any> = {},
+    processRef = true
+  ) => {
     if (!options || (isArray(options) && !options.length)) return [];
 
     const result = await formatValue<FormItemColumnProps["options"]>(options, params, processRef);
