@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import type { Component } from "vue";
 import type { FormItemInstance } from "element-plus";
-import type { FormItemColumnProps, FormItemRenderParams, ModelBaseValueType, ProFormItemEmits } from "./types";
-import { computed, watch, useTemplateRef, toValue, ref } from "vue";
+import type { FormItemColumnProps, FormItemRenderParams, BaseValueType, ProFormItemEmits } from "./types";
+import { computed, watch, useTemplateRef, toValue, ref, unref } from "vue";
 import { ElFormItem, ElTooltip, ElDivider, ElUpload, ElIcon } from "element-plus";
 import { QuestionFilled } from "@element-plus/icons-vue";
-import { addUnit, isObject, isString } from "@/common/utils";
+import { addUnit, isFunction, isObject, isString } from "@/common/utils";
 import { getProp, toCamelCase, setProp, filterOptions, filterOptionsValue } from "@/components/pro/helper";
 import { formELComponentsMap, FormElComponentEnum, defaultOptionField } from "./helper";
 import { useOptions } from "@/components/pro/use-options";
@@ -34,10 +34,12 @@ const props = withDefaults(defineProps<FormItemColumnProps>(), {
   editable: true,
 });
 
-const model = defineModel<ModelBaseValueType>({ required: false });
+const model = defineModel<BaseValueType>({ required: false });
 
 const formEl = computed(() => toCamelCase(toValue(props.el)) as FormElComponentEnum);
-const labelValue = computed(() => toValue(props.label));
+const labelValue = computed(() =>
+  isFunction(props.label) ? props.label(model.value as Record<string, any>) : unref(props.label)
+);
 const showLabelValue = computed(() => {
   if ([FormElComponentEnum.EMPTY, FormElComponentEnum.EL_DIVIDER].includes(formEl.value)) return false;
   return toValue(props.showLabel);
@@ -118,7 +120,9 @@ function useFormItemInitProps() {
   // 处理透传的 elProps
   const elPropsValue = computed<Record<string, any>>(() => {
     const { optionField, elProps } = props;
-    const elPropsValue = toValue(elProps) as Record<string, any>;
+    const elPropsValue = (
+      isFunction(elProps) ? elProps(model.value as Record<string, any>) : toValue(elProps)
+    ) as Record<string, any>;
     const label = optionField.label;
     const value = optionField.value;
     const children = optionField.children;

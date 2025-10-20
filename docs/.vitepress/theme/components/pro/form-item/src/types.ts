@@ -35,7 +35,7 @@ export type ElFormItemProps = Partial<FormItemProps>;
 /**
  * 表单数据类型
  */
-export type ModelBaseValueType =
+export type BaseValueType =
   | string
   | number
   | boolean
@@ -92,7 +92,7 @@ export type RenderTypes = string | VNode | JSX.Element | Component;
 /**
  * render、插槽参数类型
  */
-export interface FormItemRenderParams {
+export interface FormItemRenderParams<T = Record<string, any>> {
   /**
    * 当前值
    */
@@ -100,7 +100,7 @@ export interface FormItemRenderParams {
   /**
    * 当前表单数据
    */
-  model: ModelBaseValueType;
+  model: T;
   /**
    * 当前描述列表标签
    */
@@ -124,7 +124,7 @@ export interface FormItemRenderParams {
   /**
    * 当前列配置
    */
-  column: FormItemColumnProps;
+  column: FormItemColumnProps<T>;
 }
 
 /**
@@ -164,9 +164,39 @@ export type ElOptionField = {
 };
 
 /**
+ * el 组件的 props
+ */
+export type ElProps =
+  | InputProps
+  | InputNumberProps
+  | ExtractPropTypes<SelectProps>
+  | ExtractPropTypes<SelectV2Props>
+  | TreeProps
+  | CustomTreeProps
+  | CascaderProps
+  | DatePickerProps
+  | TimePickerDefaultProps
+  | TimeSelectProps
+  | SwitchProps
+  | SliderProps
+  | RadioProps
+  | RadioGroupProps
+  | RadioButtonProps
+  | CheckboxProps
+  | CheckboxGroupProps
+  | AutocompleteProps
+  | RateProps
+  | ColorPickerProps
+  | TransferProps
+  | DividerProps
+  | UploadProps
+  | { labelSize?: "default" | "small" | "large" } // ElDivider 字体大小
+  | Record<string, any>;
+
+/**
  * ProFormItem 的 props
  */
-export interface FormItemColumnProps<T = any> {
+export interface FormItemColumnProps<T = Record<string, any>> {
   /**
    * ElFormItem 的 prop 属性，当表单数据 model 为对象时，prop 也是 model 的 key
    */
@@ -174,7 +204,7 @@ export interface FormItemColumnProps<T = any> {
   /**
    * 标签，ElFormItem 的 label 属性
    */
-  label?: MaybeRefOrGetter<string | number>;
+  label?: MaybeRef<string | number> | ((model: T) => ElProps);
   /**
    * 是否显示 label
    *
@@ -194,45 +224,19 @@ export interface FormItemColumnProps<T = any> {
   /**
    * 表单组件的 Props，即会透传到表单组件
    */
-  elProps?: MaybeRefOrGetter<
-    | InputProps
-    | InputNumberProps
-    | ExtractPropTypes<SelectProps>
-    | ExtractPropTypes<SelectV2Props>
-    | TreeProps
-    | CustomTreeProps
-    | CascaderProps
-    | DatePickerProps
-    | TimePickerDefaultProps
-    | TimeSelectProps
-    | SwitchProps
-    | SliderProps
-    | RadioProps
-    | RadioGroupProps
-    | RadioButtonProps
-    | CheckboxProps
-    | CheckboxGroupProps
-    | AutocompleteProps
-    | RateProps
-    | ColorPickerProps
-    | TransferProps
-    | DividerProps
-    | UploadProps
-    | { labelSize?: "default" | "small" | "large" } // ElDivider 字体大小
-    | Record<string, any>
-  >;
+  elProps?: MaybeRefOrGetter<ElProps> | ((model: T) => ElProps);
   /**
    * 表单组件的插槽
    */
   elSlots?: {
     [slotName: string]: (
-      data: Omit<FormItemColumnProps, "options" | "label" | "elProps" | "formItemProps"> & {
+      data: Omit<FormItemColumnProps<T>, "options" | "label" | "elProps" | "formItemProps"> & {
         value: unknown;
-        model: ModelBaseValueType;
+        model: T;
         options: ElOption[];
         label: string;
-        elProps: UnwrapRef<FormItemColumnProps["elProps"]>;
-        formItemProps: UnwrapRef<FormItemColumnProps["formItemProps"]>;
+        elProps: UnwrapRef<FormItemColumnProps<T>["elProps"]>;
+        formItemProps: UnwrapRef<FormItemColumnProps<T>["formItemProps"]>;
       }
     ) => RenderTypes;
   };
@@ -246,9 +250,7 @@ export interface FormItemColumnProps<T = any> {
     | ((
         model: T,
         optionsMap?: Map<string, Record<string, any>>
-      ) =>
-        | ElOption[]
-        | Promise<ElOption[] | { data: ElOption[] } | { list: ElOption[] } | { data: { list: ElOption[] } }>);
+      ) => ElOption[] | Record<string, ElOption[]> | Promise<ElOption[] | Record<string, ElOption[]>>);
   /**
    * 字典指定 label && value && children 的 key 值
    *
@@ -282,15 +284,15 @@ export interface FormItemColumnProps<T = any> {
   /**
    * 自定义 label 标题
    */
-  renderLabel?: (scope: FormItemRenderParams) => RenderTypes;
+  renderLabel?: (scope: FormItemRenderParams<T>) => RenderTypes;
   /**
    * 自定义 Label 内容渲染（返回 HTML），优先级低于 render，高于插槽
    */
-  renderLabelHTML?: (scope: FormItemRenderParams) => string;
+  renderLabelHTML?: (scope: FormItemRenderParams<T>) => string;
   /**
    * 自定义渲染 el-form-item 下的表单组件
    */
-  render?: (scope: FormItemRenderParams) => RenderTypes;
+  render?: (scope: FormItemRenderParams<T>) => RenderTypes;
   /**
    * 是否为编辑态
    *
@@ -303,7 +305,7 @@ export interface ProFormItemEmits {
   /**
    * 表单值改变事件
    */
-  change: [value: any, model: ModelBaseValueType, column: FormItemColumnProps];
+  change: [value: any, model: any, column: FormItemColumnProps];
 }
 
 /**
