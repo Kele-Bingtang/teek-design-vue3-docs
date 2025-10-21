@@ -128,7 +128,7 @@ export interface FormItemRenderParams<T = Record<string, any>> {
 }
 
 /**
- * options 字典数据参数
+ * options 为函数的参数类型
  */
 export interface OptionsParams<T = Record<string, any>> {
   /**
