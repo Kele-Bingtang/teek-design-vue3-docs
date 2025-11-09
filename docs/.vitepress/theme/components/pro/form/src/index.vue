@@ -66,9 +66,10 @@ const footerStyle = computed(() => ({
 }));
 
 // ProFormItem Props
-const formMainProps = computed(() => {
+const formMainProps = computed<Record<string, any>>(() => {
   return filterEmpty({
     ...finalProps.value,
+    modelValue: undefined,
     elFormProps: undefined,
     showErrorTip: undefined,
     showFooter: undefined,
