@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { FormItemProp, FormValidateCallback } from "element-plus";
+import type { FormInstance, FormItemProp, FormValidateCallback } from "element-plus";
 import type { FormColumn } from "@/components/pro/form";
 import type { FormItemColumnProps } from "@/components/pro/form-item";
 import type { ProFormGroupProps, ProFormGroupEmits } from "./types";
-import { computed, onMounted, toValue } from "vue";
+import { computed, reactive, toValue } from "vue";
 import { ElCard, ElIcon } from "element-plus";
 import { ProForm, ProFormMain, useProFormFn, useProFormMainFn } from "@/components/pro/form";
 import { useNamespace } from "@/composables";
@@ -38,7 +38,7 @@ const emits = defineEmits<ProFormGroupEmits>();
 
 const ns = useNamespace("pro-form-group");
 
-const model = defineModel<Record<string, any>>({ default: () => ({}) });
+const model = defineModel<Record<string, any>>({ default: () => reactive({}) });
 
 // 最终的 Props
 const finalProps = computed(() => {
@@ -68,6 +68,13 @@ const { proFormMainInstance, getOptionsMap, getElFormItemInstance, getElInstance
   useProFormMainFn("proFormMainInstance");
 
 // ---------- 代理 ProForm 事件 ----------
+
+/**
+ * 注册 ProForm 组件实例和 elForm 实例
+ */
+const handleRegister = (proFormInstance: any, elFormInstance: FormInstance | null) => {
+  emits("register", proFormInstance, elFormInstance);
+};
 
 /**
  * 表单验证事件
@@ -103,11 +110,6 @@ const handleChange = (value: unknown, model: Record<string, any>, column: FormIt
   emits("change", value, model, column);
 };
 
-onMounted(() => {
-  // 往父类注册 ProForm 组件实例
-  emits("register", getProFormInstance()?.$parent || null);
-});
-
 const defaultExpose = {
   model,
   setProps,
@@ -135,6 +137,7 @@ defineExpose(defaultExpose);
     v-bind="{ ...$attrs, ...finalProps, cardProps: undefined }"
     v-model="model"
     :columns="proFormColumns"
+    @register="handleRegister"
     @validate="handleValidate"
     @submit="handleSubmit"
     @submit-error="handleSubmitError"
