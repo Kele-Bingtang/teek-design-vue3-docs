@@ -251,16 +251,7 @@ export interface FormItemColumnProps<T = Record<string, any>> {
    * 表单组件的插槽
    */
   elSlots?: {
-    [slotName: string]: (
-      data: Omit<FormItemColumnProps<T>, "options" | "label" | "elProps" | "formItemProps"> & {
-        value: unknown;
-        model: T;
-        options: ElOption[];
-        label: string;
-        elProps: UnwrapRef<FormItemColumnProps<T>["elProps"]>;
-        formItemProps: UnwrapRef<FormItemColumnProps<T>["formItemProps"]>;
-      }
-    ) => RenderTypes;
+    [slotName: string]: (data: FormItemRenderParams<T> & Record<string, any>) => RenderTypes;
   };
   /**
    * 字典枚举数据

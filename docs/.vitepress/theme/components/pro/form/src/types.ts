@@ -214,6 +214,7 @@ export interface FormColumn<T = Record<string, any>> extends FormItemColumnProps
   order?: number;
   /**
    * 是否销毁表单，true 销毁，false 不销毁，类似于 v-if
+   *
    * @default false
    */
   destroy?: MaybeRef<boolean> | ((model: T) => MaybeRef<boolean>);

@@ -98,7 +98,7 @@ const tryPagination = (data: Record<string, any>[] = []) => {
  */
 function useTableInit() {
   // 过滤有效的列配置项
-  const availableColumns = computed(() => props.columns.filter(column => !toValue(column.hidden)));
+  const availableColumns = computed(() => props.columns.filter(column => !toValue(column.hidden)) || []);
   // 定时器
   let timer: ReturnType<typeof setTimeout> | null;
 
