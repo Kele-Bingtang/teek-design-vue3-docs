@@ -21,7 +21,7 @@ const columns: FormColumn[] = [
     label: "名称",
     prop: "name",
     tooltip: computed(() => (state.value.name as string) || "提示：复制名称"),
-    renderLabel: value => {
+    renderLabel: ({ value }) => {
       return h("div", {}, value as string);
     },
   },
@@ -39,7 +39,7 @@ const columns: FormColumn[] = [
   {
     label: "标签",
     prop: "tag",
-    renderLabel: label => {
+    renderLabel: ({ label }) => {
       return <div style="color: green;">{label}</div>;
     },
   },

@@ -37,7 +37,7 @@ const columns: FormColumn[] = [
   {
     label: "标签",
     prop: "tag",
-    render: value => {
+    render: ({ value }) => {
       return <div style="color: green;">{value}</div>;
     },
   },

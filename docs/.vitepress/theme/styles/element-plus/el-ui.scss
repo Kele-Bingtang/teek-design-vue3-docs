@@ -3,6 +3,8 @@
 // 优化 Element Plus 组件库默认样式
 
 :root {
+  --#{$teek-namespace}-radius: 0.75rem;
+
   // 按钮粗度
   --#{$el-namespace}-font-weight-primary: 400 !important;
   --#{$el-namespace}-component-height: 34px !important;

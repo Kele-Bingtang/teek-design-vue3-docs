@@ -19,9 +19,9 @@ import "vitepress-theme-teek/theme-chalk/tk-fade-up-animation.css"; // 首次加
 import "./styles/code-bg.css";
 import "./styles/pro-reset.scss";
 import "./styles/var/index.scss";
-import "./styles/element-plus/el-ui.scss"; // 重写部分 Element Plus 样式
 import "./styles/element-plus/el-light.scss";
 import "./styles/element-plus/el-dark.scss";
+import "./styles/element-plus/el-ui.scss"; // 重写部分 Element Plus 样式
 
 export default {
   extends: Teek,
