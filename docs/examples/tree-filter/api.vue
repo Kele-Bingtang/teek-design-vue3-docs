@@ -81,6 +81,7 @@ const handleTransformData = (data: Record<string, any>[]) => {
       :transform-data="handleTransformData"
       :defaultValue="treeFilterValue.departmentId"
       @change="changeTreeFilter"
+      show-more
     />
   </div>
 </template>

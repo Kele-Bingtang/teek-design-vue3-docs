@@ -15,6 +15,12 @@ export interface TreeFilterProps {
    */
   defaultRequestParams?: Record<string, any>;
   /**
+   * 是否立即执行请求
+   *
+   * @default true
+   */
+  requestImmediate?: boolean;
+  /**
    * 对请求成功的数据进行处理
    */
   transformData?: (data: Record<string, any>[], result?: any) => any;
@@ -45,15 +51,33 @@ export interface TreeFilterProps {
    */
   defaultValue?: TreeKey | TreeKey[];
   /**
-   * 是否显示 全部 选项
-   */
-  enableTotal?: boolean;
-  /**
    * 是否默认选中第一个选项
+   *
+   * @default false
    */
   defaultFirst?: boolean;
   /**
+   * 是否显示全部选项
+   *
+   * @default false
+   */
+  showTotal?: boolean;
+  /**
+   * 是否显示更多按钮
+   *
+   * @default false
+   */
+  showMore?: boolean;
+  /**
+   * 是否显示数量，仅显示一级节点数量
+   *
+   * @default false
+   */
+  showNum?: boolean;
+  /**
    * 是否使用卡片样式
+   *
+   * @default true
    */
   card?: boolean;
 }

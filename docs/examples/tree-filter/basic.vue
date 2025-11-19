@@ -67,6 +67,7 @@ const data: Tree[] = [
       :data="data"
       :defaultValue="treeFilterValue.departmentId"
       @change="changeTreeFilter"
+      show-more
     />
 
     <TreeFilter
@@ -76,6 +77,7 @@ const data: Tree[] = [
       :data="data"
       :defaultValue="treeFilterValue1.departmentId"
       @change="changeTreeFilter1"
+      show-more
     />
   </div>
 </template>
