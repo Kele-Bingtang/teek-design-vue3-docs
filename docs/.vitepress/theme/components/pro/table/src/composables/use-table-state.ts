@@ -213,6 +213,9 @@ export const useTableState = <
   };
 };
 
+/**
+ * 响应适配器，处理响应数据
+ */
 const responseAdapter = <T>(response: unknown): ApiResponse<T> => {
   if (!response) return { data: [], total: 0 };
   if (isArray(response)) return { data: response, total: response.length };

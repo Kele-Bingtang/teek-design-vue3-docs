@@ -236,7 +236,9 @@ const formatValue = (value: unknown, column: DescriptionColumn) => {
   const { formatValue } = column;
 
   return (
-    formatValue?.(value, { value, column, label: toValue(column.label || ""), data: descriptionsData }) ?? value ?? "--"
+    formatValue?.(value, { value, column, label: toValue(column.label || ""), data: descriptionsData.value }) ??
+    value ??
+    "--"
   );
 };
 
@@ -420,7 +422,7 @@ defineExpose({
             :option-field="column.optionField"
           >
             <template v-for="(slot, key) in column.elSlots" :key="key" #[key]="data">
-              <component :is="slot" v-bind="{ ...getRenderParams(column),  ...data }" />
+              <component :is="slot" v-bind="{ ...getRenderParams(column), ...data }" />
             </template>
           </ElDisplay>
 
