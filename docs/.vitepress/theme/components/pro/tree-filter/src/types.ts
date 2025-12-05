@@ -1,3 +1,4 @@
+import type { MaybeRef } from "vue";
 import type { TreeKey } from "element-plus";
 import TreeFilter from "./index.vue";
 
@@ -11,9 +12,13 @@ export interface TreeFilterProps {
    */
   requestApi?: (data?: Record<string, any>) => Promise<any>;
   /**
-   * 初始请求参数
+   * 默认请求参数（请求一定会携带）
    */
-  initRequestParams?: Record<string, any>;
+  defaultRequestParams?: MaybeRef<Record<string, any>>;
+  /**
+   * 请求参数
+   */
+  requestParams?: MaybeRef<Record<string, any>>;
   /**
    * 是否立即执行请求
    *
