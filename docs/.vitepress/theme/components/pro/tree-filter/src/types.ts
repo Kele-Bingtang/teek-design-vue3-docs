@@ -11,9 +11,9 @@ export interface TreeFilterProps {
    */
   requestApi?: (data?: Record<string, any>) => Promise<any>;
   /**
-   * 默认请求参数
+   * 初始请求参数
    */
-  defaultRequestParams?: Record<string, any>;
+  initRequestParams?: Record<string, any>;
   /**
    * 是否立即执行请求
    *

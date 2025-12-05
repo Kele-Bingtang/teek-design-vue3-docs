@@ -59,7 +59,7 @@ export namespace ProTableNamespace {
      */
     requestParams?: MaybeRef<Record<string, any>>;
     /**
-     * 初始化请求参数（重置时恢复为初始化参数）
+     * 初始请求参数（重置时恢复为初始化参数）
      */
     initRequestParams?: MaybeRef<Record<string, any>>;
     /**
