@@ -150,7 +150,7 @@ export type TableRow<T extends Record<string, any> = any> = IsAny<T> extends tru
  */
 export interface TableColumn<T extends Record<string, any> = any>
   extends Partial<Omit<TableColumnCtx<T>, "children" | "renderCell" | "renderHeader" | "width" | "label">>,
-    Omit<ElDisplayProps, "value" | "options">,
+    Omit<ElDisplayProps<T>, "value" | "options">,
     Omit<OperationNamespace.ExtraProp, "el"> {
   /**
    * 表头宽度

@@ -1,4 +1,4 @@
-import type { CSSProperties, MaybeRefOrGetter, MaybeRef, ComponentInternalInstance } from "vue";
+import type { CSSProperties, MaybeRefOrGetter, MaybeRef } from "vue";
 import type { DescriptionItemProps } from "element-plus";
 import type { ProFormNamespace } from "@/components/pro/form";
 import type { ElOption, FormItemColumnProps, RenderTypes } from "@/components/pro/form-item";
@@ -8,7 +8,7 @@ import type { ElDisplayProps } from "../../table";
 /**
  * render、插槽参数类型
  */
-export interface DescriptionsRenderParams {
+export interface DescriptionsRenderParams<T extends Record<string, any> = any> {
   /**
    * 当前值
    */
@@ -16,7 +16,7 @@ export interface DescriptionsRenderParams {
   /**
    * 当前列配置
    */
-  column: DescriptionColumn;
+  column: DescriptionColumn<T>;
   /**
    * 当前描述列表标签
    */
@@ -30,9 +30,9 @@ export interface DescriptionsRenderParams {
 /**
  * 描述列表配置项
  */
-export interface DescriptionColumn
+export interface DescriptionColumn<T extends Record<string, any> = any>
   extends Omit<Partial<DescriptionItemProps>, "label" | "width" | "minWidth" | "span" | "rowSpan" | "labelWidth">,
-    Omit<ElDisplayProps, "originValue" | "displayValue" | "options"> {
+    Omit<ElDisplayProps<T>, "originValue" | "displayValue" | "options"> {
   /**
    * 唯一键
    */
@@ -98,19 +98,19 @@ export interface DescriptionColumn
   /**
    * 自定义 label 渲染
    */
-  renderLabel?: (scope: DescriptionsRenderParams) => RenderTypes;
+  renderLabel?: (scope: DescriptionsRenderParams<T>) => RenderTypes;
   /**
    * 自定义内容渲染
    */
-  render?: (scope: DescriptionsRenderParams) => RenderTypes;
+  render?: (scope: DescriptionsRenderParams<T>) => RenderTypes;
   /**
    * 自定义内容渲染（HTML 格式）
    */
-  renderHTML?: (scope: DescriptionsRenderParams) => string;
+  renderHTML?: (scope: DescriptionsRenderParams<T>) => string;
   /**
    * 自定义内容
    */
-  formatValue?: (value: any, scope: DescriptionsRenderParams) => string | number;
+  formatValue?: (value: any, scope: DescriptionsRenderParams<T>) => string | number;
   /**
    * 是否为编辑态
    *
@@ -145,7 +145,7 @@ export interface DescriptionColumn
    * el 组件的插槽
    */
   elSlots?: {
-    [slotName: string]: (data: DescriptionsRenderParams & Record<string, any>) => RenderTypes;
+    [slotName: string]: (data: DescriptionsRenderParams<T> & Record<string, any>) => RenderTypes;
   };
 }
 
