@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<Partial<ImageViewerProps>>(), {
   teleported: false,
   zoomRate: 1.2,
   minScale: 0.2,
-  maxScale: 0.2,
+  maxScale: 7,
   closeOnPressEscape: true,
   showProgress: false,
 });
