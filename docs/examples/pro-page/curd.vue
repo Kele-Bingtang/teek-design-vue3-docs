@@ -123,7 +123,7 @@ const feedbackFormProps: FeedbackFormProps = {
   },
   // 反馈组件配置（Dialog、Drawer）
   type: feedbackType, // 不写 type 默认为 dialog
-  typeProps: {
+  feedbackProps: {
     title: (_, status) => (status === "add" ? "新增" : "编辑"),
     width: "45%",
     height: 300,
