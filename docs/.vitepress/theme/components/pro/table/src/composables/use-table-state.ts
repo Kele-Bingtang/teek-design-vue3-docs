@@ -10,11 +10,7 @@ export const defaultTablePageInfo = { ...defaultPaginationInfo, total: 0 } as Pa
  *
  * @param options 配置项
  */
-export const useTableState = <
-  T extends Record<string, any> = Record<string, any>,
-  P extends Record<string, any> = Record<string, any>,
-  R = any
->(
+export const useTableState = <T extends Recordable = Recordable, P extends Recordable = Recordable, R = any>(
   options: UseTableStateOptions<T, P, R>
 ) => {
   const {
@@ -63,10 +59,9 @@ export const useTableState = <
   });
 
   // 外界分页参数发送改变后，内部分页信息也需要改变
-  // 修复 watch 函数，正确监听分页参数变化
   watch(
-    () => unref(pageInfo),
-    newPageInfo => (state.pageInfo = { ...defaultTablePageInfo, ...newPageInfo }),
+    () => pageInfo,
+    () => (state.pageInfo = { ...defaultTablePageInfo, ...unref(pageInfo) }),
     { deep: true }
   );
 
@@ -109,8 +104,6 @@ export const useTableState = <
       }
     } catch (error) {
       requestError?.(error);
-    } finally {
-      loading.value = false;
     }
   };
 
@@ -120,10 +113,10 @@ export const useTableState = <
    * @param searchParams 查询数据
    * @param removeNoValue 是否去除空值项，true 去除，false 不去除。默认为 true
    */
-  const updatedTotalParam = (searchParams?: Record<string, any>, removeNoValue = true) => {
+  const updatedTotalParam = (searchParams?: Recordable, removeNoValue = true) => {
     state.totalParams = {};
 
-    const mergeParams = (params: Record<string, any>) => {
+    const mergeParams = (params: Recordable) => {
       return Object.assign(state.totalParams, params, toValue(isServerPage) ? pageParams.value : {});
     };
 
@@ -132,7 +125,7 @@ export const useTableState = <
 
     // 如果去除空值项
     if (removeNoValue) {
-      const nowSearchParam: Record<string, any> = searchParams || state.searchParams;
+      const nowSearchParam: Recordable = searchParams || state.searchParams;
       // 防止手动清空输入框携带参数（这里可以自定义查询参数前缀）
       for (const key in state.searchParams) {
         const val = state.searchParams[key];
@@ -150,7 +143,7 @@ export const useTableState = <
    * @param searchParams 查询数据
    * @param removeNoValue 是否去除空值项，true 去除，false 不去除。默认为 true
    */
-  const search = (searchParams?: Record<string, any>, removeNoValue = true) => {
+  const search = (searchParams?: Recordable, removeNoValue = true) => {
     state.pageInfo.pageNum = 1;
     // 更新查询参数
     updatedTotalParam(searchParams, removeNoValue);
@@ -163,7 +156,7 @@ export const useTableState = <
    * @param searchParams 查询数据
    * @param removeNoValue 是否去除空值项，true 去除，false 不去除。默认为 true
    */
-  const reset = (searchParams?: Record<string, any>, removeNoValue = true) => {
+  const reset = (searchParams?: Recordable, removeNoValue = true) => {
     state.pageInfo.pageNum = 1;
     state.searchParams = {};
     // 重置搜索条件，如果有默认搜索参数，则重置为默认的搜索参数
@@ -183,16 +176,8 @@ export const useTableState = <
   const handlePagination = (pageInfo: Partial<PageInfo>, request = true) => {
     const { pageNum, pageSize, pageSizes } = pageInfo;
 
-    // 增强分页参数验证，确保参数有效
-    if (pageNum !== undefined) {
-      const pageNumValue = Number(pageNum);
-      state.pageInfo.pageNum = !isNaN(pageNumValue) && pageNumValue > 0 ? pageNumValue : defaultTablePageInfo.pageNum;
-    }
-    if (pageSize !== undefined) {
-      const pageSizeValue = Number(pageSize);
-      state.pageInfo.pageSize =
-        !isNaN(pageSizeValue) && pageSizeValue > 0 ? pageSizeValue : defaultTablePageInfo.pageSize;
-    }
+    if (pageNum !== undefined) state.pageInfo.pageNum = pageNum <= 0 ? defaultTablePageInfo.pageNum : pageNum;
+    if (pageSize !== undefined) state.pageInfo.pageSize = pageSize <= 0 ? defaultTablePageInfo.pageSize : pageSize;
     if (pageSizes) state.pageInfo.pageSizes = pageSizes;
 
     if (request && toValue(isServerPage)) requestData();
@@ -221,12 +206,18 @@ const responseAdapter = <T>(response: unknown): ApiResponse<T> => {
   if (isArray(response)) return { data: response, total: response.length };
   if (!isObject(response)) return { data: [], total: 0 };
 
-  let res = response as Record<string, any>;
+  let res = response as Recordable;
   // 数据
   let data: T[] | undefined;
 
+  // 接口返回的预设字段
+  // 列表数据
   const dataFields = ["records", "data", "list", "items", "result"];
+  // 总条数
+  const totalFields = ["total", "count"];
+  // 当前页码
   const pageNumFields = ["current", "page", "pageNum"];
+  // 每页大小
   const pageSizeFields = ["size", "pageSize", "limit"];
 
   data = extractField(res, dataFields, undefined, value => isArray(value));
@@ -237,7 +228,7 @@ const responseAdapter = <T>(response: unknown): ApiResponse<T> => {
   }
 
   // 总数
-  const total = extractField(res, dataFields, data?.length ?? 0, value => isNumber(value));
+  const total = extractField(res, totalFields, data?.length ?? 0, value => isNumber(value));
   // 当前页码
   const pageNum = extractField(res, pageNumFields, undefined, value => isNumber(value));
   // 当前页数
@@ -254,15 +245,13 @@ const responseAdapter = <T>(response: unknown): ApiResponse<T> => {
  * @param condition 比对条件
  */
 function extractField<T>(
-  obj: Record<string, any>,
+  obj: Recordable,
   fields: string[],
   defaultValue: T,
   condition?: (field: unknown) => boolean
 ): T {
   for (const field of fields) {
-    if (field in obj && condition?.(obj[field])) {
-      return obj[field] as T;
-    }
+    if (field in obj && condition?.(obj[field])) return obj[field] as T;
   }
   return defaultValue;
 }

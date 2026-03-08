@@ -119,7 +119,7 @@
 }
 
 // 处理移动端组件兼容性
-@media screen and (max-width: $device-phone) {
+@media screen and (max-width: 640px) {
   .#{$el-namespace}-message-box,
   .#{$el-namespace}-dialog {
     width: calc(100% - 24px) !important;
@@ -227,7 +227,7 @@
 }
 
 // ipad 表单右侧按钮优化
-@media screen and (max-width: $device-ipad-pro) {
+@media screen and (max-width: 1180px) {
   .#{$el-namespace}-table-fixed-column--right {
     padding-right: 0 !important;
   }
