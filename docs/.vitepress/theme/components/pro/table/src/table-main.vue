@@ -28,7 +28,6 @@ const props = withDefaults(defineProps<ProTableMainNamespace.Props>(), {
   pageScope: "client",
   paginationProps: () => ({}),
   filterScope: "client",
-  headerCellStyle: () => ({}),
   editable: false,
   emptyText: "暂无数据",
   selectedRadio: "",
@@ -314,7 +313,6 @@ defineExpose(expose);
     ref="elTableInstance"
     show-overflow-tooltip
     v-bind="$attrs"
-    :header-cell-style="{ backgroundColor: ns.cssVar('gray-200'), ...headerCellStyle }"
     :data="tableData"
     :row-key
     :class="ns.b()"

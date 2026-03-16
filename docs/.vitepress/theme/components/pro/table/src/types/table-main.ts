@@ -67,10 +67,6 @@ export namespace ProTableMainNamespace {
      */
     filterScope?: Environment | `${Environment}`;
     /**
-     * ElTable 的 headerCellStyle 配置项
-     */
-    headerCellStyle?: TableProps<Record<string, any>>["headerCellStyle"];
-    /**
      * 表格无数据时显示的文字
      *
      * @default '暂无数据'
