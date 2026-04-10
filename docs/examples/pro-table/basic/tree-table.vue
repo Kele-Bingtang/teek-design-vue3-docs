@@ -72,8 +72,8 @@ const columns: TableColumn[] = [
     label: "标签",
     prop: "tag",
     el: "el-tag",
-    elProps: (value: string) => {
-      return { type: value };
+    elProps: row => {
+      return { type: row.tag };
     },
   },
   {
