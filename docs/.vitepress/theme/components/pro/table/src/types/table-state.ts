@@ -8,7 +8,7 @@ import type { PageField } from "./table";
 export interface UseTableStateOptions<
   T extends Record<string, any> = Record<string, any>,
   P extends Record<string, any> = Record<string, any>,
-  R = any
+  R = any,
 > {
   /**
    * 表格数据请求接口
@@ -59,7 +59,7 @@ export type PageInfo = PaginationInfo & { total?: number };
  */
 export interface UseTableStateData<
   T extends Record<string, any> = Record<string, any>,
-  P extends Record<string, any> = Record<string, any>
+  P extends Record<string, any> = Record<string, any>,
 > {
   /** 表格数据 */
   tableData: T[];

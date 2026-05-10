@@ -41,8 +41,8 @@ defineExpose({ open, close });
 </script>
 
 <template>
-  <el-drawer v-model="visible" title="列设置" :size="450" append-to-body :class="ns.b()">
-    <el-table ref="elTableInstance" :data="columns" :border="true" row-key="prop" default-expand-all>
+  <el-drawer v-model="visible" title="列设置" :size="450" append-to-body resizable :class="ns.b()">
+    <el-table ref="elTableInstance" :data="columns" row-key="prop" default-expand-all>
       <TableColumnDragSort
         v-if="!columnSetting.hideDragSort"
         :table-instance="elTableInstance"
@@ -111,8 +111,10 @@ defineExpose({ open, close });
 </template>
 
 <style lang="scss" scoped>
+@use "@/styles/mixins/namespace" as *;
+
 // 有 children 的列，不显示缩进
-:deep(.el-table__indent) {
+:deep(.#{$el-namespace}-table__indent) {
   display: none;
 }
 </style>

@@ -10,7 +10,11 @@ export const defaultTablePageInfo = { ...defaultPaginationInfo, total: 0 } as Pa
  *
  * @param options 配置项
  */
-export const useTableState = <T extends Recordable = Recordable, P extends Recordable = Recordable, R = any>(
+export const useTableState = <
+  T extends Record<string, any> = Record<string, any>,
+  P extends Record<string, any> = Record<string, any>,
+  R = any,
+>(
   options: UseTableStateOptions<T, P, R>
 ) => {
   const {
@@ -113,10 +117,10 @@ export const useTableState = <T extends Recordable = Recordable, P extends Recor
    * @param searchParams 查询数据
    * @param removeNoValue 是否去除空值项，true 去除，false 不去除。默认为 true
    */
-  const updatedTotalParam = (searchParams?: Recordable, removeNoValue = true) => {
+  const updatedTotalParam = (searchParams?: Record<string, any>, removeNoValue = true) => {
     state.totalParams = {};
 
-    const mergeParams = (params: Recordable) => {
+    const mergeParams = (params: Record<string, any>) => {
       return Object.assign(state.totalParams, params, toValue(isServerPage) ? pageParams.value : {});
     };
 
@@ -125,7 +129,7 @@ export const useTableState = <T extends Recordable = Recordable, P extends Recor
 
     // 如果去除空值项
     if (removeNoValue) {
-      const nowSearchParam: Recordable = searchParams || state.searchParams;
+      const nowSearchParam: Record<string, any> = searchParams || state.searchParams;
       // 防止手动清空输入框携带参数（这里可以自定义查询参数前缀）
       for (const key in state.searchParams) {
         const val = state.searchParams[key];
@@ -143,7 +147,7 @@ export const useTableState = <T extends Recordable = Recordable, P extends Recor
    * @param searchParams 查询数据
    * @param removeNoValue 是否去除空值项，true 去除，false 不去除。默认为 true
    */
-  const search = (searchParams?: Recordable, removeNoValue = true) => {
+  const search = (searchParams?: Record<string, any>, removeNoValue = true) => {
     state.pageInfo.pageNum = 1;
     // 更新查询参数
     updatedTotalParam(searchParams, removeNoValue);
@@ -156,7 +160,7 @@ export const useTableState = <T extends Recordable = Recordable, P extends Recor
    * @param searchParams 查询数据
    * @param removeNoValue 是否去除空值项，true 去除，false 不去除。默认为 true
    */
-  const reset = (searchParams?: Recordable, removeNoValue = true) => {
+  const reset = (searchParams?: Record<string, any>, removeNoValue = true) => {
     state.pageInfo.pageNum = 1;
     state.searchParams = {};
     // 重置搜索条件，如果有默认搜索参数，则重置为默认的搜索参数
@@ -206,7 +210,7 @@ const responseAdapter = <T>(response: unknown): ApiResponse<T> => {
   if (isArray(response)) return { data: response, total: response.length };
   if (!isObject(response)) return { data: [], total: 0 };
 
-  let res = response as Recordable;
+  let res = response as Record<string, any>;
   // 数据
   let data: T[] | undefined;
 
@@ -245,7 +249,7 @@ const responseAdapter = <T>(response: unknown): ApiResponse<T> => {
  * @param condition 比对条件
  */
 function extractField<T>(
-  obj: Recordable,
+  obj: Record<string, any>,
   fields: string[],
   defaultValue: T,
   condition?: (field: unknown) => boolean

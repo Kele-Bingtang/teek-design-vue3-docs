@@ -1,3 +1,16 @@
 /* 主题变量系统 */
 @forward "./theme/index";
 @forward "card"; // 卡片样式
+
+@use "../mixins/namespace" as *;
+
+// 全屏元素
+.#{$teek-namespace}-element-fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: var(--#{$teek-namespace}-surface-bg-color-box);
+}

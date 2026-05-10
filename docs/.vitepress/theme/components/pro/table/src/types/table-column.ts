@@ -141,15 +141,15 @@ export type TableRowInternal = {
 /**
  * 表格行 Row（支持拓展类型）
  */
-export type TableRow<T extends Record<string, any> = any> = IsAny<T> extends true
-  ? TableRowInternal & Record<string, any>
-  : TableRowInternal & T;
+export type TableRow<T extends Record<string, any> = any> =
+  IsAny<T> extends true ? TableRowInternal & Record<string, any> : TableRowInternal & T;
 
 /**
  * 表格列配置
  */
 export interface TableColumn<T extends Record<string, any> = any>
-  extends Partial<Omit<TableColumnCtx<T>, "children" | "renderCell" | "renderHeader" | "width" | "label">>,
+  extends
+    Partial<Omit<TableColumnCtx<T>, "children" | "renderCell" | "renderHeader" | "width" | "label">>,
     Omit<ElDisplayProps<T>, "value" | "options">,
     Omit<OperationNamespace.ExtraProp, "el"> {
   /**

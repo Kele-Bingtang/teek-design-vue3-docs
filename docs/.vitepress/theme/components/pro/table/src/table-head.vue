@@ -13,9 +13,10 @@ import {
 } from "element-plus";
 import { Coin, Operation, Download, Setting, Refresh } from "@element-plus/icons-vue";
 import { useNamespace } from "@/composables";
-import { defaultTooltipProps, TableColumnTypeEnum, TableSizeEnum, ToolButtonEnum } from "./helper";
+import { defaultToolButton, defaultTooltipProps, TableColumnTypeEnum, TableSizeEnum, ToolButtonEnum } from "./helper";
 import { exportExcel } from "./plugins/table-head-export";
 import TableHeadColumnSetting from "./plugins/table-head-column-setting.vue";
+import Fullscreen from "@/components/pro/fullscreen.svg";
 
 import "./styles/table-head.scss";
 
@@ -24,7 +25,7 @@ defineOptions({ name: "TableHead" });
 const props = withDefaults(defineProps<ProTableHeadNamespace.Props>(), {
   data: () => [],
   columns: () => [],
-  toolButton: () => ["size", "export", "columnSetting", "baseSetting"],
+  toolButton: () => defaultToolButton,
   disabledToolButton: () => [],
   size: () => TableSizeEnum.Default,
   title: "",
@@ -231,6 +232,13 @@ const handleSizeCommand = (command: TableSizeEnum) => {
 };
 
 /**
+ * 表格全屏
+ */
+const handleFullscreen = () => {
+  emits("fullscreen");
+};
+
+/**
  * 表格导出
  */
 const handleExport = () => {
@@ -261,7 +269,12 @@ onMounted(() => {
   handleSizeCommand(tableSize.value);
 });
 
-const expose = { sizeCommand: handleSizeCommand, exportFile: handleExport, toggleColumnSetting };
+const expose = {
+  sizeCommand: handleSizeCommand,
+  fullscreen: handleFullscreen,
+  exportFile: handleExport,
+  toggleColumnSetting,
+};
 
 defineExpose(expose);
 </script>
@@ -277,11 +290,18 @@ defineExpose(expose);
     <div :class="ns.e('right')">
       <slot
         name="head-right"
-        v-bind="{ tooltipProps, handleSizeCommand, handleRefresh, handleExport, toggleColumnSetting }"
+        v-bind="{ tooltipProps, handleRefresh, handleSizeCommand, handleFullscreen, handleExport, toggleColumnSetting }"
       >
         <slot
           name="head-tool-before"
-          v-bind="{ tooltipProps, handleSizeCommand, handleRefresh, handleExport, toggleColumnSetting }"
+          v-bind="{
+            tooltipProps,
+            handleRefresh,
+            handleSizeCommand,
+            handleFullscreen,
+            handleExport,
+            toggleColumnSetting,
+          }"
         />
 
         <template v-if="toolButton">
@@ -317,6 +337,18 @@ defineExpose(expose);
                 </el-dropdown-menu>
               </template>
             </el-dropdown>
+          </el-tooltip>
+
+          <el-tooltip v-if="showToolButton(ToolButtonEnum.Fullscreen)" content="全屏" v-bind="tooltipProps">
+            <el-button
+              :disabled="disabledToolButton.includes(ToolButtonEnum.Fullscreen)"
+              @click="handleFullscreen"
+              class="head__tool-button"
+            >
+              <slot name="fullscreen-icon">
+                <img :src="Fullscreen" style="max-width: 16px; height: 16px" class="no-preview" />
+              </slot>
+            </el-button>
           </el-tooltip>
 
           <el-tooltip v-if="showToolButton(ToolButtonEnum.Export)" content="导出" v-bind="tooltipProps">
@@ -386,13 +418,27 @@ defineExpose(expose);
               >
                 单击行高亮
               </el-checkbox>
+              <el-checkbox
+                v-model="baseSetting.headerResize"
+                :value="true"
+                :disabled="baseSetting.disabledHeaderResize"
+              >
+                表头列宽高拖拽
+              </el-checkbox>
             </div>
           </el-popover>
         </template>
 
         <slot
           name="head-tool-after"
-          v-bind="{ tooltipProps, handleSizeCommand, handleRefresh, handleExport, toggleColumnSetting }"
+          v-bind="{
+            tooltipProps,
+            handleRefresh,
+            handleSizeCommand,
+            handleFullscreen,
+            handleExport,
+            toggleColumnSetting,
+          }"
         />
       </slot>
     </div>
