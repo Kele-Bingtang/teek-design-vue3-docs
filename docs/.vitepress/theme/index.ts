@@ -1,6 +1,6 @@
 import Teek from "vitepress-theme-teek";
 import TeekLayoutProvider from "./components/teek-layout-provider.vue";
-import ElementPlus from "element-plus";
+import ElementPlus, { ID_INJECTION_KEY, ZINDEX_INJECTION_KEY } from "element-plus";
 import zhCn from "element-plus/es/locale/lang/zh-cn";
 import Tip from "./components/tip.vue";
 
@@ -32,5 +32,12 @@ export default {
     });
 
     app.component("Tip", Tip);
+
+    app
+      .provide(ID_INJECTION_KEY, {
+        prefix: 1024,
+        current: 0,
+      })
+      .provide(ZINDEX_INJECTION_KEY, { current: 0 });
   },
 };

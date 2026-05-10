@@ -25,12 +25,13 @@ const defaultMessage = "确定执行本次操作?";
 const icon = computed(() => toRaw(props.icon));
 const confirmElValue = computed(() => toCamelCase(toValue(props.confirmEl)));
 
+// 修改 elProps 默认值
 const finalElProps = computed(() => {
   const { el, elProps } = props;
 
   if (el === OperationEl.ElLink) {
     return {
-      underline: false,
+      underline: "never",
       ...elProps,
       href: "javascript:;",
     };
