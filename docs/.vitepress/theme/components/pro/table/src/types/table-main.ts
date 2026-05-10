@@ -1,6 +1,6 @@
 import type { MaybeRef, UnwrapRef } from "vue";
 import type { PaginationProps, TableProps } from "element-plus";
-import type { PageInfo } from "@/components/pro/pagination";
+import type { PageInfo } from "./table-state";
 import type { TableColumn, TableRow } from "./table-column";
 import type { TableColumnDataNamespace } from "./table-column-data";
 import type { OperationNamespace } from "./table-column-operation";
@@ -92,6 +92,12 @@ export namespace ProTableMainNamespace {
      * @default false
      */
     initNativeRowField?: boolean;
+    /**
+     * 是否允许表格表头列宽度、高度拖拽调整大小（当 border 为 false 仍然支持调整列宽度大小）
+     *
+     * @default false
+     */
+    headerResize?: boolean;
   }
 
   export interface Emits extends Omit<TableColumnDataNamespace.Emits, "filter">, OperationNamespace.Emits {

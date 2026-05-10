@@ -1,0 +1,46 @@
+// 功能色
+@use "../../mixins/namespace" as *;
+@use "../../mixins/color-variants" as *;
+@use "../../mixins/color-levels" as *;
+
+// 浅色
+:root {
+  --#{$teek-namespace}-color-primary: #395ae3;
+  --#{$teek-namespace}-color-success: #0b9e40;
+  --#{$teek-namespace}-color-warning: #e68a00;
+  --#{$teek-namespace}-color-danger: #d93126;
+  --#{$teek-namespace}-color-error: #dd5c27;
+  --#{$teek-namespace}-color-info: #5c667a;
+  --#{$teek-namespace}-color-secondary: #0091ff;
+
+  @include generate-color-variants("primary", #395ae3);
+  @include generate-color-variants("success", #0b9e40);
+  @include generate-color-variants("warning", #e68a00);
+  @include generate-color-variants("danger", #d93126);
+  @include generate-color-variants("error", #dd5c27);
+
+  // === 次级色 ===
+  @include generate-color-variants("info", #8a96a3);
+  @include generate-color-variants("secondary", #a3adbb);
+}
+
+// 深色
+:root.dark {
+  --#{$teek-namespace}-color-primary: #6d94e6;
+  --#{$teek-namespace}-color-success: #4cd890;
+  --#{$teek-namespace}-color-warning: #eab308;
+  --#{$teek-namespace}-color-danger: #e85454;
+  --#{$teek-namespace}-color-error: #ff7e5f;
+  --#{$teek-namespace}-color-info: #a3adbb;
+  --#{$teek-namespace}-color-secondary: #449de0;
+
+  @include generate-color-variants("primary", #6d94e6);
+  @include generate-color-variants("success", #4cd890);
+  @include generate-color-variants("warning", #eab308);
+  @include generate-color-variants("danger", #e85454);
+  @include generate-color-variants("error", #ff7e5f);
+
+  // === 次级色 ===
+  @include generate-color-variants("info", #a3adbb);
+  @include generate-color-variants("secondary", #449de0);
+}

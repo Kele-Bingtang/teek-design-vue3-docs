@@ -67,10 +67,7 @@ interface ColorDefinition {
 // 主题配置
 const themes = [
   { label: "浅色模式", value: "light" },
-  { label: "深蓝深色模式", value: "dark-blue" },
-  { label: "暗黑深色模式", value: "dark-deep" },
-  { label: "午夜深色模式", value: "dark-midnight" },
-  { label: "中性深色模式", value: "dark-neutral" },
+  { label: "深色模式", value: "dark" },
 ];
 
 const { isDark } = useData();

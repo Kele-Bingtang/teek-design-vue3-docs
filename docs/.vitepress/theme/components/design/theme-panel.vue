@@ -5,10 +5,7 @@
       <div class="theme-toggle">
         <el-select v-model="selectedTheme" @change="changeTheme" style="width: 210px">
           <el-option label="浅色模式" value="light" />
-          <el-option label="深色蓝色模式" value="dark-blue" />
-          <el-option label="深色深邃模式" value="dark-deep" />
-          <el-option label="深色午夜模式" value="dark-midnight" />
-          <el-option label="深色中性模式" value="dark-neutral" />
+          <el-option label="深色模式" value="dark" />
         </el-select>
       </div>
     </div>
@@ -100,53 +97,12 @@
       </div>
     </div>
 
-    <!-- 基本色 -->
-    <div class="palette-section">
-      <h3>基本色</h3>
-      <div class="palette-swatches">
-        <div
-          v-for="color in baseColors"
-          :key="color"
-          class="swatch"
-          :style="{
-            backgroundColor: getColorValue(`--${namespace}-` + color),
-            color: color == 'dark' ? 'var(--vp-c-neutral-inverse)' : '',
-          }"
-          @click="copyToClipboard(getColorValue(`--${namespace}-` + color))"
-        >
-          <span class="swatch-name">
-            {{ color }}
-          </span>
-          <span class="swatch-value">
-            {{ getColorLabel(`--${namespace}-` + color) }}
-          </span>
-        </div>
-      </div>
-    </div>
-
     <!-- 背景色 -->
     <div class="palette-section">
       <h3>背景色</h3>
       <div class="palette-swatches">
         <div
           v-for="color in backgroundColors"
-          :key="color"
-          class="swatch"
-          :style="{ backgroundColor: getColorValue(`--${namespace}-` + color) }"
-          @click="copyToClipboard(getColorValue(`--${namespace}-` + color))"
-        >
-          <span class="swatch-name">{{ color }}</span>
-          <span class="swatch-value">{{ getColorLabel(`--${namespace}-` + color) }}</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 中性背景色 -->
-    <div class="palette-section">
-      <h3>中性背景色</h3>
-      <div class="palette-swatches">
-        <div
-          v-for="color in neutralBackgroundColors"
           :key="color"
           class="swatch"
           :style="{ backgroundColor: getColorValue(`--${namespace}-` + color) }"
@@ -175,25 +131,6 @@
           <span class="swatch-name">{{ color }}</span>
           <span class="swatch-value">{{ getColorLabel(`--${namespace}-` + color) }}</span>
           <span style="font-size: 11px">{{ grayColorsTip[index] }}</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 文本色 -->
-    <div class="palette-section">
-      <h3>文本色</h3>
-      <div class="palette-swatches">
-        <div
-          v-for="color in textColors"
-          :key="color"
-          class="swatch text-swatch"
-          :style="{
-            color: getColorValue(`--${namespace}-` + color),
-          }"
-          @click="copyToClipboard(getColorValue(`--${namespace}-` + color))"
-        >
-          <span class="swatch-name">{{ color }}</span>
-          <span class="swatch-value">{{ getColorLabel(`--${namespace}-` + color) }}</span>
         </div>
       </div>
     </div>
@@ -249,7 +186,7 @@ const changeTheme = () => {
   if (!isClient) return;
 
   // 清除所有主题类
-  document.documentElement.classList.remove("dark", "dark-blue", "dark-deep", "dark-midnight", "dark-neutral");
+  document.documentElement.classList.remove("dark", "dark");
 
   if (selectedTheme.value.startsWith("dark")) {
     document.documentElement.classList.add("dark");
@@ -374,26 +311,20 @@ const secondaryColors = [
   },
 ];
 
-// 基本色
-const baseColors = ["color", "light", "dark"];
-
 // 背景色
 const backgroundColors = ["bg-primary", "bg-success", "bg-warning", "bg-danger", "bg-error", "bg-info", "bg-secondary"];
 
-// 中性背景色
-const neutralBackgroundColors = ["bg-neutral", "bg-neutral-light", "bg-neutral-dark"];
-
 // 灰度色
 const grayColors = [
-  "gray-100",
-  "gray-200",
-  "gray-300",
-  "gray-400",
-  "gray-500",
-  "gray-600",
-  "gray-700",
-  "gray-800",
-  "gray-900",
+  "gray-color-100",
+  "gray-color-200",
+  "gray-color-300",
+  "gray-color-400",
+  "gray-color-500",
+  "gray-color-600",
+  "gray-color-700",
+  "gray-color-800",
+  "gray-color-900",
 ];
 
 const grayColorsTip = [
@@ -409,22 +340,8 @@ const grayColorsTip = [
   "标题/重要内容/深色图标/",
 ];
 
-// 文本色
-const textColors = [
-  "text-muted",
-  "text-gray-100",
-  "text-gray-200",
-  "text-gray-300",
-  "text-gray-400",
-  "text-gray-500",
-  "text-gray-600",
-  "text-gray-700",
-  "text-gray-800",
-  "text-gray-900",
-];
-
 // 边框色
-const borderColors = ["border-color", "border-dashed-color"];
+const borderColors = ["surface-border-color", "border-dashed-color", "border-accent-color"];
 
 // 阴影
 const shadowColors = ["box-shadow-xs", "box-shadow-sm", "box-shadow-md", "box-shadow-lg"];
