@@ -43,8 +43,8 @@ importers:
         specifier: ^1.6.3
         version: 1.6.3(@algolia/client-search@5.32.0)(async-validator@4.2.5)(postcss@8.5.14)(sass@1.99.0)(search-insights@2.17.3)(sortablejs@1.15.7)(typescript@6.0.3)
       vitepress-theme-teek:
-        specifier: 1.5.7
-        version: 1.5.7(vitepress@1.6.3(@algolia/client-search@5.32.0)(async-validator@4.2.5)(postcss@8.5.14)(sass@1.99.0)(search-insights@2.17.3)(sortablejs@1.15.7)(typescript@6.0.3))(vue@3.5.34(typescript@6.0.3))
+        specifier: 1.6.0
+        version: 1.6.0(vitepress@1.6.3(@algolia/client-search@5.32.0)(async-validator@4.2.5)(postcss@8.5.14)(sass@1.99.0)(search-insights@2.17.3)(sortablejs@1.15.7)(typescript@6.0.3))(vue@3.5.34(typescript@6.0.3))
       vue:
         specifier: ^3.5.31
         version: 3.5.34(typescript@6.0.3)
@@ -1375,13 +1375,13 @@ packages:
     peerDependencies:
       vitepress: ^1.6.3
 
-  vitepress-plugin-sidebar-resolve@1.2.2:
-    resolution: {integrity: sha512-a+IPibwC/MayEQE5MAMFmh5DDsf0G0asj2EWR9bcyIpYUNYGmP+fuzcZhaUlKsozXCc8AN2JI+NNdAnzvH+tPQ==}
+  vitepress-plugin-sidebar-resolve@1.2.3:
+    resolution: {integrity: sha512-uqeQUVVTRbJAPEKClL4aeGgOlpl75rQzuKjw1fpzN9X2Rv0nDuOu5U3GEKdqoY4vvMHnU+5DVvZG4bhQMYDwTw==}
     peerDependencies:
       vitepress: ^1.6.4
 
-  vitepress-theme-teek@1.5.7:
-    resolution: {integrity: sha512-o8/faRsJ8kDUB3rYvva9LkcksVugiZ0+EXn69/pYHGmBJUTxkzRWod3QA0YSDajapAu7hv0GMQq/AR7hlt8+dA==}
+  vitepress-theme-teek@1.6.0:
+    resolution: {integrity: sha512-bj5S5JisJj+NglrD2Wm+txvo5z8+4h/WpZCKTq+p/VlNY/QzFVaD/enD4UE+e+ELn8LpC5LBFISW8hyaLt73Fg==}
     peerDependencies:
       vitepress: ^1.6.4
 
@@ -2792,13 +2792,13 @@ snapshots:
       picocolors: 1.1.1
       vitepress: 1.6.3(@algolia/client-search@5.32.0)(async-validator@4.2.5)(postcss@8.5.14)(sass@1.99.0)(search-insights@2.17.3)(sortablejs@1.15.7)(typescript@6.0.3)
 
-  vitepress-plugin-sidebar-resolve@1.2.2(vitepress@1.6.3(@algolia/client-search@5.32.0)(async-validator@4.2.5)(postcss@8.5.14)(sass@1.99.0)(search-insights@2.17.3)(sortablejs@1.15.7)(typescript@6.0.3)):
+  vitepress-plugin-sidebar-resolve@1.2.3(vitepress@1.6.3(@algolia/client-search@5.32.0)(async-validator@4.2.5)(postcss@8.5.14)(sass@1.99.0)(search-insights@2.17.3)(sortablejs@1.15.7)(typescript@6.0.3)):
     dependencies:
       gray-matter: 4.0.3
       picocolors: 1.1.1
       vitepress: 1.6.3(@algolia/client-search@5.32.0)(async-validator@4.2.5)(postcss@8.5.14)(sass@1.99.0)(search-insights@2.17.3)(sortablejs@1.15.7)(typescript@6.0.3)
 
-  vitepress-theme-teek@1.5.7(vitepress@1.6.3(@algolia/client-search@5.32.0)(async-validator@4.2.5)(postcss@8.5.14)(sass@1.99.0)(search-insights@2.17.3)(sortablejs@1.15.7)(typescript@6.0.3))(vue@3.5.34(typescript@6.0.3)):
+  vitepress-theme-teek@1.6.0(vitepress@1.6.3(@algolia/client-search@5.32.0)(async-validator@4.2.5)(postcss@8.5.14)(sass@1.99.0)(search-insights@2.17.3)(sortablejs@1.15.7)(typescript@6.0.3))(vue@3.5.34(typescript@6.0.3)):
     dependencies:
       '@iconify/vue': 4.3.0(vue@3.5.34(typescript@6.0.3))
       gray-matter: 4.0.3
@@ -2811,7 +2811,7 @@ snapshots:
       vitepress-plugin-file-content-loader: 1.0.13(vitepress@1.6.3(@algolia/client-search@5.32.0)(async-validator@4.2.5)(postcss@8.5.14)(sass@1.99.0)(search-insights@2.17.3)(sortablejs@1.15.7)(typescript@6.0.3))
       vitepress-plugin-md-h1: 1.0.11
       vitepress-plugin-permalink: 1.2.1(vitepress@1.6.3(@algolia/client-search@5.32.0)(async-validator@4.2.5)(postcss@8.5.14)(sass@1.99.0)(search-insights@2.17.3)(sortablejs@1.15.7)(typescript@6.0.3))
-      vitepress-plugin-sidebar-resolve: 1.2.2(vitepress@1.6.3(@algolia/client-search@5.32.0)(async-validator@4.2.5)(postcss@8.5.14)(sass@1.99.0)(search-insights@2.17.3)(sortablejs@1.15.7)(typescript@6.0.3))
+      vitepress-plugin-sidebar-resolve: 1.2.3(vitepress@1.6.3(@algolia/client-search@5.32.0)(async-validator@4.2.5)(postcss@8.5.14)(sass@1.99.0)(search-insights@2.17.3)(sortablejs@1.15.7)(typescript@6.0.3))
     transitivePeerDependencies:
       - vue
 
