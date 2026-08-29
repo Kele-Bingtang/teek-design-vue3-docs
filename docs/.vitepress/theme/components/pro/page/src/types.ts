@@ -139,7 +139,7 @@ export interface FeedbackFormProps<T extends Record<string, any> = any> {
   /**
    * 调用 addApi 时额外传入的参数
    */
-  addCarryParams?: Record<string, any>;
+  addCarryParams?: Record<string, any> | ((model: T) => Record<string, any>);
   /**
    * 调用 addApi 时过滤掉的参数
    */
@@ -151,7 +151,7 @@ export interface FeedbackFormProps<T extends Record<string, any> = any> {
   /**
    * 调用 editApi 时额外传入的参数
    */
-  editCarryParams?: Record<string, any>;
+  editCarryParams?: Record<string, any> | ((data: T) => Record<string, any>);
   /**
    * 调用 editApi 时过滤掉的参数
    */
@@ -163,7 +163,7 @@ export interface FeedbackFormProps<T extends Record<string, any> = any> {
   /**
    * 调用 removeApi 时额外传入的参数
    */
-  removeCarryParams?: Record<string, any>;
+  removeCarryParams?: Record<string, any> | ((data: T) => Record<string, any>);
   /**
    * 调用 removeApi 时过滤掉的参数
    */
@@ -175,7 +175,7 @@ export interface FeedbackFormProps<T extends Record<string, any> = any> {
   /**
    * 调用 removeBatchApi 时额外传入的参数
    */
-  removeBatchCarryParams?: Record<string, any>;
+  removeBatchCarryParams?: Record<string, any> | ((data: T) => Record<string, any>);
   /**
    * 调用所有 API 接口时额外传入的参数
    */
@@ -183,7 +183,7 @@ export interface FeedbackFormProps<T extends Record<string, any> = any> {
   /**
    * 调用所有 API 接口时过滤掉的参数
    */
-  apiCarryParams?: Record<string, any>;
+  apiCarryParams?: Record<string, any> | ((data: T) => Record<string, any>);
   /**
    * 请求失败回调
    */
@@ -197,29 +197,45 @@ export interface FeedbackFormProps<T extends Record<string, any> = any> {
    */
   clickEdit?: (model: T) => Promise<any> | false | undefined;
   /**
-   * 点击删除按钮回调，可以返回一个对象覆盖表单数据，也可以传入 false 取消打开删除弹窗
+   * 点击删除按钮回调
    */
-  clickRemove?: (model: T) => Promise<any> | false | undefined;
+  clickRemove?: (model: T) => void;
   /**
    * 点击批量删除按回调，可以返回一个对象覆盖表单数据，也可以传入 false 取消打开批量删除弹窗
    */
-  clickRemoveBatch?: (model: T) => Promise<any> | false | undefined;
+  clickRemoveBatch?: (data: T) => Promise<any> | false | undefined;
   /**
    * 新增点击保存按钮回调，将自定义新增逻辑，覆盖 addApi 逻辑，当两者同时存在时，onAdd 优先级高，返回 false 代表继续执行 addApi
    */
-  onAdd?: (model: T) => undefined | false | Promise<undefined | false>;
+  onAdd?: (
+    model: T,
+    successCallBack: () => void,
+    failureCallBack: (res: any) => void
+  ) => undefined | false | Promise<undefined | false>;
   /**
    * 编辑点击保存按钮回调，将自定义新增逻辑，覆盖 editApi 逻辑，当两者同时存在时，onEdit 优先级高，返回 false 代表继续执行 editApi
    */
-  onEdit?: (model: T) => undefined | false | Promise<undefined | false>;
+  onEdit?: (
+    model: T,
+    successCallBack: () => void,
+    failureCallBack: (res: any) => void
+  ) => undefined | false | Promise<undefined | false>;
   /**
    * 删除点击保存按钮回调，将自定义新增逻辑，覆盖 removeApi 逻辑，当两者同时存在时，onRemove 优先级高，返回 false 代表继续执行 removeApi
    */
-  onRemove?: (model: T) => undefined | false | Promise<undefined | false>;
+  onRemove?: (
+    model: T,
+    successCallBack: (res: any) => void,
+    failureCallBack: (res: any) => void
+  ) => undefined | false | Promise<undefined | false>;
   /**
    * 批量删除点击保存按钮回调，将自定义新增逻辑，覆盖 removeBatchApi 逻辑，当两者同时存在时，onRemoveBatch 优先级高，返回 false 代表继续执行 removeBatchApi
    */
-  onRemoveBatch?: (model: T) => undefined | false;
+  onRemoveBatch?: (
+    model: T,
+    successCallBack: (res: any) => void,
+    failureCallBack: (res: any) => void
+  ) => undefined | false | Promise<undefined | false>;
   /**
    * add、edit、remove、removeBatch 任意操作完成后的回调
    */
@@ -251,7 +267,7 @@ export interface FeedbackFormProps<T extends Record<string, any> = any> {
   /**
    * 是否使用新增功能，如果 addApi 存在则默认为 true，否则默认为 false
    */
-  useAdd?: boolean | ((param: { selectedListIds: any; selectedList: any; isSelected: any }) => boolean);
+  useAdd?: boolean | ((row: T) => boolean);
   /**
    * 是否使用编辑功能，如果 editApi 存在则默认为 true，否则默认为 false
    */
@@ -263,5 +279,5 @@ export interface FeedbackFormProps<T extends Record<string, any> = any> {
   /**
    * 是否使用批量删除功能，如果 removeBatchApi 存在则默认为 true，否则默认为 false
    */
-  useRemoveBatch?: boolean | ((param: { selectedListIds: any; selectedList: any; isSelected: any }) => boolean);
+  useRemoveBatch?: boolean | ((row: T) => boolean);
 }
